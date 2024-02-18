@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://b4khdv2cw0i73"]
+
+[ext_resource type="Script" path="res://scene/core/audio.gd" id="1_2lv1p"]
+[ext_resource type="AudioStream" uid="uid://kijlrg8lh16o" path="res://assets/sounds/bad_melody.wav" id="2_55yq0"]
+[ext_resource type="AudioStream" uid="uid://cvcla1wdokqmn" path="res://assets/sounds/hit1.wav" id="3_ghbny"]
+
+[node name="Audio" type="Node"]
+script = ExtResource("1_2lv1p")
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_55yq0")
+bus = &"Music"
+
+[node name="Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_ghbny")
+bus = &"Sound"
+
+[connection signal="finished" from="Sound" to="." method="_on_sound_finished"]

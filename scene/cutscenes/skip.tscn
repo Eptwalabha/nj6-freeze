@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://dvcgcpotar8c3"]
+
+[ext_resource type="Script" path="res://scene/cutscenes/skip-cutscene.gd" id="1_7s37u"]
+[ext_resource type="Texture2D" uid="uid://c6ub2d4kngpp3" path="res://assets/img/arts/arts.png" id="2_y8eq2"]
+
+[node name="Skip" type="Node2D"]
+script = ExtResource("1_7s37u")
+
+[node name="Skip" type="Sprite2D" parent="."]
+position = Vector2(0, 3)
+texture = ExtResource("2_y8eq2")
+region_enabled = true
+region_rect = Rect2(171, 0, 14, 6)
+
+[node name="Progress" type="Sprite2D" parent="."]
+position = Vector2(-7, 7)
+scale = Vector2(13, 1)
+texture = ExtResource("2_y8eq2")
+offset = Vector2(0.5, 0)
+region_enabled = true
+region_rect = Rect2(172, 3, 1, 2)

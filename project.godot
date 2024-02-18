@@ -10,11 +10,30 @@ config_version=5
 
 [application]
 
-config/name="nokia6jam"
+config/name="Freeze"
+config/tags=PackedStringArray("itch_jam")
 run/main_scene="res://main.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
-run/max_fps=15
+run/max_fps=30
 config/icon="res://icon.svg"
+
+[autoload]
+
+GameData="*res://game-data.gd"
+
+[debug]
+
+settings/stdout/print_fps=true
+
+[display]
+
+window/size/viewport_width=873
+
+[editor]
+
+movie_writer/mjpeg_quality=0.5
+movie_writer/movie_file="/tmp/freeze.avi"
+movie_writer/fps=15
 
 [gui]
 
@@ -102,6 +121,7 @@ locale/translations=PackedStringArray("res://assets/i18n/translations.en.transla
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+2d/snap/snap_2d_vertices_to_pixel=true
 
 [shader_globals]
 
