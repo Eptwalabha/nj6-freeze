@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bspf32n5wp0pj" path="res://scene/fx/fx-snow.tscn" id="2_i4h3q"]
 [ext_resource type="Shader" path="res://assets/shaders/dither.gdshader" id="2_uwqnu"]
 [ext_resource type="Material" uid="uid://bhaiush2cvw0u" path="res://assets/material/invert.tres" id="4_3hclh"]
-[ext_resource type="PackedScene" uid="uid://dvcgcpotar8c3" path="res://scene/cutscenes/skip.tscn" id="4_6bpeq"]
+[ext_resource type="PackedScene" uid="uid://dvcgcpotar8c3" path="res://scene/cutscenes/skip-cutscene.tscn" id="4_6bpeq"]
 [ext_resource type="FontFile" uid="uid://cxeg4c7rwp2y3" path="res://assets/fonts/lowrez/lowrez.png" id="6_ls57r"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jay72"]
@@ -201,13 +201,13 @@ position = Vector2(21, 11)
 position = Vector2(13, 0)
 texture = ExtResource("1_4mg8c")
 region_enabled = true
-region_rect = Rect2(133, 9, 12, 10)
+region_rect = Rect2(165, 10, 12, 10)
 
 [node name="Gulag3" type="Sprite2D" parent="Title"]
 position = Vector2(-11, 0)
 texture = ExtResource("1_4mg8c")
 region_enabled = true
-region_rect = Rect2(133, 9, 12, 10)
+region_rect = Rect2(165, 10, 12, 10)
 
 [node name="Gulag2" type="Sprite2D" parent="Title"]
 position = Vector2(1, 0)

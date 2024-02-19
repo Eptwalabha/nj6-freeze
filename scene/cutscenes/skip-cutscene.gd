@@ -17,11 +17,9 @@ func _process(delta: float) -> void:
 	if skipping and enable:
 		skip = min(time_to_skip, skip + delta)
 		if skip >= time_to_skip:
-			skip = 0.0
-			skipping = false
 			skipped.emit()
 			enable = false
-			visible = false
+			set_visibility(false)
 		progress.scale.x = 13.0 * (skip / time_to_skip)
 
 func _input(event: InputEvent) -> void:
@@ -30,11 +28,12 @@ func _input(event: InputEvent) -> void:
 
 	if event is InputEventKey :
 		if event.is_pressed() and not skipping:
-			skip = 0.0
-			skipping = true
-			visible = true
+			set_visibility(true)
 
 		if not event.is_pressed():
-			skip = 0.0
-			skipping = false
-			visible = false
+			set_visibility(false)
+
+func set_visibility(is_visible: bool) -> void:
+	skip = 0.0
+	skipping = is_visible
+	visible = is_visible

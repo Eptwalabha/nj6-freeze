@@ -1,0 +1,79 @@
+[gd_scene load_steps=6 format=3 uid="uid://cf5bjhfx58nye"]
+
+[ext_resource type="Script" path="res://scene/game/lvl-labor.gd" id="1_nxpqg"]
+[ext_resource type="Texture2D" uid="uid://c6ub2d4kngpp3" path="res://assets/img/arts/arts.png" id="2_gfcca"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_tsfmo"]
+distance = -38.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_yeiyj"]
+normal = Vector2(-1, 0)
+distance = -330.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_4upby"]
+normal = Vector2(1, 0)
+
+[node name="LvlLabor" type="Node"]
+script = ExtResource("1_nxpqg")
+metadata/_edit_horizontal_guides_ = [48.0]
+metadata/_edit_vertical_guides_ = [84.0, 168.0, 252.0, 336.0]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="Background" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.8, 0.8)
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(168, 41.5)
+scale = Vector2(354, 15)
+texture = ExtResource("2_gfcca")
+region_enabled = true
+region_rect = Rect2(54, 10, 1, 1)
+
+[node name="Truck" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(11, 24)
+texture = ExtResource("2_gfcca")
+region_enabled = true
+region_rect = Rect2(84, 17, 55, 30)
+
+[node name="Gard" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(50, 29)
+texture = ExtResource("2_gfcca")
+region_enabled = true
+region_rect = Rect2(0, 20, 10, 27)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="ParallaxBackground/ParallaxLayer"]
+
+[node name="Floor" type="CollisionShape2D" parent="ParallaxBackground/ParallaxLayer/StaticBody2D"]
+shape = SubResource("WorldBoundaryShape2D_tsfmo")
+
+[node name="Right" type="CollisionShape2D" parent="ParallaxBackground/ParallaxLayer/StaticBody2D"]
+shape = SubResource("WorldBoundaryShape2D_yeiyj")
+
+[node name="Left" type="CollisionShape2D" parent="ParallaxBackground/ParallaxLayer/StaticBody2D"]
+shape = SubResource("WorldBoundaryShape2D_4upby")
+
+[node name="Foreground" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(1.2, 1.2)
+
+[node name="Gard3" type="Sprite2D" parent="ParallaxBackground/Foreground"]
+position = Vector2(69, 29)
+texture = ExtResource("2_gfcca")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(0, 20, 10, 27)
+
+[node name="Gard2" type="Sprite2D" parent="ParallaxBackground/Foreground"]
+position = Vector2(327, 28)
+texture = ExtResource("2_gfcca")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(0, 20, 10, 27)
+
+[node name="Barrel" type="Sprite2D" parent="ParallaxBackground/Foreground"]
+position = Vector2(59, 37)
+texture = ExtResource("2_gfcca")
+region_enabled = true
+region_rect = Rect2(20, 36, 7, 11)
