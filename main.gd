@@ -58,3 +58,8 @@ func set_palette(new_palette: PALETTE) -> void:
 	palette = new_palette
 	RenderingServer.global_shader_parameter_set("color_palette_light", Color(palettes[palette][0]))
 	RenderingServer.global_shader_parameter_set("color_palette_dark",  Color(palettes[palette][1]))
+
+func _on_intro_load_next_level(next_level) -> void:
+	var level = GameData.scenes[next_level].instantiate()
+	screen.get_child(0).queue_free()
+	screen.add_child(level)

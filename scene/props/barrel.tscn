@@ -1,0 +1,34 @@
+[gd_scene load_steps=4 format=3 uid="uid://dudspe5n6qgqp"]
+
+[ext_resource type="Texture2D" uid="uid://c6ub2d4kngpp3" path="res://assets/img/arts/arts.png" id="1_4c37t"]
+[ext_resource type="Material" uid="uid://bhaiush2cvw0u" path="res://assets/material/invert.tres" id="2_6uinu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5cc0v"]
+size = Vector2(44, 36)
+
+[node name="Barrel" type="Node2D"]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -18)
+shape = SubResource("RectangleShape2D_5cc0v")
+
+[node name="Fire" type="CPUParticles2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+material = ExtResource("2_6uinu")
+position = Vector2(0.5, -11.5)
+amount = 10
+lifetime = 0.6
+preprocess = 0.6
+lifetime_randomness = 0.5
+local_coords = true
+emission_shape = 3
+emission_rect_extents = Vector2(2.5, 0)
+gravity = Vector2(0, -20)
+
+[node name="Barrel" type="Sprite2D" parent="."]
+texture = ExtResource("1_4c37t")
+offset = Vector2(0.5, -5.5)
+region_enabled = true
+region_rect = Rect2(20, 36, 7, 11)

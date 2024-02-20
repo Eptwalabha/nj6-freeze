@@ -7,7 +7,7 @@ extends Node2D
 var global_target : Vector2 = global_position
 var moving : bool = false
 
-const SPEED : float = 3.0
+const SPEED : float = 2.0
 
 func _process(delta: float) -> void:
 	if moving:

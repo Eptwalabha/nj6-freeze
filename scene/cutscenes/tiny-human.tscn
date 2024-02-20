@@ -72,4 +72,5 @@ material = ExtResource("2_r4xcx")
 position = Vector2(0, -3)
 texture = ExtResource("1_dwrb7")
 hframes = 6
+vframes = 2
 frame = 3

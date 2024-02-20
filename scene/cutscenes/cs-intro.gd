@@ -1,6 +1,8 @@
 class_name CS_intro
 extends Node
 
+signal load_next_level(next_level)
+
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var title: Node2D = $Title
 @onready var spawn_inmate: Timer = $Timer
@@ -34,7 +36,8 @@ func _on_timer_timeout() -> void:
 	if inmate_to_spawn > 0:
 		spawn_inmate.start(1.5 + randf() * 2.0)
 	else:
-		get_tree().quit()
+		load_next_level.emit("lvl-01")
 
 func _on_skip_skipped() -> void:
-	print("boom")
+	load_next_level.emit("lvl-01")
+	

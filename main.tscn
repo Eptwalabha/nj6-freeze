@@ -50,3 +50,5 @@ metadata/_edit_group_ = true
 [node name="NokiaShader" type="ColorRect" parent="AspectRatioContainer"]
 material = SubResource("ShaderMaterial_udw2h")
 layout_mode = 2
+
+[connection signal="load_next_level" from="SubViewportContainer/Screen/Intro" to="." method="_on_intro_load_next_level"]

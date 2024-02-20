@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cf5bjhfx58nye"]
+[gd_scene load_steps=8 format=3 uid="uid://cf5bjhfx58nye"]
 
 [ext_resource type="Script" path="res://scene/game/lvl-labor.gd" id="1_nxpqg"]
 [ext_resource type="Texture2D" uid="uid://c6ub2d4kngpp3" path="res://assets/img/arts/arts.png" id="2_gfcca"]
+[ext_resource type="PackedScene" uid="uid://dudspe5n6qgqp" path="res://scene/props/barrel.tscn" id="3_6eq47"]
+[ext_resource type="PackedScene" uid="uid://n5iv26l5gsf2" path="res://scene/core/player.tscn" id="4_kg5mr"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_tsfmo"]
 distance = -38.0
@@ -19,6 +21,7 @@ metadata/_edit_horizontal_guides_ = [48.0]
 metadata/_edit_vertical_guides_ = [84.0, 168.0, 252.0, 336.0]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+follow_viewport_enabled = true
 
 [node name="Background" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(0.8, 0.8)
@@ -26,8 +29,8 @@ motion_scale = Vector2(0.8, 0.8)
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2(168, 41.5)
-scale = Vector2(354, 15)
+position = Vector2(168, 38.5)
+scale = Vector2(354, 21)
 texture = ExtResource("2_gfcca")
 region_enabled = true
 region_rect = Rect2(54, 10, 1, 1)
@@ -38,9 +41,13 @@ texture = ExtResource("2_gfcca")
 region_enabled = true
 region_rect = Rect2(84, 17, 55, 30)
 
-[node name="Gard" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2(50, 29)
+[node name="Barrel2" parent="ParallaxBackground/ParallaxLayer" instance=ExtResource("3_6eq47")]
+position = Vector2(317, 38)
+
+[node name="Gard2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(327, 24)
 texture = ExtResource("2_gfcca")
+flip_h = true
 region_enabled = true
 region_rect = Rect2(0, 20, 10, 27)
 
@@ -50,30 +57,38 @@ region_rect = Rect2(0, 20, 10, 27)
 shape = SubResource("WorldBoundaryShape2D_tsfmo")
 
 [node name="Right" type="CollisionShape2D" parent="ParallaxBackground/ParallaxLayer/StaticBody2D"]
+position = Vector2(-18, 0)
 shape = SubResource("WorldBoundaryShape2D_yeiyj")
 
 [node name="Left" type="CollisionShape2D" parent="ParallaxBackground/ParallaxLayer/StaticBody2D"]
 shape = SubResource("WorldBoundaryShape2D_4upby")
 
+[node name="Player" parent="ParallaxBackground/ParallaxLayer" instance=ExtResource("4_kg5mr")]
+position = Vector2(41, 36)
+
+[node name="Camera2D" type="Camera2D" parent="ParallaxBackground/ParallaxLayer/Player"]
+position = Vector2(0, -6)
+limit_left = 0
+limit_top = 0
+limit_bottom = 48
+limit_smoothed = true
+position_smoothing_speed = 10.0
+
 [node name="Foreground" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(1.2, 1.2)
 
+[node name="Gard" type="Sprite2D" parent="ParallaxBackground/Foreground"]
+position = Vector2(83, 29)
+texture = ExtResource("2_gfcca")
+region_enabled = true
+region_rect = Rect2(0, 20, 10, 27)
+
 [node name="Gard3" type="Sprite2D" parent="ParallaxBackground/Foreground"]
-position = Vector2(69, 29)
+position = Vector2(102, 29)
 texture = ExtResource("2_gfcca")
 flip_h = true
 region_enabled = true
 region_rect = Rect2(0, 20, 10, 27)
 
-[node name="Gard2" type="Sprite2D" parent="ParallaxBackground/Foreground"]
-position = Vector2(327, 28)
-texture = ExtResource("2_gfcca")
-flip_h = true
-region_enabled = true
-region_rect = Rect2(0, 20, 10, 27)
-
-[node name="Barrel" type="Sprite2D" parent="ParallaxBackground/Foreground"]
-position = Vector2(59, 37)
-texture = ExtResource("2_gfcca")
-region_enabled = true
-region_rect = Rect2(20, 36, 7, 11)
+[node name="Barrel" parent="ParallaxBackground/Foreground" instance=ExtResource("3_6eq47")]
+position = Vector2(92, 41)
