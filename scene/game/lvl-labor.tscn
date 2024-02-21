@@ -7,6 +7,7 @@
 [ext_resource type="Material" uid="uid://4qotextykkj0" path="res://assets/material/dither.tres" id="3_57qxa"]
 [ext_resource type="PackedScene" uid="uid://n5iv26l5gsf2" path="res://scene/core/player.tscn" id="4_kg5mr"]
 [ext_resource type="FontFile" uid="uid://cpxiyj34edml5" path="res://assets/fonts/nokia/nokiafc22.ttf" id="5_tuuod"]
+[ext_resource type="PackedScene" uid="uid://gpsto7yxr2tr" path="res://scene/core/interactive.tscn" id="6_2sxmm"]
 [ext_resource type="Material" uid="uid://bhaiush2cvw0u" path="res://assets/material/invert.tres" id="6_ppxyi"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_tsfmo"]
@@ -18,9 +19,6 @@ distance = -330.0
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_4upby"]
 normal = Vector2(1, 0)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wh8c7"]
-size = Vector2(18, 20)
 
 [node name="LvlLabor" type="Node"]
 script = ExtResource("1_nxpqg")
@@ -67,7 +65,7 @@ end_cap_mode = 1
 sharp_limit = 0.0
 
 [node name="Truck" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2(11, 24)
+position = Vector2(11, 23)
 texture = ExtResource("2_gfcca")
 region_enabled = true
 region_rect = Rect2(84, 17, 55, 30)
@@ -83,6 +81,7 @@ region_enabled = true
 region_rect = Rect2(0, 20, 10, 27)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="ParallaxBackground/ParallaxLayer"]
+collision_layer = 2
 
 [node name="Floor" type="CollisionShape2D" parent="ParallaxBackground/ParallaxLayer/StaticBody2D"]
 shape = SubResource("WorldBoundaryShape2D_tsfmo")
@@ -97,14 +96,9 @@ shape = SubResource("WorldBoundaryShape2D_4upby")
 [node name="Player" parent="ParallaxBackground/ParallaxLayer" instance=ExtResource("4_kg5mr")]
 position = Vector2(41, 38)
 
-[node name="Pickaxe" type="Area2D" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2(146, 38)
-monitorable = false
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ParallaxBackground/ParallaxLayer/Pickaxe"]
-position = Vector2(0, -10)
-shape = SubResource("RectangleShape2D_wh8c7")
+[node name="Pickaxe" parent="ParallaxBackground/ParallaxLayer" instance=ExtResource("6_2sxmm")]
+position = Vector2(117, 38)
+item_name = "action_pickhax"
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Pickaxe"]
 position = Vector2(0, -5)
@@ -112,16 +106,25 @@ texture = ExtResource("2_gfcca")
 region_enabled = true
 region_rect = Rect2(164, 24, 11, 11)
 
-[node name="Snow" parent="ParallaxBackground/ParallaxLayer" instance=ExtResource("2_1rp3p")]
-z_index = 1
-material = ExtResource("6_ppxyi")
-position = Vector2(168, 0)
-amount = 128
-preprocess = 5.0
-lifetime_randomness = 0.5
-fract_delta = false
-local_coords = true
-emission_rect_extents = Vector2(168, 10)
+[node name="Hammer" parent="ParallaxBackground/ParallaxLayer" instance=ExtResource("6_2sxmm")]
+position = Vector2(144, 38)
+item_name = "action_hammer"
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Hammer"]
+position = Vector2(0, -5)
+texture = ExtResource("2_gfcca")
+region_enabled = true
+region_rect = Rect2(164, 24, 11, 11)
+
+[node name="Saw" parent="ParallaxBackground/ParallaxLayer" instance=ExtResource("6_2sxmm")]
+position = Vector2(170, 38)
+item_name = "action_saw"
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Saw"]
+position = Vector2(0, -5)
+texture = ExtResource("2_gfcca")
+region_enabled = true
+region_rect = Rect2(164, 24, 11, 11)
 
 [node name="Foreground" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(1.2, 1)
@@ -150,6 +153,19 @@ offset_bottom = 46.0
 text = "get lost!"
 horizontal_alignment = 1
 
+[node name="Snow" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Snow" parent="ParallaxBackground/Snow" instance=ExtResource("2_1rp3p")]
+z_index = 1
+material = ExtResource("6_ppxyi")
+position = Vector2(168, 0)
+amount = 128
+preprocess = 5.0
+lifetime_randomness = 0.5
+fract_delta = false
+local_coords = true
+emission_rect_extents = Vector2(168, 10)
+
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
 process_callback = 0
@@ -172,6 +188,3 @@ theme_override_fonts/font = ExtResource("5_tuuod")
 theme_override_font_sizes/font_size = 8
 text = "take"
 horizontal_alignment = 1
-
-[connection signal="body_entered" from="ParallaxBackground/ParallaxLayer/Pickaxe" to="." method="_on_pickaxe_body_entered"]
-[connection signal="body_exited" from="ParallaxBackground/ParallaxLayer/Pickaxe" to="." method="_on_pickaxe_body_exited"]

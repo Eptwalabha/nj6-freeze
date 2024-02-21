@@ -21,10 +21,6 @@ config/icon="res://icon.svg"
 
 GameData="*res://game-data.gd"
 
-[debug]
-
-settings/stdout/print_fps=true
-
 [display]
 
 window/size/viewport_width=873
@@ -123,6 +119,12 @@ action-confirm={
 [internationalization]
 
 locale/translations=PackedStringArray("res://assets/i18n/translations.en.translation", "res://assets/i18n/translations.fr.translation", "res://assets/i18n/translations.es.translation")
+
+[layer_names]
+
+2d_physics/layer_1="player"
+2d_physics/layer_2="map"
+2d_physics/layer_5="interactive"
 
 [rendering]
 

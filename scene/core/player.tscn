@@ -59,6 +59,12 @@ _data = {
 "walk": SubResource("Animation_mi3f6")
 }
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_f5rsa"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7tgb4"]
+animation = &"walk"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_q2win"]
 animation = &"walk"
 
@@ -73,12 +79,6 @@ nodes/TimeScale/position = Vector2(220, 80)
 nodes/output/position = Vector2(380, 160)
 node_connections = [&"TimeScale", 0, &"Animation", &"output", 0, &"TimeScale"]
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_f5rsa"]
-animation = &"idle"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7tgb4"]
-animation = &"walk"
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lrf72"]
 advance_mode = 2
 
@@ -91,16 +91,17 @@ advance_mode = 2
 advance_condition = &"idle"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_gkmwf"]
-states/BlendTree/node = SubResource("AnimationNodeBlendTree_l87dj")
-states/BlendTree/position = Vector2(626.85, 42.06)
 states/idle/node = SubResource("AnimationNodeAnimation_f5rsa")
-states/idle/position = Vector2(364, 89)
+states/idle/position = Vector2(393, 100)
 states/walk/node = SubResource("AnimationNodeAnimation_7tgb4")
 states/walk/position = Vector2(601, 229)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_lrf72"), "idle", "BlendTree", SubResource("AnimationNodeStateMachineTransition_pbrdv"), "BlendTree", "idle", SubResource("AnimationNodeStateMachineTransition_smryo")]
+states/walking/node = SubResource("AnimationNodeBlendTree_l87dj")
+states/walking/position = Vector2(658.85, 100)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_lrf72"), "idle", "walking", SubResource("AnimationNodeStateMachineTransition_pbrdv"), "walking", "idle", SubResource("AnimationNodeStateMachineTransition_smryo")]
 graph_offset = Vector2(95.85, -11.94)
 
 [node name="Player" type="CharacterBody2D"]
+collision_mask = 7
 slide_on_ceiling = false
 script = ExtResource("1_gs02o")
 
@@ -128,4 +129,4 @@ tree_root = SubResource("AnimationNodeStateMachine_gkmwf")
 anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/idle = false
 parameters/conditions/moving = false
-parameters/BlendTree/TimeScale/scale = 1.75
+parameters/walking/TimeScale/scale = 1.75
