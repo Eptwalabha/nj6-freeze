@@ -6,7 +6,7 @@
 [ext_resource type="Shader" path="res://assets/shaders/dither.gdshader" id="2_uwqnu"]
 [ext_resource type="Material" uid="uid://bhaiush2cvw0u" path="res://assets/material/invert.tres" id="4_3hclh"]
 [ext_resource type="PackedScene" uid="uid://dvcgcpotar8c3" path="res://scene/cutscenes/skip-cutscene.tscn" id="4_6bpeq"]
-[ext_resource type="FontFile" uid="uid://cxeg4c7rwp2y3" path="res://assets/fonts/lowrez/lowrez.png" id="6_ls57r"]
+[ext_resource type="FontFile" uid="uid://cxeg4c7rwp2y3" path="res://assets/fonts/lowrez/lowrez.png" id="7_kigaw"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jay72"]
 shader = ExtResource("2_uwqnu")
@@ -227,9 +227,9 @@ material = ExtResource("4_3hclh")
 offset_left = -17.0
 offset_top = 19.0
 offset_right = 20.0
-offset_bottom = 37.0
+offset_bottom = 31.0
 theme_override_constants/line_spacing = 0
-theme_override_fonts/font = ExtResource("6_ls57r")
+theme_override_fonts/font = ExtResource("7_kigaw")
 text = "press to start"
 horizontal_alignment = 1
 autowrap_mode = 2

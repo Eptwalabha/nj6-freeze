@@ -5,7 +5,6 @@
 
 [node name="Skip" type="Node2D"]
 script = ExtResource("1_ib0s6")
-time_to_skip = 1.5
 
 [node name="Skip" type="Sprite2D" parent="."]
 position = Vector2(0, 3)

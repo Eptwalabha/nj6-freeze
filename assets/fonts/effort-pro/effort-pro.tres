@@ -1,0 +1,8 @@
+[gd_resource type="FontVariation" load_steps=2 format=3 uid="uid://dudgye4t03n1k"]
+
+[ext_resource type="FontFile" uid="uid://ddrvtpu5ltmdj" path="res://assets/fonts/effort-pro/EffortsPro.woff" id="1_i77ja"]
+
+[resource]
+base_font = ExtResource("1_i77ja")
+spacing_space = -2
+spacing_top = -4

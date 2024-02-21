@@ -3,7 +3,7 @@ extends Node2D
 
 signal skipped
 
-@export var time_to_skip : float = 2.0
+@export var time_to_skip : float = 1.0
 @export var enable : bool = false
 @onready var progress: Sprite2D = $Progress
 
@@ -33,7 +33,7 @@ func _input(event: InputEvent) -> void:
 		if not event.is_pressed():
 			set_visibility(false)
 
-func set_visibility(is_visible: bool) -> void:
+func set_visibility(is_skip_visible: bool) -> void:
 	skip = 0.0
-	skipping = is_visible
-	visible = is_visible
+	skipping = is_skip_visible
+	visible = is_skip_visible

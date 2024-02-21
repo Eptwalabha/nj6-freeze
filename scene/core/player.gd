@@ -1,22 +1,23 @@
+class_name Player
 extends CharacterBody2D
-
 
 const SPEED = 30.0
 const JUMP_VELOCITY = -40.0
 
-# Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var animation_tree: AnimationTree = $AnimationTree
+@onready var sprite_2d: Sprite2D = $Sprite2D
 
+var heating : bool = false
+var working : bool = false
 
 func _physics_process(delta: float) -> void:
-	# Add the gravity.
 	if not is_on_floor():
-		velocity.y += gravity * delta
-
-	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-	
-	velocity.x = Input.get_axis("move_left", "move_right") * 48.0
-
+		velocity.y += 50 * delta
+	velocity.x = Input.get_axis("move_left", "move_right") * 42.0
 	move_and_slide()
+	_update_player_states()
+
+func _update_player_states() -> void:
+	if velocity.x != 0:
+		sprite_2d.flip_h = velocity.x < 0

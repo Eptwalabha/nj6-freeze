@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://n5iv26l5gsf2"]
+[gd_scene load_steps=5 format=3 uid="uid://n5iv26l5gsf2"]
 
 [ext_resource type="Script" path="res://scene/core/player.gd" id="1_gs02o"]
 [ext_resource type="Texture2D" uid="uid://c6ub2d4kngpp3" path="res://assets/img/arts/arts.png" id="1_vt8i7"]
@@ -6,10 +6,11 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_imbqk"]
 size = Vector2(8, 22)
 
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_gkmwf"]
+
 [node name="Player" type="CharacterBody2D"]
-position = Vector2(31, 26)
+slide_on_ceiling = false
 script = ExtResource("1_gs02o")
-metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -11)
@@ -20,3 +21,9 @@ region_rect = Rect2(11, 25, 8, 22)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -11)
 shape = SubResource("RectangleShape2D_imbqk")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_gkmwf")
+anim_player = NodePath("../AnimationPlayer")
