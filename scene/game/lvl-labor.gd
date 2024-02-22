@@ -1,11 +1,15 @@
 class_name LvlLabor
 extends Node
 
-@onready var parallax: ParallaxBackground = $ParallaxBackground
-@onready var player: CharacterBody2D = $ParallaxBackground/ParallaxLayer/Player
+@onready var parallax: ParallaxBackground = %Parallax
+@onready var player: CharacterBody2D = %SideScrollPlayer
 @onready var action_label: Label = %ActionLabel
+@onready var camera = $Camera2D
+@onready var marker_1 = $Marker1
+@onready var marker_2 = $Marker2
 
 func _ready() -> void:
+	camera.global_position = marker_1.global_position
 	for barrel in get_tree().get_nodes_in_group("barrel"):
 		barrel.body_entered.connect(_on_barrel_body_entered)
 		barrel.body_exited.connect(_on_barrel_body_exited)
@@ -35,6 +39,9 @@ func _on_player_out_of_range(interactive: Interactive) -> void:
 
 func _on_player_interacted(interactive: Interactive) -> void:
 	print("using %s" % interactive.item_name)
+	player.set_physics_process(false)
+	parallax.visible = false
+	camera.global_position = marker_2.global_position
 
 func show_action(action: String) -> void:
 	action_label.visible = (action != "")
