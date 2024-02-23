@@ -4,7 +4,7 @@
 [ext_resource type="Material" uid="uid://bhaiush2cvw0u" path="res://assets/material/invert.tres" id="2_6uinu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5cc0v"]
-size = Vector2(44, 36)
+size = Vector2(45, 36)
 
 [node name="Area2D" type="Area2D" groups=["barrel"]]
 monitorable = false

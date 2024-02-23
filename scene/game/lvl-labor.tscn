@@ -57,18 +57,6 @@ texture = ExtResource("2_gfcca")
 region_enabled = true
 region_rect = Rect2(48, 0, 84, 11)
 
-[node name="Nature" type="Sprite2D" parent="Parallax/Background"]
-position = Vector2(28, 1)
-texture = ExtResource("4_lehuc")
-region_enabled = true
-region_rect = Rect2(0, 3, 34, 45)
-
-[node name="Nature2" type="Sprite2D" parent="Parallax/Background"]
-position = Vector2(59, 5)
-texture = ExtResource("4_lehuc")
-region_enabled = true
-region_rect = Rect2(1, 52, 15, 43)
-
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 layer = 0
 
@@ -93,6 +81,7 @@ region_enabled = true
 region_rect = Rect2(0, 20, 10, 27)
 
 [node name="Label2" type="Label" parent="ParallaxBackground/Foreground"]
+visible = false
 offset_left = 37.0
 offset_top = 37.0
 offset_right = 77.0
