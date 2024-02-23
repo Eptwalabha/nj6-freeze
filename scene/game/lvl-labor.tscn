@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cf5bjhfx58nye"]
+[gd_scene load_steps=17 format=3 uid="uid://cf5bjhfx58nye"]
 
 [ext_resource type="Script" path="res://scene/game/lvl-labor.gd" id="1_nxpqg"]
 [ext_resource type="PackedScene" uid="uid://bspf32n5wp0pj" path="res://scene/fx/fx-snow.tscn" id="2_1rp3p"]
@@ -12,6 +12,7 @@
 [ext_resource type="Material" uid="uid://bhaiush2cvw0u" path="res://assets/material/invert.tres" id="6_ppxyi"]
 [ext_resource type="Texture2D" uid="uid://2qoyyfwwn154" path="res://assets/img/props/items.png" id="8_pyk78"]
 [ext_resource type="PackedScene" uid="uid://gkvd1bmf0asm" path="res://scene/ui/thermometer.tscn" id="12_ferwa"]
+[ext_resource type="PackedScene" uid="uid://ck8nfkeyiukdk" path="res://scene/game/agility-minigame.tscn" id="13_4df6f"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_tsfmo"]
 distance = -38.0
@@ -205,3 +206,6 @@ horizontal_alignment = 1
 [node name="Thermometer" parent="CanvasLayer" instance=ExtResource("12_ferwa")]
 visible = false
 position = Vector2(2, 46)
+
+[node name="Agility" parent="CanvasLayer" instance=ExtResource("13_4df6f")]
+position = Vector2(35, 11)

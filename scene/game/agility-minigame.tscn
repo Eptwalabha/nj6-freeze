@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://ck8nfkeyiukdk"]
+
+[ext_resource type="Script" path="res://scene/game/agility-minigame.gd" id="1_7n0qd"]
+[ext_resource type="Texture2D" uid="uid://b1jv1fj6a5y4h" path="res://assets/img/props/ui.png" id="1_nb0g7"]
+
+[node name="Agility" type="Node2D"]
+script = ExtResource("1_7n0qd")
+speed = 6.0
+
+[node name="Range" type="Sprite2D" parent="."]
+texture = ExtResource("1_nb0g7")
+offset = Vector2(23, 0)
+region_enabled = true
+region_rect = Rect2(18, 0, 48, 6)
+
+[node name="Target" type="Sprite2D" parent="Range"]
+position = Vector2(24, 0)
+texture = ExtResource("1_nb0g7")
+region_enabled = true
+region_rect = Rect2(18, 7, 18, 4)
+
+[node name="Cursor" type="Sprite2D" parent="Range"]
+texture = ExtResource("1_nb0g7")
+region_enabled = true
+region_rect = Rect2(10, 0, 7, 20)
