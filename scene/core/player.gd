@@ -13,9 +13,9 @@ var working : bool = false
 func _ready() -> void:
 	animation_tree.active = true
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if not is_on_floor():
-		velocity.y += 50 * delta
+		velocity.y += 20
 	velocity.x = Input.get_axis("move_left", "move_right") * SPEED
 	move_and_slide()
 	_update_player_states()

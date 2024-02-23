@@ -1,0 +1,119 @@
+[gd_scene load_steps=6 format=3 uid="uid://d1pjmsekkiy57"]
+
+[ext_resource type="Texture2D" uid="uid://djk1m0roae2bp" path="res://assets/img/props/nokia-ui.png" id="1_56igc"]
+[ext_resource type="Script" path="res://scene/ui/nokia.gd" id="1_y6xt0"]
+
+[sub_resource type="Animation" id="Animation_0l6mt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Nokia:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Nokia/Screen/NewMessage:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Nokia/Screen/NoNetwork:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_yabgh"]
+resource_name = "new-message"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Nokia:position")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-1, 0), Vector2(1, 0), Vector2(-1, 0), Vector2(1, 0), Vector2(-1, 0), Vector2(1, 0), Vector2(-1, 0), Vector2(1, 0), Vector2(-1, 0), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Nokia/Screen/NewMessage:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Nokia/Screen/NoNetwork:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ct1ug"]
+_data = {
+"RESET": SubResource("Animation_0l6mt"),
+"new-message": SubResource("Animation_yabgh")
+}
+
+[node name="PhoneUI" type="Node2D"]
+script = ExtResource("1_y6xt0")
+
+[node name="Nokia" type="Sprite2D" parent="."]
+texture = ExtResource("1_56igc")
+offset = Vector2(0, -7)
+region_enabled = true
+region_rect = Rect2(2, 1, 37, 87)
+
+[node name="Screen" type="Marker2D" parent="Nokia"]
+position = Vector2(-14, -27)
+
+[node name="NoNetwork" type="Sprite2D" parent="Nokia/Screen"]
+visible = false
+texture = ExtResource("1_56igc")
+centered = false
+region_enabled = true
+region_rect = Rect2(42, 1, 29, 20)
+
+[node name="NewMessage" type="Sprite2D" parent="Nokia/Screen"]
+visible = false
+texture = ExtResource("1_56igc")
+centered = false
+region_enabled = true
+region_rect = Rect2(42, 22, 29, 20)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ct1ug")
+}

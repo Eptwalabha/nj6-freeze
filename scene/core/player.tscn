@@ -1,10 +1,14 @@
-[gd_scene load_steps=17 format=3 uid="uid://n5iv26l5gsf2"]
+[gd_scene load_steps=18 format=3 uid="uid://n5iv26l5gsf2"]
 
 [ext_resource type="Script" path="res://scene/core/player.gd" id="1_gs02o"]
 [ext_resource type="Texture2D" uid="uid://5vij36722j32" path="res://assets/img/spritesheets/player.png" id="2_vlalk"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_imbqk"]
-size = Vector2(8, 22)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lccid"]
+radius = 5.0
+height = 20.0
+
+[sub_resource type="SeparationRayShape2D" id="SeparationRayShape2D_gashk"]
+length = 7.0
 
 [sub_resource type="Animation" id="Animation_412vt"]
 length = 0.001
@@ -103,17 +107,22 @@ graph_offset = Vector2(95.85, -11.94)
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 7
 slide_on_ceiling = false
+floor_max_angle = 1.0472
 script = ExtResource("1_gs02o")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(1, -12)
+position = Vector2(0, -12)
 texture = ExtResource("2_vlalk")
 hframes = 5
 region_rect = Rect2(11, 25, 8, 22)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -11)
-shape = SubResource("RectangleShape2D_imbqk")
+position = Vector2(0, -13)
+shape = SubResource("CapsuleShape2D_lccid")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(0, -7)
+shape = SubResource("SeparationRayShape2D_gashk")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

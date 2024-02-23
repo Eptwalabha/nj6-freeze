@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://pstqes7jcym2"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_nrtmp"]
-[ext_resource type="PackedScene" uid="uid://cl8hpoh1v8yxi" path="res://scene/cutscenes/cs-intro.tscn" id="2_ibcn8"]
+[ext_resource type="PackedScene" uid="uid://cctjx2lhey38e" path="res://scene/game/level-frozen.tscn" id="2_vypyr"]
 [ext_resource type="Shader" path="res://assets/shaders/nokia-3310.gdshader" id="3_dhqyx"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_l502v"]
@@ -36,7 +36,7 @@ canvas_item_default_texture_filter = 0
 size = Vector2i(84, 48)
 render_target_update_mode = 4
 
-[node name="Intro" parent="SubViewportContainer/Screen" instance=ExtResource("2_ibcn8")]
+[node name="LevelFrozen" parent="SubViewportContainer/Screen" instance=ExtResource("2_vypyr")]
 
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
 unique_name_in_owner = true
@@ -51,5 +51,3 @@ metadata/_edit_group_ = true
 [node name="NokiaShader" type="ColorRect" parent="AspectRatioContainer"]
 material = SubResource("ShaderMaterial_udw2h")
 layout_mode = 2
-
-[connection signal="load_next_level" from="SubViewportContainer/Screen/Intro" to="." method="_on_intro_load_next_level"]

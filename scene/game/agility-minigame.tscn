@@ -14,7 +14,7 @@ region_enabled = true
 region_rect = Rect2(18, 0, 48, 6)
 
 [node name="Target" type="Sprite2D" parent="Range"]
-position = Vector2(24, 0)
+position = Vector2(31, 0)
 texture = ExtResource("1_nb0g7")
 region_enabled = true
 region_rect = Rect2(18, 7, 18, 4)

@@ -31,6 +31,7 @@ metadata/_edit_vertical_guides_ = [84.0, 168.0, 252.0, 336.0]
 
 [node name="Parallax" type="ParallaxBackground" parent="."]
 unique_name_in_owner = true
+visible = false
 
 [node name="Background" type="ParallaxLayer" parent="Parallax"]
 motion_scale = Vector2(0.8, 1)
@@ -60,6 +61,7 @@ region_rect = Rect2(48, 0, 84, 11)
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 layer = 0
+visible = false
 
 [node name="Foreground" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(1.2, 1)
@@ -104,6 +106,7 @@ local_coords = true
 emission_rect_extents = Vector2(168, 10)
 
 [node name="Level" type="Node2D" parent="."]
+visible = false
 
 [node name="Line2D" type="Line2D" parent="Level"]
 points = PackedVector2Array(-13, 31, 119, 28, 230, 31, 350, 27)

@@ -1,0 +1,216 @@
+[gd_scene load_steps=13 format=3 uid="uid://cctjx2lhey38e"]
+
+[ext_resource type="Texture2D" uid="uid://bjaw7b3gfr1kb" path="res://assets/img/props/nature.png" id="1_1jw2s"]
+[ext_resource type="PackedScene" uid="uid://n5iv26l5gsf2" path="res://scene/core/player.tscn" id="1_7hnpo"]
+[ext_resource type="Script" path="res://scene/game/level-frozen.gd" id="1_n6571"]
+[ext_resource type="PackedScene" uid="uid://d1pjmsekkiy57" path="res://scene/ui/nokia.tscn" id="3_nrk03"]
+[ext_resource type="PackedScene" uid="uid://bspf32n5wp0pj" path="res://scene/fx/fx-snow.tscn" id="4_uay63"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_nka74"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_m1ccq"]
+normal = Vector2(1, 0)
+distance = -500.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_xcvvp"]
+normal = Vector2(-1, 0)
+distance = -500.0
+
+[sub_resource type="Animation" id="Animation_2qc2c"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Nokia:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(65, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Nokia:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(100, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%PlayerCamera:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_hea7x"]
+resource_name = "phone-show"
+length = 0.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Nokia:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(65, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Nokia:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(100, -0.25, 0, 0.1, -40, 39, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%PlayerCamera:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(20, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_fuwyk"]
+resource_name = "phone-hide"
+length = 0.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Nokia:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(65, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Nokia:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(39, -0.25, 0, 0.1, 40, 100, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%PlayerCamera:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(20, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_offg3"]
+_data = {
+"RESET": SubResource("Animation_2qc2c"),
+"phone-hide": SubResource("Animation_fuwyk"),
+"phone-show": SubResource("Animation_hea7x")
+}
+
+[node name="LevelFrozen" type="Node"]
+script = ExtResource("1_n6571")
+metadata/_edit_vertical_guides_ = [84.0]
+metadata/_edit_horizontal_guides_ = [48.0]
+
+[node name="LevelCollision" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="LevelCollision"]
+polygon = PackedVector2Array(-18, 4, 72, -5, 96, -13, 116, -28, 129, -44, 135, -52, 143, -57, 151.649, -59, 192, -59, 192, 4, 278, 4, 278, 36, -18, 36)
+
+[node name="LevelBoundary" type="StaticBody2D" parent="."]
+collision_layer = 2
+
+[node name="Bottom" type="CollisionShape2D" parent="LevelBoundary"]
+shape = SubResource("WorldBoundaryShape2D_nka74")
+
+[node name="Left" type="CollisionShape2D" parent="LevelBoundary"]
+shape = SubResource("WorldBoundaryShape2D_m1ccq")
+
+[node name="Right" type="CollisionShape2D" parent="LevelBoundary"]
+shape = SubResource("WorldBoundaryShape2D_xcvvp")
+
+[node name="Trees" type="Node2D" parent="."]
+position = Vector2(-42, -24)
+
+[node name="Tree" type="Sprite2D" parent="Trees"]
+texture = ExtResource("1_1jw2s")
+region_enabled = true
+region_rect = Rect2(1, 4, 33, 43)
+
+[node name="Tree2" type="Sprite2D" parent="Trees"]
+position = Vector2(99, -1)
+rotation = -0.144396
+texture = ExtResource("1_1jw2s")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(36, 4, 29, 43)
+
+[node name="Player" parent="." instance=ExtResource("1_7hnpo")]
+
+[node name="PlayerCamera" type="Camera2D" parent="Player"]
+unique_name_in_owner = true
+position = Vector2(0, -19)
+process_callback = 0
+limit_left = -500
+limit_right = 500
+limit_bottom = 10
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player/PlayerCamera"]
+position = Vector2(0, -20)
+remote_path = NodePath("../../../Snow")
+update_rotation = false
+update_scale = false
+
+[node name="Marker2D" type="Marker2D" parent="Player"]
+position = Vector2(21, -19)
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="."]
+position = Vector2(0, -39)
+
+[node name="Snow" parent="." instance=ExtResource("4_uay63")]
+visible = false
+position = Vector2(0, -39)
+amount = 100
+preprocess = 5.0
+emission_rect_extents = Vector2(84, 10)
+initial_velocity_min = 10.0
+initial_velocity_max = 20.0
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Nokia" parent="UI" instance=ExtResource("3_nrk03")]
+position = Vector2(65, 100)
+
+[node name="UIAnimationPlayer" type="AnimationPlayer" parent="UI"]
+libraries = {
+"": SubResource("AnimationLibrary_offg3")
+}
