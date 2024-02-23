@@ -6,8 +6,8 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_imbqk"]
 size = Vector2(8, 22)
 
-[sub_resource type="Animation" id="Animation_p0n8i"]
-resource_name = "idle"
+[sub_resource type="Animation" id="Animation_412vt"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -21,8 +21,8 @@ tracks/0/keys = {
 "values": [0]
 }
 
-[sub_resource type="Animation" id="Animation_412vt"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_p0n8i"]
+resource_name = "idle"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -106,7 +106,7 @@ slide_on_ceiling = false
 script = ExtResource("1_gs02o")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -15)
+position = Vector2(1, -12)
 texture = ExtResource("2_vlalk")
 hframes = 5
 region_rect = Rect2(11, 25, 8, 22)

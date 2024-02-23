@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://gkvd1bmf0asm"]
+
+[ext_resource type="Texture2D" uid="uid://b1jv1fj6a5y4h" path="res://assets/img/props/ui.png" id="1_bwp1d"]
+[ext_resource type="Script" path="res://scene/ui/thermometer.gd" id="1_p8shx"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ogaa7"]
+
+[node name="Thermometer" type="Node2D"]
+script = ExtResource("1_p8shx")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(4, -6)
+texture = ExtResource("1_bwp1d")
+offset = Vector2(1, -16)
+region_enabled = true
+region_rect = Rect2(0, 4, 10, 44)
+
+[node name="Mercury" type="Sprite2D" parent="Sprite"]
+unique_name_in_owner = true
+modulate = Color(0, 0, 0, 1)
+position = Vector2(0, -1)
+scale = Vector2(1, 18)
+texture = SubResource("PlaceholderTexture2D_ogaa7")
+centered = false
+offset = Vector2(0, -1)

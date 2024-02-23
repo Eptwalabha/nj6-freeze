@@ -1,5 +1,7 @@
 extends Node
 
+signal temperature_changed(temp)
+
 var is_music_muted: bool = false
 var is_sound_muted: bool = false
 

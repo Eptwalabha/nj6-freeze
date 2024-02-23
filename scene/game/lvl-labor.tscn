@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cf5bjhfx58nye"]
+[gd_scene load_steps=16 format=3 uid="uid://cf5bjhfx58nye"]
 
 [ext_resource type="Script" path="res://scene/game/lvl-labor.gd" id="1_nxpqg"]
 [ext_resource type="PackedScene" uid="uid://bspf32n5wp0pj" path="res://scene/fx/fx-snow.tscn" id="2_1rp3p"]
@@ -6,16 +6,19 @@
 [ext_resource type="PackedScene" uid="uid://dudspe5n6qgqp" path="res://scene/props/barrel.tscn" id="3_6eq47"]
 [ext_resource type="Material" uid="uid://4qotextykkj0" path="res://assets/material/dither.tres" id="3_57qxa"]
 [ext_resource type="PackedScene" uid="uid://n5iv26l5gsf2" path="res://scene/core/player.tscn" id="4_kg5mr"]
+[ext_resource type="Texture2D" uid="uid://bjaw7b3gfr1kb" path="res://assets/img/props/nature.png" id="4_lehuc"]
 [ext_resource type="FontFile" uid="uid://cpxiyj34edml5" path="res://assets/fonts/nokia/nokiafc22.ttf" id="5_tuuod"]
 [ext_resource type="PackedScene" uid="uid://gpsto7yxr2tr" path="res://scene/core/interactive.tscn" id="6_2sxmm"]
 [ext_resource type="Material" uid="uid://bhaiush2cvw0u" path="res://assets/material/invert.tres" id="6_ppxyi"]
+[ext_resource type="Texture2D" uid="uid://2qoyyfwwn154" path="res://assets/img/props/items.png" id="8_pyk78"]
+[ext_resource type="PackedScene" uid="uid://gkvd1bmf0asm" path="res://scene/ui/thermometer.tscn" id="12_ferwa"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_tsfmo"]
 distance = -38.0
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_yeiyj"]
 normal = Vector2(-1, 0)
-distance = -330.0
+distance = -212.0
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_4upby"]
 normal = Vector2(1, 0)
@@ -25,19 +28,23 @@ script = ExtResource("1_nxpqg")
 metadata/_edit_horizontal_guides_ = [48.0, 60.0, 108.0]
 metadata/_edit_vertical_guides_ = [84.0, 168.0, 252.0, 336.0]
 
-[node name="Marker1" type="Marker2D" parent="."]
-
 [node name="Parallax" type="ParallaxBackground" parent="."]
 unique_name_in_owner = true
-scroll_ignore_camera_zoom = true
 
 [node name="Background" type="ParallaxLayer" parent="Parallax"]
-motion_scale = Vector2(0.2, 1)
+motion_scale = Vector2(0.8, 1)
 motion_mirroring = Vector2(84, 1)
 
+[node name="Sprite2D3" type="Sprite2D" parent="Parallax/Background"]
+scale = Vector2(84, 48)
+texture = ExtResource("2_gfcca")
+centered = false
+region_enabled = true
+region_rect = Rect2(54, 10, 1, 1)
+
 [node name="Sprite2D2" type="Sprite2D" parent="Parallax/Background"]
-position = Vector2(42, 8.5)
-scale = Vector2(84, 17)
+position = Vector2(42, 8)
+scale = Vector2(84, 16)
 texture = ExtResource("2_gfcca")
 region_enabled = true
 region_rect = Rect2(154, 16, 1, 1)
@@ -45,112 +52,47 @@ region_rect = Rect2(154, 16, 1, 1)
 [node name="Sprite2D" type="Sprite2D" parent="Parallax/Background"]
 texture_repeat = 2
 material = ExtResource("3_57qxa")
-position = Vector2(42, 10)
+position = Vector2(42, 11)
 texture = ExtResource("2_gfcca")
 region_enabled = true
 region_rect = Rect2(48, 0, 84, 11)
 
-[node name="ParallaxLayer" type="ParallaxLayer" parent="Parallax"]
-
-[node name="Sprite2D" type="Sprite2D" parent="Parallax/ParallaxLayer"]
-position = Vector2(168, 32.5)
-scale = Vector2(354, 33)
-texture = ExtResource("2_gfcca")
+[node name="Nature" type="Sprite2D" parent="Parallax/Background"]
+position = Vector2(28, 1)
+texture = ExtResource("4_lehuc")
 region_enabled = true
-region_rect = Rect2(54, 10, 1, 1)
+region_rect = Rect2(0, 3, 34, 45)
 
-[node name="Line2D" type="Line2D" parent="Parallax/ParallaxLayer"]
-points = PackedVector2Array(-13, 31, 119, 28, 230, 31, 350, 27)
-width = 1.0
-default_color = Color(0, 0, 0, 1)
-begin_cap_mode = 1
-end_cap_mode = 1
-sharp_limit = 0.0
-
-[node name="Truck" type="Sprite2D" parent="Parallax/ParallaxLayer"]
-position = Vector2(11, 23)
-texture = ExtResource("2_gfcca")
+[node name="Nature2" type="Sprite2D" parent="Parallax/Background"]
+position = Vector2(59, 5)
+texture = ExtResource("4_lehuc")
 region_enabled = true
-region_rect = Rect2(84, 17, 55, 30)
+region_rect = Rect2(1, 52, 15, 43)
 
-[node name="Barrel2" parent="Parallax/ParallaxLayer" instance=ExtResource("3_6eq47")]
-position = Vector2(317, 38)
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+layer = 0
 
-[node name="Gard" type="Sprite2D" parent="Parallax/ParallaxLayer/Barrel2"]
-position = Vector2(10, -14)
-texture = ExtResource("2_gfcca")
-flip_h = true
-region_enabled = true
-region_rect = Rect2(0, 20, 10, 27)
-
-[node name="StaticBody2D" type="StaticBody2D" parent="Parallax/ParallaxLayer"]
-collision_layer = 2
-
-[node name="Floor" type="CollisionShape2D" parent="Parallax/ParallaxLayer/StaticBody2D"]
-shape = SubResource("WorldBoundaryShape2D_tsfmo")
-
-[node name="Right" type="CollisionShape2D" parent="Parallax/ParallaxLayer/StaticBody2D"]
-position = Vector2(-18, 0)
-shape = SubResource("WorldBoundaryShape2D_yeiyj")
-
-[node name="Left" type="CollisionShape2D" parent="Parallax/ParallaxLayer/StaticBody2D"]
-shape = SubResource("WorldBoundaryShape2D_4upby")
-
-[node name="SideScrollPlayer" parent="Parallax/ParallaxLayer" instance=ExtResource("4_kg5mr")]
-unique_name_in_owner = true
-position = Vector2(41, 38)
-
-[node name="Pickaxe" parent="Parallax/ParallaxLayer" instance=ExtResource("6_2sxmm")]
-position = Vector2(117, 38)
-item_name = "action_pickhax"
-
-[node name="Sprite2D" type="Sprite2D" parent="Parallax/ParallaxLayer/Pickaxe"]
-position = Vector2(0, -5)
-texture = ExtResource("2_gfcca")
-region_enabled = true
-region_rect = Rect2(164, 24, 11, 11)
-
-[node name="Hammer" parent="Parallax/ParallaxLayer" instance=ExtResource("6_2sxmm")]
-position = Vector2(144, 38)
-item_name = "action_hammer"
-
-[node name="Sprite2D" type="Sprite2D" parent="Parallax/ParallaxLayer/Hammer"]
-position = Vector2(0, -5)
-texture = ExtResource("2_gfcca")
-region_enabled = true
-region_rect = Rect2(164, 24, 11, 11)
-
-[node name="Saw" parent="Parallax/ParallaxLayer" instance=ExtResource("6_2sxmm")]
-position = Vector2(170, 38)
-item_name = "action_saw"
-
-[node name="Sprite2D" type="Sprite2D" parent="Parallax/ParallaxLayer/Saw"]
-position = Vector2(0, -5)
-texture = ExtResource("2_gfcca")
-region_enabled = true
-region_rect = Rect2(164, 24, 11, 11)
-
-[node name="Foreground" type="ParallaxLayer" parent="Parallax"]
+[node name="Foreground" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(1.2, 1)
 
-[node name="Barrel" parent="Parallax/Foreground" instance=ExtResource("3_6eq47")]
+[node name="Barrel" parent="ParallaxBackground/Foreground" instance=ExtResource("3_6eq47")]
 position = Vector2(65, 44)
+collision_layer = 0
 
-[node name="Gard" type="Sprite2D" parent="Parallax/Foreground/Barrel"]
+[node name="Gard" type="Sprite2D" parent="ParallaxBackground/Foreground/Barrel"]
 position = Vector2(-9, -12)
 texture = ExtResource("2_gfcca")
 region_enabled = true
 region_rect = Rect2(0, 20, 10, 27)
 
-[node name="Gard2" type="Sprite2D" parent="Parallax/Foreground/Barrel"]
+[node name="Gard2" type="Sprite2D" parent="ParallaxBackground/Foreground/Barrel"]
 position = Vector2(10, -12)
 texture = ExtResource("2_gfcca")
 flip_h = true
 region_enabled = true
 region_rect = Rect2(0, 20, 10, 27)
 
-[node name="Label2" type="Label" parent="Parallax/Foreground"]
-visible = false
+[node name="Label2" type="Label" parent="ParallaxBackground/Foreground"]
 offset_left = 37.0
 offset_top = 37.0
 offset_right = 77.0
@@ -158,9 +100,9 @@ offset_bottom = 46.0
 text = "get lost!"
 horizontal_alignment = 1
 
-[node name="Snow" type="ParallaxLayer" parent="Parallax"]
+[node name="Snow" type="ParallaxLayer" parent="ParallaxBackground"]
 
-[node name="Snow" parent="Parallax/Snow" instance=ExtResource("2_1rp3p")]
+[node name="Snow" parent="ParallaxBackground/Snow" instance=ExtResource("2_1rp3p")]
 z_index = 1
 material = ExtResource("6_ppxyi")
 position = Vector2(168, 0)
@@ -171,19 +113,90 @@ fract_delta = false
 local_coords = true
 emission_rect_extents = Vector2(168, 10)
 
-[node name="Camera2D" type="Camera2D" parent="."]
-anchor_mode = 0
-process_callback = 0
-position_smoothing_speed = 10.0
+[node name="Level" type="Node2D" parent="."]
 
-[node name="Marker2" type="Marker2D" parent="."]
-position = Vector2(0, 60)
+[node name="Line2D" type="Line2D" parent="Level"]
+points = PackedVector2Array(-13, 31, 119, 28, 230, 31, 350, 27)
+width = 1.0
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 1
+end_cap_mode = 1
+sharp_limit = 0.0
 
-[node name="Sprite2D" type="Sprite2D" parent="Marker2"]
-position = Vector2(41, 23)
+[node name="Rock" type="Sprite2D" parent="Level"]
+position = Vector2(154, 21)
+texture = ExtResource("4_lehuc")
+region_enabled = true
+region_rect = Rect2(54, 115, 30, 28)
+
+[node name="Truck" type="Sprite2D" parent="Level"]
+position = Vector2(11, 23)
 texture = ExtResource("2_gfcca")
 region_enabled = true
-region_rect = Rect2(1, 1, 45, 13.8994)
+region_rect = Rect2(84, 17, 55, 30)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Level"]
+collision_layer = 2
+
+[node name="Floor" type="CollisionShape2D" parent="Level/StaticBody2D"]
+shape = SubResource("WorldBoundaryShape2D_tsfmo")
+
+[node name="Right" type="CollisionShape2D" parent="Level/StaticBody2D"]
+shape = SubResource("WorldBoundaryShape2D_yeiyj")
+
+[node name="Left" type="CollisionShape2D" parent="Level/StaticBody2D"]
+shape = SubResource("WorldBoundaryShape2D_4upby")
+
+[node name="SideScrollPlayer" parent="Level" instance=ExtResource("4_kg5mr")]
+unique_name_in_owner = true
+position = Vector2(18, 38)
+
+[node name="PlayerCamera" type="Camera2D" parent="Level/SideScrollPlayer"]
+unique_name_in_owner = true
+position = Vector2(0, -10)
+process_callback = 0
+limit_left = 0
+limit_top = 0
+
+[node name="Barrel2" parent="Level" instance=ExtResource("3_6eq47")]
+position = Vector2(218, 38)
+
+[node name="Gard" type="Sprite2D" parent="Level/Barrel2"]
+position = Vector2(10, -14)
+texture = ExtResource("2_gfcca")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(0, 20, 10, 27)
+
+[node name="Pickaxe" parent="Level" instance=ExtResource("6_2sxmm")]
+position = Vector2(117, 38)
+item_name = "action_pickaxe"
+
+[node name="Sprite2D" type="Sprite2D" parent="Level/Pickaxe"]
+position = Vector2(0, -5)
+texture = ExtResource("8_pyk78")
+region_enabled = true
+region_rect = Rect2(24, 0, 12, 18)
+
+[node name="Hammer" parent="Level" instance=ExtResource("6_2sxmm")]
+position = Vector2(144, 38)
+item_name = "action_hammer"
+
+[node name="Sprite2D" type="Sprite2D" parent="Level/Hammer"]
+position = Vector2(0, -5)
+texture = ExtResource("8_pyk78")
+region_enabled = true
+region_rect = Rect2(0, 0, 12, 18)
+
+[node name="Axe" parent="Level" instance=ExtResource("6_2sxmm")]
+position = Vector2(170, 38)
+item_name = "action_axe"
+
+[node name="Sprite2D" type="Sprite2D" parent="Level/Axe"]
+position = Vector2(0, -5)
+texture = ExtResource("8_pyk78")
+region_enabled = true
+region_rect = Rect2(12, 0, 12, 18)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -199,3 +212,7 @@ theme_override_fonts/font = ExtResource("5_tuuod")
 theme_override_font_sizes/font_size = 8
 text = "take"
 horizontal_alignment = 1
+
+[node name="Thermometer" parent="CanvasLayer" instance=ExtResource("12_ferwa")]
+visible = false
+position = Vector2(2, 46)
