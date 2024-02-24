@@ -48,13 +48,12 @@ func toggle_phone_visibility(is_visible: bool) -> void:
 		hide_phone()
 
 func _on_timer_timeout() -> void:
-	push_state(GAME_STATE.DIALOG)
-	dialog_ui.set_dialog_lines([
+	var text : Array[String] = [
 		"test line 1\ntest line 2\ntest line 3\ntest line 4\ntest line 5",
 		#"Welcome to the 6th annual Nokia 3310 Jam! Work solo or make a team to create a game using the restrictions of the original Nokia 3310 phone from the 2000s!",
 		#"Below you will find the rules, restrictions, and ranking details of the jam. Have fun working within these restrictions! Games that fail to follow these rules will be disqualified from being ranked. For more detailed questions please view the FAQ in the jam's community tab.",
-		])
-	GameData.new_sms()
+	]
+	GameData.new_sms(text)
 
 func push_state(new_state: GAME_STATE) -> void:
 	game_states.append(new_state)
@@ -77,7 +76,9 @@ func _on_phone_drawn() -> void:
 func _on_phone_hidden() -> void:
 	hide_phone()
 
-func _on_phone_message_received() -> void:
+func _on_phone_message_received(sms: Array[String]) -> void:
+	dialog_ui.set_dialog_lines(sms)
+	push_state(GAME_STATE.DIALOG)
 	toggle_phone_visibility(true)
 
 func show_phone() -> void:

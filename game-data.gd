@@ -2,7 +2,7 @@ extends Node
 
 signal temperature_changed(temp)
 
-signal phone_message_received
+signal phone_message_received(dialog)
 signal phone_message_opened
 signal phone_change_screen(screen_name)
 signal phone_drawn
@@ -44,8 +44,8 @@ func _ready() -> void:
 	audio = preload("res://scene/core/audio.tscn").instantiate()
 	add_child(audio)
 
-func new_sms() -> void:
-	phone_message_received.emit()
+func new_sms(text: Array[String]) -> void:
+	phone_message_received.emit(text)
 
 func open_sms() -> void:
 	phone_message_opened.emit()

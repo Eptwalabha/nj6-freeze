@@ -17,7 +17,7 @@ func _ready() -> void:
 func _check_network() -> void:
 	screen.frame = 0
 
-func _on_message_received() -> void:
+func _on_message_received(_text) -> void:
 	set_screen(SCREEN.NEW_MESSAGE)
 	animation_player.play("new-message")
 
