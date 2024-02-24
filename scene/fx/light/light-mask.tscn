@@ -16,8 +16,8 @@ fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_ptxxr"]
 gradient = SubResource("Gradient_dma1x")
-width = 52
-height = 52
+width = 48
+height = 48
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
@@ -31,6 +31,7 @@ offset_bottom = 84.0
 color = Color(0, 0, 0, 1)
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
+visible = false
 material = ExtResource("1_6nham")
 position = Vector2(88, 42)
 scale = Vector2(1.1, 1)
@@ -41,5 +42,5 @@ position = Vector2(105, 42)
 
 [node name="Sprite2D" type="Sprite2D" parent="Marker2D"]
 material = ExtResource("1_6nham")
-position = Vector2(4, -2)
+position = Vector2(-21, 0)
 texture = SubResource("GradientTexture2D_ptxxr")
