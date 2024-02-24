@@ -33,10 +33,7 @@ func set_dialog_lines(new_lines: Array[String], _options: Dictionary = {}) -> vo
 	lines = []
 	for line in new_lines:
 		line = tr(line)
-		if len(line) > MAX_CHARACTERS:
-			lines.append_array(_split_line(line))
-		else:
-			lines.append(line)
+		lines.append_array(_split_line(line))
 	nbr_lines = len(lines)
 	current_line_index = -1
 
@@ -46,6 +43,11 @@ func _split_line(line: String) -> Array[String]:
 	var current_word : String = ""
 	for letter in line:
 		current_word += letter
+		if letter == "\n":
+			current_line += current_word
+			lines_acc.append(current_line)
+			current_word = ""
+			current_line = ""
 		if letter == " ":
 			if len(current_line) > MAX_CHARACTERS_PER_LINE:
 				lines_acc.append(current_line)
@@ -69,6 +71,8 @@ func _split_line(line: String) -> Array[String]:
 			line_count = 0
 			final_lines.append(current_line)
 			current_line = ""
+	if len(lines_acc) % 2 == 1:
+		final_lines.append(lines_acc[-1])
 	return final_lines
 
 func _process(delta: float) -> void:
