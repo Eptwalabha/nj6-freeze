@@ -1,11 +1,24 @@
-[gd_scene load_steps=14 format=3 uid="uid://cctjx2lhey38e"]
+[gd_scene load_steps=19 format=3 uid="uid://cctjx2lhey38e"]
 
 [ext_resource type="Texture2D" uid="uid://bjaw7b3gfr1kb" path="res://assets/img/props/nature.png" id="1_1jw2s"]
 [ext_resource type="PackedScene" uid="uid://n5iv26l5gsf2" path="res://scene/core/player.tscn" id="1_7hnpo"]
 [ext_resource type="Script" path="res://scene/game/level-frozen.gd" id="1_n6571"]
+[ext_resource type="Material" uid="uid://4qotextykkj0" path="res://assets/material/dither.tres" id="2_8mtf3"]
+[ext_resource type="Texture2D" uid="uid://5vij36722j32" path="res://assets/img/spritesheets/player.png" id="3_a86th"]
 [ext_resource type="PackedScene" uid="uid://d1pjmsekkiy57" path="res://scene/ui/nokia.tscn" id="3_nrk03"]
 [ext_resource type="PackedScene" uid="uid://bspf32n5wp0pj" path="res://scene/fx/fx-snow.tscn" id="4_uay63"]
 [ext_resource type="PackedScene" uid="uid://bu5ptnxlx0o3w" path="res://scene/ui/dialog.tscn" id="6_kx16t"]
+
+[sub_resource type="Gradient" id="Gradient_fuqbt"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_f8a64"]
+gradient = SubResource("Gradient_fuqbt")
+width = 16
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0.7)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_7sj4q"]
+polygon = PackedVector2Array(-62, 3, 39, 2, 75, -6, 98, -14, 117, -29, 119, 32, -69, 32)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_nka74"]
 
@@ -142,6 +155,27 @@ script = ExtResource("1_n6571")
 metadata/_edit_vertical_guides_ = [84.0]
 metadata/_edit_horizontal_guides_ = [48.0]
 
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -1
+z_as_relative = false
+texture_repeat = 2
+material = ExtResource("2_8mtf3")
+position = Vector2(0, -17)
+texture = SubResource("GradientTexture2D_f8a64")
+region_enabled = true
+region_rect = Rect2(0, 0, 1000, 84)
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_7sj4q")
+occluder_light_mask = 3
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+light_mask = 0
+motion_scale = Vector2(0, 0.2)
+motion_mirroring = Vector2(84, 0)
+
 [node name="LevelCollision" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="LevelCollision"]
@@ -160,9 +194,22 @@ shape = SubResource("WorldBoundaryShape2D_m1ccq")
 shape = SubResource("WorldBoundaryShape2D_xcvvp")
 
 [node name="Trees" type="Node2D" parent="."]
-position = Vector2(-42, -24)
+light_mask = 3
+position = Vector2(-42, -25)
 
 [node name="Tree" type="Sprite2D" parent="Trees"]
+texture = ExtResource("1_1jw2s")
+region_enabled = true
+region_rect = Rect2(1, 4, 33, 43)
+
+[node name="Tree4" type="Sprite2D" parent="Trees"]
+position = Vector2(53, 1)
+texture = ExtResource("1_1jw2s")
+region_enabled = true
+region_rect = Rect2(1, 4, 33, 43)
+
+[node name="Tree5" type="Sprite2D" parent="Trees"]
+position = Vector2(78, 1)
 texture = ExtResource("1_1jw2s")
 region_enabled = true
 region_rect = Rect2(1, 4, 33, 43)
@@ -175,11 +222,17 @@ flip_h = true
 region_enabled = true
 region_rect = Rect2(36, 4, 29, 43)
 
+[node name="Silouhette" type="Sprite2D" parent="."]
+position = Vector2(-42, -12)
+texture = ExtResource("3_a86th")
+hframes = 5
+region_rect = Rect2(11, 25, 8, 22)
+
 [node name="Player" parent="." instance=ExtResource("1_7hnpo")]
 
 [node name="PlayerCamera" type="Camera2D" parent="Player"]
 unique_name_in_owner = true
-position = Vector2(0, -15)
+position = Vector2(0, -18)
 limit_left = -500
 limit_right = 500
 limit_bottom = 10
@@ -197,7 +250,7 @@ position = Vector2(21, -19)
 position = Vector2(0, -39)
 
 [node name="Snow" parent="." instance=ExtResource("4_uay63")]
-position = Vector2(0, -35)
+position = Vector2(0, -38)
 amount = 100
 preprocess = 5.0
 emission_rect_extents = Vector2(84, 10)
@@ -221,7 +274,6 @@ nbr_letters_per_second = 60
 [node name="Timer" type="Timer" parent="."]
 wait_time = 3.0
 one_shot = true
-autostart = true
 
 [connection signal="dialog_ended" from="UI/DialogUI" to="." method="_on_dialog_ui_dialog_ended"]
 [connection signal="new_line_ended" from="UI/DialogUI" to="." method="_on_dialog_ui_new_line_ended"]

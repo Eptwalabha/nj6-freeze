@@ -17,7 +17,7 @@ float dither_value(vec2 coord) {
 
 void fragment() {
 	vec4 pixel = texture(TEXTURE, UV);
-	vec2 coord = mod(UV / TEXTURE_PIXEL_SIZE, vec2(pow(2.0, 4)));
+	vec2 coord = mod(FRAGCOORD.xy, vec2(pow(2.0, 2)));
 	float dither_value = dither_value(coord);
 	COLOR = step(dither_value, pixel);
 }
