@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://n5iv26l5gsf2"]
+[gd_scene load_steps=22 format=3 uid="uid://n5iv26l5gsf2"]
 
 [ext_resource type="Script" path="res://scene/core/player.gd" id="1_gs02o"]
 [ext_resource type="Texture2D" uid="uid://5vij36722j32" path="res://assets/img/spritesheets/player.png" id="2_vlalk"]
@@ -106,6 +106,15 @@ states/walking/position = Vector2(658.85, 100)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_lrf72"), "idle", "walking", SubResource("AnimationNodeStateMachineTransition_pbrdv"), "walking", "idle", SubResource("AnimationNodeStateMachineTransition_smryo")]
 graph_offset = Vector2(95.85, -11.94)
 
+[sub_resource type="Gradient" id="Gradient_4ufv7"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_i2jks"]
+gradient = SubResource("Gradient_4ufv7")
+width = 168
+height = 84
+
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 7
 slide_on_ceiling = false
@@ -115,7 +124,7 @@ script = ExtResource("1_gs02o")
 [node name="Pivot" type="Node2D" parent="."]
 
 [node name="TorchTarget" type="Marker2D" parent="Pivot"]
-position = Vector2(20, -13)
+position = Vector2(20, -16)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 light_mask = 2
@@ -147,6 +156,11 @@ anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/idle = false
 parameters/conditions/moving = false
 parameters/walking/TimeScale/scale = 1.75
+
+[node name="Black" type="PointLight2D" parent="."]
+position = Vector2(0, -13)
+blend_mode = 2
+texture = SubResource("GradientTexture2D_i2jks")
 
 [node name="Light" type="Node2D" parent="."]
 position = Vector2(0, -13)
