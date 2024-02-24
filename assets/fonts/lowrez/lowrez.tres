@@ -1,0 +1,7 @@
+[gd_resource type="FontVariation" load_steps=2 format=3 uid="uid://sutfsmsc6a1c"]
+
+[ext_resource type="FontFile" uid="uid://cxeg4c7rwp2y3" path="res://assets/fonts/lowrez/lowrez.png" id="1_wbvaw"]
+
+[resource]
+base_font = ExtResource("1_wbvaw")
+spacing_space = -1
