@@ -7,28 +7,83 @@ extends Node
 var phone_visible : bool = false
 var dialog_visible : bool = true
 
+enum GAME_STATE {
+	MENU,
+	CUTSCENE,
+	DIALOG,
+	PLAYING
+}
+
+var game_states : Array[GAME_STATE] = [GAME_STATE.PLAYING]
+
 func _ready() -> void:
-	dialog_ui.set_dialog_lines([
-		"Welcome to the 6th annual Nokia 3310 Jam! Work solo or make a team to create a game using the restrictions of the original Nokia 3310 phone from the 2000s!",
-		"Below you will find the rules, restrictions, and ranking details of the jam. Have fun working within these restrictions! Games that fail to follow these rules will be disqualified from being ranked. For more detailed questions please view the FAQ in the jam's community tab."])
+	GameData.phone_drawn.connect(_on_phone_drawn)
+	GameData.phone_hidden.connect(_on_phone_hidden)
+	GameData.phone_message_received.connect(_on_phone_message_received)
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("action-confirm"):
-		if dialog_visible:
-			dialog_ui.next_dialog()
-		else:
-			toggle_phone_visibility(!phone_visible)
+	match game_states[-1]:
+		GAME_STATE.DIALOG:
+			if event.is_action_pressed("action-confirm") and dialog_visible:
+				dialog_ui.next_dialog()
+		GAME_STATE.PLAYING:
+			if event.is_action_pressed("move_up"):
+				GameData.show_phone()
+			if event.is_action_pressed("move_down"):
+				GameData.hide_phone()
+		_:
+			pass
 
 func _on_dialog_ui_dialog_ended() -> void:
-	dialog_ui.visible = false
-	dialog_visible = false
+	pop_state()
 
 func _on_dialog_ui_new_line_ended(line_index: Variant) -> void:
-	toggle_phone_visibility(line_index >= 1)
+	if line_index == 1:
+		toggle_phone_visibility(true)
 
 func toggle_phone_visibility(is_visible: bool) -> void:
 	if is_visible and not phone_visible:
-		ui_animation_player.play("phone-show")
+		show_phone()
 	elif not is_visible and phone_visible:
-		ui_animation_player.play("phone-hide")
-	phone_visible = is_visible
+		hide_phone()
+
+func _on_timer_timeout() -> void:
+	push_state(GAME_STATE.DIALOG)
+	dialog_ui.set_dialog_lines([
+		"test line 1\ntest line 2\ntest line 3\ntest line 4\ntest line 5",
+		#"Welcome to the 6th annual Nokia 3310 Jam! Work solo or make a team to create a game using the restrictions of the original Nokia 3310 phone from the 2000s!",
+		#"Below you will find the rules, restrictions, and ranking details of the jam. Have fun working within these restrictions! Games that fail to follow these rules will be disqualified from being ranked. For more detailed questions please view the FAQ in the jam's community tab.",
+		])
+	GameData.new_sms()
+
+func push_state(new_state: GAME_STATE) -> void:
+	game_states.append(new_state)
+	match new_state:
+		_:
+			pass
+
+func pop_state() -> void:
+	if len(game_states) == 1:
+		return
+	# do things with poped state
+	match game_states.pop_back():
+		GAME_STATE.DIALOG:
+			GameData.hide_phone()
+
+func _on_phone_drawn() -> void:
+	phone.set_screen(PhoneUI.SCREEN.NETWORK)
+	toggle_phone_visibility(true)
+
+func _on_phone_hidden() -> void:
+	hide_phone()
+
+func _on_phone_message_received() -> void:
+	toggle_phone_visibility(true)
+
+func show_phone() -> void:
+	phone_visible = true
+	ui_animation_player.play("phone-show")
+
+func hide_phone() -> void:
+	phone_visible = false
+	ui_animation_player.play("phone-hide")

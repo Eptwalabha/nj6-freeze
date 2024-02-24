@@ -88,6 +88,7 @@ func next_dialog() -> void:
 	if nbr_lines == 0:
 		return
 	if state == DIALOG_STATE.DONE:
+		visible = false
 		dialog_ended.emit()
 	if state == DIALOG_STATE.TYPING:
 		dialog.visible_characters = -1
@@ -96,14 +97,16 @@ func next_dialog() -> void:
 		visible = false
 		state = DIALOG_STATE.HIDDEN
 	else:
-		if state == DIALOG_STATE.HIDDEN:
-			dialog_started.emit()
+		next_arrow.visible = false
 		current_line_index += 1
 		dialog.visible_characters = 0
 		dialog.text = tr(lines[current_line_index])
 		new_line_started.emit(current_line_index)
+		if state == DIALOG_STATE.HIDDEN:
+			dialog_started.emit()
+			GameData.open_sms()
+			visible = true
 		state = DIALOG_STATE.TYPING
-		next_arrow.visible = false
 
 func _end_of_line() -> void:
 	if current_line_index < (nbr_lines - 1):

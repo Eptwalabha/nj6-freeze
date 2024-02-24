@@ -1,7 +1,12 @@
 extends Node
 
 signal temperature_changed(temp)
-signal new_message_received
+
+signal phone_message_received
+signal phone_message_opened
+signal phone_change_screen(screen_name)
+signal phone_drawn
+signal phone_hidden
 
 var is_music_muted: bool = false
 var is_sound_muted: bool = false
@@ -38,3 +43,15 @@ var player_stats = {
 func _ready() -> void:
 	audio = preload("res://scene/core/audio.tscn").instantiate()
 	add_child(audio)
+
+func new_sms() -> void:
+	phone_message_received.emit()
+
+func open_sms() -> void:
+	phone_message_opened.emit()
+
+func show_phone() -> void:
+	phone_drawn.emit()
+
+func hide_phone() -> void:
+	phone_hidden.emit()

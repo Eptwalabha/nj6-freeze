@@ -4,22 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://b1jv1fj6a5y4h" path="res://assets/img/props/ui.png" id="2_fcbn2"]
 [ext_resource type="FontVariation" uid="uid://sutfsmsc6a1c" path="res://assets/fonts/lowrez/lowrez.tres" id="3_1fcxf"]
 
-[sub_resource type="Animation" id="Animation_cbr8h"]
-resource_name = "move-next"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(75, 15), Vector2(75, 13), Vector2(75, 15)]
-}
-
 [sub_resource type="Animation" id="Animation_2xi7s"]
 length = 0.001
 tracks/0/type = "value"
@@ -45,6 +29,22 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_cbr8h"]
+resource_name = "move-next"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(75, 15), Vector2(75, 13), Vector2(75, 15)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qv1dy"]
@@ -90,7 +90,7 @@ offset_top = 0.005
 offset_bottom = -0.00500107
 theme_override_constants/line_spacing = 0
 theme_override_fonts/font = ExtResource("3_1fcxf")
-text = "test"
+text = "space"
 vertical_alignment = 1
 autowrap_mode = 3
 visible_characters = 0

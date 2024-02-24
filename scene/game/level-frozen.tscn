@@ -54,44 +54,6 @@ tracks/2/keys = {
 "values": [Vector2(0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_hea7x"]
-resource_name = "phone-show"
-length = 0.5
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Nokia:position:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(65, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Nokia:position:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(100, -0.25, 0, 0.1, -40, 36, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.5)
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("%PlayerCamera:offset")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(20, 0)]
-}
-
 [sub_resource type="Animation" id="Animation_fuwyk"]
 resource_name = "phone-hide"
 length = 0.5
@@ -127,7 +89,45 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(20, 0), Vector2(0, 0)]
+"values": [Vector2(14, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_hea7x"]
+resource_name = "phone-show"
+length = 0.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Nokia:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(65, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Nokia:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(100, -0.25, 0, 0.1, -40, 36, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%PlayerCamera:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(14, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_offg3"]
@@ -179,8 +179,7 @@ region_rect = Rect2(36, 4, 29, 43)
 
 [node name="PlayerCamera" type="Camera2D" parent="Player"]
 unique_name_in_owner = true
-position = Vector2(0, -19)
-process_callback = 0
+position = Vector2(0, -15)
 limit_left = -500
 limit_right = 500
 limit_bottom = 10
@@ -198,8 +197,7 @@ position = Vector2(21, -19)
 position = Vector2(0, -39)
 
 [node name="Snow" parent="." instance=ExtResource("4_uay63")]
-visible = false
-position = Vector2(0, -39)
+position = Vector2(0, -35)
 amount = 100
 preprocess = 5.0
 emission_rect_extents = Vector2(84, 10)
@@ -217,6 +215,14 @@ libraries = {
 }
 
 [node name="DialogUI" parent="UI" instance=ExtResource("6_kx16t")]
+visible = false
+nbr_letters_per_second = 60
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
 
 [connection signal="dialog_ended" from="UI/DialogUI" to="." method="_on_dialog_ui_dialog_ended"]
 [connection signal="new_line_ended" from="UI/DialogUI" to="." method="_on_dialog_ui_new_line_ended"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
