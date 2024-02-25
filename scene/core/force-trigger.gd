@@ -1,6 +1,8 @@
 class_name ForceTrigger
 extends Area2D
 
+signal forced
+
 @export var trigger_id : StringName = ""
 @export var enabled : bool = true
 @export var health : float = 2.0
@@ -28,6 +30,7 @@ func force_score(score: float) -> void:
 	health_progress.size.x = (1.0 - health / init_health) * 12.0
 	if health == 0.0:
 		GameData.force_trigger_opened.emit(self)
+		forced.emit()
 		set_active(false)
 
 func set_active(is_enabled: bool) -> void:

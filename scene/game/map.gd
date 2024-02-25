@@ -14,3 +14,7 @@ func get_player_spawn_point(_index: int) -> Vector2:
 
 func _process(_delta: float) -> void:
 	darkness.global_position = player.global_position
+
+func _on_car_battery_died() -> void:
+	$Physics/LevelBoundary/Tutorial.set_deferred("disabled", true)
+	$Triggers/Dialogs/DialogTrigger.set_active(false)

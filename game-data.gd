@@ -2,6 +2,8 @@ extends Node
 
 signal temperature_changed(temp)
 
+signal dialog_triggered(dialog)
+
 signal phone_message_received(dialog)
 signal phone_message_opened
 signal phone_change_screen(screen_name)
@@ -21,6 +23,8 @@ signal force_trigger_opened(trigger)
 signal ui_agility_pressed
 signal ui_agility_released
 signal ui_agility_score(score)
+
+signal flashlight_found
 
 var audio : AudioHandler
 var is_music_muted: bool = false
@@ -50,10 +54,11 @@ func hide_phone() -> void:
 	phone_hidden.emit()
 
 func trigger_dialog(trigger_id: StringName, dialog_id: StringName) -> void:
-	print("trigger %s dialog_id %s" % [trigger_id, dialog_id])
-	if dialog_id == "intro-cliff":
-		game_over.emit()
-		#new_sms(["salut la forme?\ntoto"])
+	match trigger_id:
+		"dialog-player":
+			dialog_triggered.emit(dialog_id)
+		"dialog-phone":
+			new_sms([dialog_id])
 
 func force_available(trigger: ForceTrigger, available: bool) -> void:
 	if available:
@@ -68,3 +73,7 @@ func current_force_score(score: float) -> void:
 	if active_force_trigger != null:
 		active_force_trigger.force_score(score)
 	GameData.ui_agility_score.emit(score)
+
+func car_battery_died() -> void:
+	await get_tree().create_timer(2.0).timeout
+	flashlight_found.emit()

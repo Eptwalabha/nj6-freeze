@@ -1,9 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://bcei26fhiuwfn"]
+[gd_scene load_steps=15 format=3 uid="uid://bcei26fhiuwfn"]
 
 [ext_resource type="Texture2D" uid="uid://bjaw7b3gfr1kb" path="res://assets/img/props/nature.png" id="1_bjwek"]
 [ext_resource type="Script" path="res://scene/game/map.gd" id="1_u0pnf"]
 [ext_resource type="Material" uid="uid://4qotextykkj0" path="res://assets/material/dither.tres" id="2_aqtrm"]
-[ext_resource type="PackedScene" uid="uid://p78yeca5k444" path="res://scene/core/force-trigger.tscn" id="4_7ice7"]
+[ext_resource type="PackedScene" uid="uid://boi6ijo0a41n8" path="res://scene/props/car.tscn" id="4_aeg14"]
 [ext_resource type="PackedScene" uid="uid://cm2v0fcolsc2k" path="res://scene/core/dialog_trigger.tscn" id="4_gty0q"]
 
 [sub_resource type="Gradient" id="Gradient_4ufv7"]
@@ -16,7 +16,17 @@ width = 168
 height = 84
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_khsu2"]
-polygon = PackedVector2Array(-100, 2, 41, 4, 99, -9, 121, -26, 134, -31, 179, -31, 173, -1, 184, 4, 298, 4, 307, 31, -150, 32)
+polygon = PackedVector2Array(-100, 2, 41, 4, 99, -9, 121, -26, 134, -31, 179, -31, 173, -1, 184, 4, 298, 4, 307, 31, -150, 32, -155, -48, -115, -39, -114, -8)
+
+[sub_resource type="Gradient" id="Gradient_fuqbt"]
+offsets = PackedFloat32Array(0, 0.895623)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0w5sa"]
+gradient = SubResource("Gradient_fuqbt")
+width = 16
+height = 84
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0.7)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_k2sur"]
 
@@ -28,20 +38,8 @@ distance = -79.0
 normal = Vector2(-1, 0)
 distance = -500.0
 
-[sub_resource type="Gradient" id="Gradient_fuqbt"]
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_0w5sa"]
-gradient = SubResource("Gradient_fuqbt")
-width = 16
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.5, 0.7)
-
-[sub_resource type="Gradient" id="Gradient_4slfs"]
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_hrw1l"]
-gradient = SubResource("Gradient_4slfs")
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_4vqn1"]
+normal = Vector2(-1, 0)
 
 [node name="FrozenMap" type="Node2D"]
 light_mask = 3
@@ -61,6 +59,105 @@ texture = SubResource("GradientTexture2D_ucaie")
 occluder = SubResource("OccluderPolygon2D_khsu2")
 occluder_light_mask = 3
 
+[node name="Map" type="Node2D" parent="."]
+
+[node name="Polygon2D" type="Polygon2D" parent="Map"]
+texture_filter = 1
+texture_rotation = 0.518363
+polygon = PackedVector2Array(37, 3, 65, -3, 83, -9, 98, -14, 114, -27, 130, -34, 149, -34, 185, -35, 191, -32, 194, -26, 192, -23, 188, -26, 173, -24, 176, -9, 187, -1, 194, -1, 212, 4, 213, 29, -172, 30, -168, -53, -119, -53, -103, -47, -104, -37, -93, -26, -91, -13, -80, -1)
+
+[node name="Background" type="Sprite2D" parent="Map"]
+z_index = -1
+z_as_relative = false
+texture_repeat = 2
+material = ExtResource("2_aqtrm")
+position = Vector2(355, -67)
+scale = Vector2(1.041, 2.5119)
+texture = SubResource("GradientTexture2D_0w5sa")
+region_enabled = true
+region_rect = Rect2(0, 0, 1000, 84)
+
+[node name="Rock2" type="Sprite2D" parent="Map"]
+position = Vector2(-94, -35)
+texture = ExtResource("1_bjwek")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(55, 116, 28, 26)
+
+[node name="Rock3" type="Sprite2D" parent="Map"]
+position = Vector2(-85, -25)
+texture = ExtResource("1_bjwek")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(37, 124, 16, 18)
+
+[node name="Rock" type="Sprite2D" parent="Map"]
+position = Vector2(-88, -8)
+texture = ExtResource("1_bjwek")
+region_enabled = true
+region_rect = Rect2(55, 116, 28, 26)
+
+[node name="Rock5" type="Sprite2D" parent="Map"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(-94, -19)
+texture = ExtResource("1_bjwek")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(37, 124, 16, 18)
+
+[node name="Rock7" type="Sprite2D" parent="Map"]
+position = Vector2(182, -13)
+texture = ExtResource("1_bjwek")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(55, 116, 28, 26)
+
+[node name="Rock8" type="Sprite2D" parent="Map"]
+position = Vector2(171, -23)
+texture = ExtResource("1_bjwek")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(37, 124, 16, 18)
+
+[node name="Rock9" type="Sprite2D" parent="Map"]
+position = Vector2(185, -19)
+texture = ExtResource("1_bjwek")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(37, 124, 16, 18)
+
+[node name="Tree3" type="Sprite2D" parent="Map"]
+position = Vector2(138, -50)
+texture = ExtResource("1_bjwek")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(23, 61, 24, 34)
+
+[node name="Tree4" type="Sprite2D" parent="Map"]
+position = Vector2(26, -27)
+texture = ExtResource("1_bjwek")
+region_enabled = true
+region_rect = Rect2(1, 4, 33, 43)
+
+[node name="Tree5" type="Sprite2D" parent="Map"]
+position = Vector2(244, -25)
+texture = ExtResource("1_bjwek")
+region_enabled = true
+region_rect = Rect2(1, 4, 33, 43)
+
+[node name="Tree2" type="Sprite2D" parent="Map"]
+position = Vector2(72, -23)
+rotation = -0.144396
+texture = ExtResource("1_bjwek")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(36, 4, 29, 43)
+
+[node name="Props" type="Node2D" parent="."]
+
+[node name="Car" parent="Props" instance=ExtResource("4_aeg14")]
+position = Vector2(-44, -2)
+
 [node name="Physics" type="Node2D" parent="."]
 
 [node name="LevelBoundary" type="StaticBody2D" parent="Physics"]
@@ -76,6 +173,9 @@ shape = SubResource("WorldBoundaryShape2D_p1qj0")
 [node name="Right" type="CollisionShape2D" parent="Physics/LevelBoundary"]
 shape = SubResource("WorldBoundaryShape2D_7nsbq")
 
+[node name="Tutorial" type="CollisionShape2D" parent="Physics/LevelBoundary"]
+shape = SubResource("WorldBoundaryShape2D_4vqn1")
+
 [node name="LevelCollision" type="StaticBody2D" parent="Physics"]
 collision_layer = 2
 collision_mask = 0
@@ -83,122 +183,20 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="Physics/LevelCollision"]
 polygon = PackedVector2Array(43, 2, 72, -5, 96, -13, 111, -24, 119, -31, 131, -35, 186, -35, 193, -30, 196, 22, 43, 20)
 
-[node name="Props" type="Node2D" parent="."]
-
-[node name="Background" type="Sprite2D" parent="Props"]
-z_index = -1
-z_as_relative = false
-texture_repeat = 2
-material = ExtResource("2_aqtrm")
-position = Vector2(351.5, -28.5)
-scale = Vector2(1.041, 2.5119)
-texture = SubResource("GradientTexture2D_0w5sa")
-region_enabled = true
-region_rect = Rect2(0, 0, 1000, 84)
-
-[node name="Rock2" type="Sprite2D" parent="Props"]
-position = Vector2(-94, -35)
-texture = ExtResource("1_bjwek")
-flip_h = true
-region_enabled = true
-region_rect = Rect2(55, 116, 28, 26)
-
-[node name="Rock3" type="Sprite2D" parent="Props"]
-position = Vector2(-85, -25)
-texture = ExtResource("1_bjwek")
-flip_h = true
-region_enabled = true
-region_rect = Rect2(37, 124, 16, 18)
-
-[node name="Rock" type="Sprite2D" parent="Props"]
-position = Vector2(-88, -8)
-texture = ExtResource("1_bjwek")
-region_enabled = true
-region_rect = Rect2(55, 116, 28, 26)
-
-[node name="Rock5" type="Sprite2D" parent="Props"]
-modulate = Color(0, 0, 0, 1)
-position = Vector2(-94, -19)
-texture = ExtResource("1_bjwek")
-flip_h = true
-region_enabled = true
-region_rect = Rect2(37, 124, 16, 18)
-
-[node name="Rock7" type="Sprite2D" parent="Props"]
-position = Vector2(182, -13)
-texture = ExtResource("1_bjwek")
-flip_h = true
-region_enabled = true
-region_rect = Rect2(55, 116, 28, 26)
-
-[node name="Rock8" type="Sprite2D" parent="Props"]
-position = Vector2(171, -23)
-texture = ExtResource("1_bjwek")
-flip_h = true
-region_enabled = true
-region_rect = Rect2(37, 124, 16, 18)
-
-[node name="Rock9" type="Sprite2D" parent="Props"]
-position = Vector2(185, -19)
-texture = ExtResource("1_bjwek")
-flip_h = true
-region_enabled = true
-region_rect = Rect2(37, 124, 16, 18)
-
-[node name="Tree3" type="Sprite2D" parent="Props"]
-position = Vector2(-9, -22)
-texture = ExtResource("1_bjwek")
-flip_h = true
-region_enabled = true
-region_rect = Rect2(23, 61, 24, 34)
-
-[node name="Tree4" type="Sprite2D" parent="Props"]
-position = Vector2(26, -27)
-texture = ExtResource("1_bjwek")
-region_enabled = true
-region_rect = Rect2(1, 4, 33, 43)
-
-[node name="Tree5" type="Sprite2D" parent="Props"]
-position = Vector2(244, -25)
-texture = ExtResource("1_bjwek")
-region_enabled = true
-region_rect = Rect2(1, 4, 33, 43)
-
-[node name="Tree2" type="Sprite2D" parent="Props"]
-position = Vector2(72, -23)
-rotation = -0.144396
-texture = ExtResource("1_bjwek")
-flip_h = true
-region_enabled = true
-region_rect = Rect2(36, 4, 29, 43)
-
-[node name="BlackSquare" type="Sprite2D" parent="Props"]
-position = Vector2(-122, -13)
-rotation = -0.271074
-texture = SubResource("GradientTexture2D_hrw1l")
-
 [node name="Triggers" type="Node2D" parent="."]
 
 [node name="Force" type="Node2D" parent="Triggers"]
 
-[node name="CarTrunk" parent="Triggers/Force" instance=ExtResource("4_7ice7")]
-position = Vector2(27, -6)
-
 [node name="Dialogs" type="Node2D" parent="Triggers"]
 
 [node name="DialogTrigger" parent="Triggers/Dialogs" instance=ExtResource("4_gty0q")]
-position = Vector2(-74, -8)
-trigger_id = &"intro_cliff"
-dialog_ids = Array[StringName]([&"intro-cliff"])
-random = false
-
-[node name="DialogTrigger2" parent="Triggers/Dialogs" instance=ExtResource("4_gty0q")]
-position = Vector2(165, -45)
-trigger_id = &"tr_intro"
-dialog_ids = Array[StringName]([&"intro", &"lol", &"play"])
+trigger_id = &"dialog-player"
+dialog_ids = Array[StringName]([&"it\'s too dark"])
 random = false
 
 [node name="PlayerSpawn" type="Marker2D" parent="."]
 position = Vector2(-28, 0)
 
 [node name="Particles" type="Node2D" parent="."]
+
+[connection signal="battery_died" from="Props/Car" to="." method="_on_car_battery_died"]

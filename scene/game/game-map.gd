@@ -31,6 +31,7 @@ func _ready() -> void:
 	GameData.phone_drawn.connect(_on_phone_drawn)
 	GameData.phone_hidden.connect(_on_phone_hidden)
 	GameData.phone_message_received.connect(_on_phone_message_received)
+	GameData.dialog_triggered.connect(_on_dialog_triggered)
 	for shadow in get_tree().get_nodes_in_group("shadow"):
 		shadow.target = player
 
@@ -58,9 +59,8 @@ func _input(event: InputEvent) -> void:
 func _on_dialog_ui_dialog_ended() -> void:
 	pop_state()
 
-func _on_dialog_ui_new_line_ended(line_index: Variant) -> void:
-	if line_index == 1:
-		toggle_phone_visibility(true)
+func _on_dialog_ui_new_line_ended(_line_index: Variant) -> void:
+	pass
 
 func toggle_phone_visibility(is_visible: bool) -> void:
 	if is_visible and not phone_visible:
@@ -87,12 +87,18 @@ func _on_phone_drawn() -> void:
 	toggle_phone_visibility(true)
 
 func _on_phone_hidden() -> void:
-	hide_phone()
+	if phone_visible:
+		hide_phone()
 
 func _on_phone_message_received(sms: Array[String]) -> void:
 	dialog_ui.set_dialog_lines(sms)
 	push_state(GAME_STATE.DIALOG)
 	toggle_phone_visibility(true)
+
+func _on_dialog_triggered(dialog: String) -> void:
+	dialog_ui.set_dialog_lines([dialog])
+	push_state(GAME_STATE.DIALOG)
+	dialog_ui.next_dialog()
 
 func show_phone() -> void:
 	phone_visible = true

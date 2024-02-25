@@ -1,6 +1,8 @@
 class_name ShadowEnemy
 extends CharacterBody2D
 
+signal escaped
+
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var sprite_2d: Sprite2D = $Pivot/Sprite2D
@@ -95,20 +97,23 @@ func is_in_penumbra() -> bool:
 	return dist_to_target > 20 and dist_to_target < 38
 
 func is_target_looking_at_me() -> bool:
-	if target == null:
-		return false
 	var is_left_to_target : bool = sign(target.global_position.x - global_position.x) > 0.0
 	if target.is_looking_left():
 		return is_left_to_target
 	else:
 		return not is_left_to_target
 
+func is_target_has_light() -> bool:
+	return target.is_light_on
+
 func _update_animation_tree_states() -> void:
 	if velocity.x != 0:
 		pivot.scale.x = -1.0 if velocity.x < 0 else 1.0
 	dist_to_target = abs(target.global_position.x - global_position.x)
 
-	waiting = is_target_looking_at_me() and is_in_penumbra()
+	waiting = true
+	if target != null:
+		waiting = is_target_has_light() and is_target_looking_at_me() and is_in_penumbra()
 
 	animation_tree.set("parameters/conditions/lit", lit)
 	animation_tree.set("parameters/conditions/not-lit", not lit)
@@ -151,5 +156,6 @@ func escape() -> void:
 	scared = true
 	attacking = false
 	current_state = ENEMY_STATE.ESCAPING
+	escaped.emit()
 	await get_tree().create_timer(5.0).timeout
 	queue_free()

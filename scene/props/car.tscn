@@ -1,0 +1,59 @@
+[gd_scene load_steps=6 format=3 uid="uid://boi6ijo0a41n8"]
+
+[ext_resource type="Script" path="res://scene/props/car.gd" id="1_folp1"]
+[ext_resource type="Texture2D" uid="uid://djs6rscpca1kh" path="res://assets/img/props/car.png" id="1_qp2pm"]
+[ext_resource type="Texture2D" uid="uid://b5j051ul54vyn" path="res://assets/light/light-torch.png" id="2_jh52e"]
+[ext_resource type="PackedScene" uid="uid://p78yeca5k444" path="res://scene/core/force-trigger.tscn" id="2_xb72t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n0bfx"]
+resource_local_to_scene = true
+size = Vector2(10, 16)
+
+[node name="Car" type="Node2D"]
+script = ExtResource("1_folp1")
+
+[node name="Light" type="Node2D" parent="."]
+
+[node name="PointLight2D" type="PointLight2D" parent="Light"]
+position = Vector2(17, -7)
+blend_mode = 2
+texture = ExtResource("2_jh52e")
+
+[node name="PointLight2D2" type="PointLight2D" parent="Light"]
+position = Vector2(-20, -7)
+blend_mode = 2
+texture = ExtResource("2_jh52e")
+
+[node name="CarOutline" type="Sprite2D" parent="."]
+light_mask = 0
+position = Vector2(0, -7)
+texture = ExtResource("1_qp2pm")
+region_enabled = true
+region_rect = Rect2(1, 15, 44, 16)
+
+[node name="Car" type="Sprite2D" parent="."]
+position = Vector2(0, -6)
+texture = ExtResource("1_qp2pm")
+region_enabled = true
+region_rect = Rect2(2, 35, 42, 12)
+
+[node name="Trunk" type="Sprite2D" parent="Car"]
+position = Vector2(-16, -4)
+texture = ExtResource("1_qp2pm")
+region_enabled = true
+region_rect = Rect2(1, 2, 12, 10)
+
+[node name="Node2D" parent="." instance=ExtResource("2_xb72t")]
+position = Vector2(-18, 0)
+
+[node name="CollisionShape2D" parent="Node2D" index="1"]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_n0bfx")
+
+[node name="HealthBar" parent="Node2D" index="2"]
+offset_top = 2.0
+offset_bottom = 5.0
+
+[connection signal="forced" from="Node2D" to="." method="_on_node_2d_forced"]
+
+[editable path="Node2D"]

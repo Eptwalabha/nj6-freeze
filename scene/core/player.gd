@@ -9,6 +9,7 @@ const SPEED = 50.0
 @onready var torch: PointLight2D = $Light/Torch
 @onready var torch_target: Marker2D = $Pivot/TorchTarget
 
+var is_light_on : bool = false
 var heating : bool = false
 var working : bool = false
 
@@ -27,6 +28,8 @@ enum PLAYER_STATE {
 var current_state : PLAYER_STATE = PLAYER_STATE.CONTROL : set = _set_current_state
 
 func _ready() -> void:
+	switch_flashlight(false)
+	GameData.flashlight_found.connect(switch_flashlight.bind(true))
 	GameData.force_trigger_entered.connect(_on_force_trigger_entered)
 	GameData.force_trigger_exited.connect(_on_force_trigger_exited)
 	animation_tree.active = true
@@ -81,8 +84,6 @@ func _update_player_states() -> void:
 	animation_tree.set("parameters/conditions/falling-down", velocity.y > 0.0)
 	animation_tree.set("parameters/conditions/not-on-floor", not is_on_floor())
 	animation_tree.set("parameters/conditions/on-floor", is_on_floor())
-	
-	
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is ShadowEnemy:
@@ -107,3 +108,8 @@ func _on_force_trigger_exited() -> void:
 
 func is_looking_left() -> bool:
 	return sprite_2d.flip_h
+
+func switch_flashlight(on: bool) -> void:
+	is_light_on = on
+	$Light.visible = on
+	$Light/Torch/Area2D.set_deferred("monitoring", on)

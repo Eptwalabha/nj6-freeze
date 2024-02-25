@@ -13,6 +13,7 @@ script = ExtResource("1_52h62")
 [node name="Handle" type="Marker2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -10)
 shape = SubResource("RectangleShape2D_lo7ub")
 
 [node name="HealthBar" type="NinePatchRect" parent="."]
@@ -20,9 +21,8 @@ unique_name_in_owner = true
 light_mask = 0
 z_index = 1
 offset_left = -7.0
-offset_top = 4.0
+offset_top = -3.0
 offset_right = 7.0
-offset_bottom = 7.0
 texture = ExtResource("2_ig1mx")
 region_rect = Rect2(12, 24, 6, 6)
 patch_margin_left = 1
@@ -36,7 +36,7 @@ light_mask = 0
 layout_mode = 0
 offset_left = 1.0
 offset_top = 1.0
-offset_right = 7.0
+offset_right = 1.0
 offset_bottom = 2.0
 color = Color(0, 0, 0, 1)
 
