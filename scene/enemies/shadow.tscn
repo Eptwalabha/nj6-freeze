@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://4taukevrdihr"]
+[gd_scene load_steps=29 format=3 uid="uid://4taukevrdihr"]
 
 [ext_resource type="Script" path="res://scene/enemies/shadow.gd" id="1_50h84"]
 [ext_resource type="Texture2D" uid="uid://cvqix8oeoe5o6" path="res://assets/img/spritesheets/shadow.png" id="2_pu6f8"]
@@ -16,21 +16,214 @@ length = 7.0
 
 [sub_resource type="Animation" id="Animation_hcf1y"]
 resource_name = "approching"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Eyes:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot/Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 4, 5, 6]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Pivot/Eyes:position")
+tracks/2/interp = 0
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(5, -18), Vector2(5, -19), Vector2(5, -19), Vector2(5, -18)]
+}
 
 [sub_resource type="Animation" id="Animation_c2ooh"]
 resource_name = "staggered"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 0, 1, 2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot/Eyes:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_cogis"]
 resource_name = "attack"
+length = 2.0
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Eyes:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot/Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.7, 0.75, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 2, 1, 0]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"punch"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_of780"]
 resource_name = "run-away"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Eyes:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot/Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
 
 [sub_resource type="Animation" id="Animation_wh68e"]
 resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot/Eyes:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_nt8d4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot/Eyes:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Pivot/Eyes:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(5, -18)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2321w"]
 _data = {
+"RESET": SubResource("Animation_nt8d4"),
 "approching": SubResource("Animation_hcf1y"),
 "attack": SubResource("Animation_cogis"),
 "idle": SubResource("Animation_wh68e"),
@@ -38,14 +231,24 @@ _data = {
 "staggered": SubResource("Animation_c2ooh")
 }
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bseam"]
+animation = &"approching"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_ye1ps"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_u8vsk"]
+graph_offset = Vector2(-448, -15)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_bseam")
+nodes/Animation/position = Vector2(-80, 100)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_ye1ps")
+nodes/TimeScale/position = Vector2(128, 121)
+node_connections = [&"TimeScale", 0, &"Animation", &"output", 0, &"TimeScale"]
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kr2n0"]
 animation = &"approching"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_knbud"]
 animation = &"attack"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_44d5g"]
-animation = &"run-away"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bvibi"]
 animation = &"staggered"
@@ -53,10 +256,6 @@ animation = &"staggered"
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_v7hmj"]
 advance_mode = 2
 advance_condition = &"lit"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_a1u28"]
-advance_mode = 2
-advance_condition = &"scared"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_37dj3"]
 advance_mode = 2
@@ -66,13 +265,9 @@ advance_condition = &"not-lit"
 advance_mode = 2
 advance_condition = &"in-range"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7180m"]
-advance_mode = 2
-advance_condition = &"scared"
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bdvsi"]
+switch_mode = 2
 advance_mode = 2
-advance_condition = &"not-in-range"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ohe30"]
 advance_mode = 2
@@ -81,19 +276,27 @@ advance_condition = &"lit"
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kp0t5"]
 advance_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bqvpn"]
+advance_mode = 2
+advance_condition = &"scared"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jy66a"]
+advance_mode = 2
+advance_condition = &"scared"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_06yss"]
+states/BlendTree/node = SubResource("AnimationNodeBlendTree_u8vsk")
+states/BlendTree/position = Vector2(813, 100)
 states/End/position = Vector2(1021, 100)
 states/Start/position = Vector2(199, 100)
 states/approching/node = SubResource("AnimationNodeAnimation_kr2n0")
 states/approching/position = Vector2(395, 100)
 states/attack/node = SubResource("AnimationNodeAnimation_knbud")
 states/attack/position = Vector2(594, 244)
-states/run-away/node = SubResource("AnimationNodeAnimation_44d5g")
-states/run-away/position = Vector2(844, 100)
 states/staggered/node = SubResource("AnimationNodeAnimation_bvibi")
 states/staggered/position = Vector2(589, -30)
-transitions = ["approching", "staggered", SubResource("AnimationNodeStateMachineTransition_v7hmj"), "staggered", "run-away", SubResource("AnimationNodeStateMachineTransition_a1u28"), "staggered", "approching", SubResource("AnimationNodeStateMachineTransition_37dj3"), "approching", "attack", SubResource("AnimationNodeStateMachineTransition_ry1ob"), "approching", "run-away", SubResource("AnimationNodeStateMachineTransition_7180m"), "attack", "approching", SubResource("AnimationNodeStateMachineTransition_bdvsi"), "attack", "staggered", SubResource("AnimationNodeStateMachineTransition_ohe30"), "Start", "approching", SubResource("AnimationNodeStateMachineTransition_kp0t5")]
-graph_offset = Vector2(-57, -62)
+transitions = ["approching", "staggered", SubResource("AnimationNodeStateMachineTransition_v7hmj"), "staggered", "approching", SubResource("AnimationNodeStateMachineTransition_37dj3"), "approching", "attack", SubResource("AnimationNodeStateMachineTransition_ry1ob"), "attack", "approching", SubResource("AnimationNodeStateMachineTransition_bdvsi"), "attack", "staggered", SubResource("AnimationNodeStateMachineTransition_ohe30"), "Start", "approching", SubResource("AnimationNodeStateMachineTransition_kp0t5"), "staggered", "BlendTree", SubResource("AnimationNodeStateMachineTransition_bqvpn"), "approching", "BlendTree", SubResource("AnimationNodeStateMachineTransition_jy66a")]
+graph_offset = Vector2(-38, 24)
 
 [node name="Shadow" type="CharacterBody2D" groups=["shadow"]]
 collision_layer = 4
@@ -107,6 +310,8 @@ script = ExtResource("1_50h84")
 [node name="Sprite2D" type="Sprite2D" parent="Pivot"]
 position = Vector2(0, -12)
 texture = ExtResource("2_pu6f8")
+hframes = 5
+vframes = 2
 
 [node name="Eyes" type="Sprite2D" parent="Pivot"]
 light_mask = 0
@@ -121,7 +326,7 @@ region_rect = Rect2(16, 1, 3, 1)
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/PlayerDetector"]
-position = Vector2(10, -10)
+position = Vector2(7, -10)
 shape = SubResource("CircleShape2D_uel6y")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -136,9 +341,9 @@ shape = SubResource("SeparationRayShape2D_ebap6")
 libraries = {
 "": SubResource("AnimationLibrary_2321w")
 }
-autoplay = "approching"
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
+active = false
 libraries = {
 "": SubResource("AnimationLibrary_2321w")
 }
@@ -146,13 +351,20 @@ tree_root = SubResource("AnimationNodeStateMachine_06yss")
 anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/in-range = false
 parameters/conditions/lit = false
-parameters/conditions/not-in-range = false
 parameters/conditions/not-lit = false
 parameters/conditions/scared = false
+parameters/BlendTree/TimeScale/scale = 2.0
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 3.0
 autostart = true
+
+[node name="Label" type="Label" parent="."]
+offset_left = -20.0
+offset_top = -26.0
+offset_right = 20.0
+offset_bottom = -21.0
+horizontal_alignment = 1
 
 [connection signal="body_entered" from="Pivot/PlayerDetector" to="." method="_on_player_detector_body_entered"]
 [connection signal="body_exited" from="Pivot/PlayerDetector" to="." method="_on_player_detector_body_exited"]

@@ -25,9 +25,10 @@ var current_state : ENEMY_STATE = ENEMY_STATE.DISABLED
 var lit : bool = false : set = _set_lit
 var time_lit : float = 0.0
 var scared : bool = 0.0
+var in_range : bool = false
 
 func _ready() -> void:
-	pass
+	animation_tree.active = true
 
 func _physics_process(_delta: float) -> void:
 	if not is_on_floor():
@@ -45,6 +46,7 @@ func _physics_process(_delta: float) -> void:
 	_update_state_machine()
 
 func _process(delta: float) -> void:
+	$Label.text = "state " + str(current_state)
 	if scared:
 		return
 	time_lit = max(time_lit + delta * (1.0 if lit else -0.5), 0.0)
@@ -52,12 +54,9 @@ func _process(delta: float) -> void:
 		change_state(ENEMY_STATE.RUNNING_AWAY)
 
 func _update_state_machine() -> void:
-	var moving = false
 	if velocity.x != 0:
-		moving = true
 		pivot.scale.x = -1.0 if velocity.x < 0 else 1.0
 
-	var in_range = current_state == ENEMY_STATE.ATTACKING
 	animation_tree.set("parameters/conditions/lit", lit)
 	animation_tree.set("parameters/conditions/not-lit", not lit)
 	animation_tree.set("parameters/conditions/scared", scared)
@@ -73,6 +72,11 @@ func _set_lit(is_lit) -> void:
 	else:
 		change_state(ENEMY_STATE.APPROACHING)
 
+func punch() -> void:
+	if in_range:
+		print("ouch!")
+	current_state = ENEMY_STATE.APPROACHING
+
 func _set_target(new_target: Node2D) -> void:
 	target = new_target
 	if current_state == ENEMY_STATE.DISABLED:
@@ -80,10 +84,12 @@ func _set_target(new_target: Node2D) -> void:
 
 func _on_player_detector_body_entered(body: Node2D) -> void:
 	if body == target:
+		in_range = true
 		change_state(ENEMY_STATE.ATTACKING)
 
 func _on_player_detector_body_exited(body: Node2D) -> void:
 	if body == target:
+		in_range = false
 		change_state(ENEMY_STATE.APPROACHING)
 
 func change_state(new_state: ENEMY_STATE) -> void:
@@ -97,5 +103,7 @@ func change_state(new_state: ENEMY_STATE) -> void:
 		queue_free()
 	elif lit:
 		current_state = ENEMY_STATE.STAGGERED
+	elif current_state == ENEMY_STATE.ATTACKING and new_state == ENEMY_STATE.APPROACHING:
+		return
 	else:
 		current_state = new_state

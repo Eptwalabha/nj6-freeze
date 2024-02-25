@@ -104,7 +104,7 @@ states/walk/position = Vector2(601, 229)
 states/walking/node = SubResource("AnimationNodeBlendTree_l87dj")
 states/walking/position = Vector2(658.85, 100)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_lrf72"), "idle", "walking", SubResource("AnimationNodeStateMachineTransition_pbrdv"), "walking", "idle", SubResource("AnimationNodeStateMachineTransition_smryo")]
-graph_offset = Vector2(95.85, -11.94)
+graph_offset = Vector2(-5.15, 4.06)
 
 [sub_resource type="Gradient" id="Gradient_4ufv7"]
 offsets = PackedFloat32Array(0)
@@ -160,6 +160,7 @@ parameters/conditions/moving = false
 parameters/walking/TimeScale/scale = 1.75
 
 [node name="Black" type="PointLight2D" parent="."]
+visible = false
 position = Vector2(0, -13)
 blend_mode = 2
 texture = SubResource("GradientTexture2D_i2jks")
