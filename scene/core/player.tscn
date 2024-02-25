@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://n5iv26l5gsf2"]
+[gd_scene load_steps=23 format=3 uid="uid://n5iv26l5gsf2"]
 
 [ext_resource type="Script" path="res://scene/core/player.gd" id="1_gs02o"]
 [ext_resource type="Texture2D" uid="uid://5vij36722j32" path="res://assets/img/spritesheets/player.png" id="2_vlalk"]
@@ -115,6 +115,8 @@ gradient = SubResource("Gradient_4ufv7")
 width = 168
 height = 84
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_70apu"]
+
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 7
 slide_on_ceiling = false
@@ -172,10 +174,20 @@ shadow_color = Color(0, 0, 0, 1)
 texture = ExtResource("6_34hx8")
 
 [node name="Torch" type="PointLight2D" parent="Light"]
-position = Vector2(20, 0)
+position = Vector2(20, -3)
 blend_mode = 2
 shadow_enabled = true
 shadow_color = Color(0, 0, 0, 1)
 texture = ExtResource("6_dbnpc")
 metadata/_edit_vertical_guides_ = [84.0]
 metadata/_edit_horizontal_guides_ = [48.0]
+
+[node name="Area2D" type="Area2D" parent="Light/Torch"]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Light/Torch/Area2D"]
+shape = SubResource("CircleShape2D_70apu")
+
+[connection signal="body_entered" from="Light/Torch/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Light/Torch/Area2D" to="." method="_on_area_2d_body_exited"]

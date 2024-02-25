@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cctjx2lhey38e"]
+[gd_scene load_steps=20 format=3 uid="uid://cctjx2lhey38e"]
 
 [ext_resource type="Texture2D" uid="uid://bjaw7b3gfr1kb" path="res://assets/img/props/nature.png" id="1_1jw2s"]
 [ext_resource type="PackedScene" uid="uid://n5iv26l5gsf2" path="res://scene/core/player.tscn" id="1_7hnpo"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://d1pjmsekkiy57" path="res://scene/ui/nokia.tscn" id="3_nrk03"]
 [ext_resource type="PackedScene" uid="uid://bspf32n5wp0pj" path="res://scene/fx/fx-snow.tscn" id="4_uay63"]
 [ext_resource type="PackedScene" uid="uid://bu5ptnxlx0o3w" path="res://scene/ui/dialog.tscn" id="6_kx16t"]
+[ext_resource type="PackedScene" uid="uid://4taukevrdihr" path="res://scene/enemies/shadow.tscn" id="9_5towt"]
 
 [sub_resource type="Gradient" id="Gradient_fuqbt"]
 
@@ -177,12 +178,15 @@ motion_scale = Vector2(0, 0.2)
 motion_mirroring = Vector2(84, 0)
 
 [node name="LevelCollision" type="StaticBody2D" parent="."]
+collision_layer = 2
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="LevelCollision"]
 polygon = PackedVector2Array(-18, 4, 72, -5, 96, -13, 116, -28, 129, -44, 135, -52, 143, -57, 151.649, -59, 192, -59, 192, 4, 278, 4, 278, 36, -18, 36)
 
 [node name="LevelBoundary" type="StaticBody2D" parent="."]
 collision_layer = 2
+collision_mask = 0
 
 [node name="Bottom" type="CollisionShape2D" parent="LevelBoundary"]
 shape = SubResource("WorldBoundaryShape2D_nka74")
@@ -228,7 +232,14 @@ texture = ExtResource("3_a86th")
 hframes = 5
 region_rect = Rect2(11, 25, 8, 22)
 
+[node name="Shadows" type="Node2D" parent="."]
+position = Vector2(0, -2)
+
+[node name="Shadow" parent="Shadows" instance=ExtResource("9_5towt")]
+position = Vector2(-77, -2)
+
 [node name="Player" parent="." instance=ExtResource("1_7hnpo")]
+unique_name_in_owner = true
 
 [node name="PlayerCamera" type="Camera2D" parent="Player"]
 unique_name_in_owner = true

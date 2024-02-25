@@ -3,6 +3,8 @@ extends Node
 @onready var ui_animation_player: AnimationPlayer = $UI/UIAnimationPlayer
 @onready var phone: PhoneUI = $UI/Nokia
 @onready var dialog_ui: DialogUI = $UI/DialogUI
+@onready var shadows: Node2D = $Shadows
+@onready var player: Player = %Player
 
 var phone_visible : bool = false
 var dialog_visible : bool = true
@@ -20,6 +22,8 @@ func _ready() -> void:
 	GameData.phone_drawn.connect(_on_phone_drawn)
 	GameData.phone_hidden.connect(_on_phone_hidden)
 	GameData.phone_message_received.connect(_on_phone_message_received)
+	for shadow in get_tree().get_nodes_in_group("shadow"):
+		shadow.target = player
 
 func _input(event: InputEvent) -> void:
 	match game_states[-1]:

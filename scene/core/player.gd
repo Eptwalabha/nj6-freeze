@@ -33,3 +33,12 @@ func _update_player_states() -> void:
 	$Pivot.scale.x = -1.0 if sprite_2d.flip_h else 1.0
 	animation_tree.set("parameters/conditions/moving", moving)
 	animation_tree.set("parameters/conditions/idle", not moving)
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body is ShadowEnemy:
+		body.lit = true
+
+func _on_area_2d_body_exited(body: Node2D) -> void:
+	if body is ShadowEnemy:
+		body.lit = false
