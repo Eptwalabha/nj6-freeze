@@ -1,10 +1,9 @@
-[gd_scene load_steps=20 format=3 uid="uid://cctjx2lhey38e"]
+[gd_scene load_steps=19 format=3 uid="uid://cctjx2lhey38e"]
 
 [ext_resource type="Texture2D" uid="uid://bjaw7b3gfr1kb" path="res://assets/img/props/nature.png" id="1_1jw2s"]
 [ext_resource type="PackedScene" uid="uid://n5iv26l5gsf2" path="res://scene/core/player.tscn" id="1_7hnpo"]
 [ext_resource type="Script" path="res://scene/game/level-frozen.gd" id="1_n6571"]
 [ext_resource type="Material" uid="uid://4qotextykkj0" path="res://assets/material/dither.tres" id="2_8mtf3"]
-[ext_resource type="Texture2D" uid="uid://5vij36722j32" path="res://assets/img/spritesheets/player.png" id="3_a86th"]
 [ext_resource type="PackedScene" uid="uid://d1pjmsekkiy57" path="res://scene/ui/nokia.tscn" id="3_nrk03"]
 [ext_resource type="PackedScene" uid="uid://bspf32n5wp0pj" path="res://scene/fx/fx-snow.tscn" id="4_uay63"]
 [ext_resource type="PackedScene" uid="uid://bu5ptnxlx0o3w" path="res://scene/ui/dialog.tscn" id="6_kx16t"]
@@ -225,12 +224,6 @@ texture = ExtResource("1_1jw2s")
 flip_h = true
 region_enabled = true
 region_rect = Rect2(36, 4, 29, 43)
-
-[node name="Silouhette" type="Sprite2D" parent="."]
-position = Vector2(-42, -12)
-texture = ExtResource("3_a86th")
-hframes = 5
-region_rect = Rect2(11, 25, 8, 22)
 
 [node name="Shadows" type="Node2D" parent="."]
 position = Vector2(0, -2)

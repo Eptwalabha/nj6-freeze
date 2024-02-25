@@ -7,8 +7,9 @@ extends CharacterBody2D
 @onready var eyes: Sprite2D = $Pivot/Eyes
 @onready var pivot: Marker2D = $Pivot
 
-const SPEED = 30.0
-const ATTACK_RANGE = 5.0
+const SPEED: float = 25.0
+
+var recover_timer : float = 0.0
 
 enum ENEMY_STATE {
 	DISABLED,
@@ -16,9 +17,13 @@ enum ENEMY_STATE {
 	STAGGERED,
 	RUNNING_AWAY,
 	ATTACKING,
+	RECOVERING,
 }
 
+@export var full_recover_duration: float = 1.0
 @export var max_light_exposure : float = 2.0
+
+var recovery_rate : float = -max_light_exposure / full_recover_duration
 
 var target : Node2D = null : set = _set_target
 var current_state : ENEMY_STATE = ENEMY_STATE.DISABLED
@@ -28,6 +33,7 @@ var scared : bool = 0.0
 var in_range : bool = false
 
 func _ready() -> void:
+	recovery_rate = -max_light_exposure / full_recover_duration
 	animation_tree.active = true
 
 func _physics_process(_delta: float) -> void:
@@ -49,9 +55,18 @@ func _process(delta: float) -> void:
 	$Label.text = "state " + str(current_state)
 	if scared:
 		return
-	time_lit = max(time_lit + delta * (1.0 if lit else -0.5), 0.0)
+	time_lit = max(time_lit + delta * (1.0 if lit else recovery_rate), 0.0)
+	update_state()
+
+func update_state() -> void:
 	if time_lit >= max_light_exposure:
 		change_state(ENEMY_STATE.RUNNING_AWAY)
+	if current_state == ENEMY_STATE.RUNNING_AWAY:
+		return
+	match current_state:
+		ENEMY_STATE.RECOVERING:
+			if time_lit == 0.0:
+				change_state(ENEMY_STATE.APPROACHING)
 
 func _update_state_machine() -> void:
 	if velocity.x != 0:
@@ -62,6 +77,7 @@ func _update_state_machine() -> void:
 	animation_tree.set("parameters/conditions/scared", scared)
 	animation_tree.set("parameters/conditions/in-range", in_range)
 	animation_tree.set("parameters/conditions/not-in-range", not in_range)
+	animation_tree.set("parameters/conditions/recovered", time_lit == 0.0)
 
 func _set_lit(is_lit) -> void:
 	lit = is_lit
@@ -70,7 +86,7 @@ func _set_lit(is_lit) -> void:
 	if lit:
 		change_state(ENEMY_STATE.STAGGERED)
 	else:
-		change_state(ENEMY_STATE.APPROACHING)
+		change_state(ENEMY_STATE.RECOVERING)
 
 func punch() -> void:
 	if in_range:
