@@ -1,0 +1,198 @@
+[gd_scene load_steps=15 format=3 uid="uid://bcei26fhiuwfn"]
+
+[ext_resource type="Texture2D" uid="uid://bjaw7b3gfr1kb" path="res://assets/img/props/nature.png" id="1_bjwek"]
+[ext_resource type="Script" path="res://scene/game/map.gd" id="1_u0pnf"]
+[ext_resource type="Material" uid="uid://4qotextykkj0" path="res://assets/material/dither.tres" id="2_aqtrm"]
+[ext_resource type="PackedScene" uid="uid://cm2v0fcolsc2k" path="res://scene/core/dialog_trigger.tscn" id="4_gty0q"]
+
+[sub_resource type="Gradient" id="Gradient_4ufv7"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ucaie"]
+gradient = SubResource("Gradient_4ufv7")
+width = 168
+height = 84
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_khsu2"]
+polygon = PackedVector2Array(-100, 2, 41, 4, 99, -9, 121, -26, 134, -31, 179, -31, 173, -1, 184, 4, 298, 4, 307, 31, -150, 32)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_k2sur"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_p1qj0"]
+normal = Vector2(1, 0)
+distance = -79.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_7nsbq"]
+normal = Vector2(-1, 0)
+distance = -500.0
+
+[sub_resource type="Gradient" id="Gradient_fuqbt"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0w5sa"]
+gradient = SubResource("Gradient_fuqbt")
+width = 16
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0.7)
+
+[sub_resource type="Gradient" id="Gradient_4slfs"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_hrw1l"]
+gradient = SubResource("Gradient_4slfs")
+
+[node name="FrozenMap" type="Node2D"]
+light_mask = 3
+script = ExtResource("1_u0pnf")
+
+[node name="Light" type="Node2D" parent="."]
+
+[node name="Darkness" type="PointLight2D" parent="Light"]
+unique_name_in_owner = true
+visible = false
+position = Vector2(0, -59.5119)
+scale = Vector2(1, 2.15476)
+blend_mode = 2
+texture = SubResource("GradientTexture2D_ucaie")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Light"]
+occluder = SubResource("OccluderPolygon2D_khsu2")
+occluder_light_mask = 3
+
+[node name="Physics" type="Node2D" parent="."]
+
+[node name="LevelBoundary" type="StaticBody2D" parent="Physics"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="Bottom" type="CollisionShape2D" parent="Physics/LevelBoundary"]
+shape = SubResource("WorldBoundaryShape2D_k2sur")
+
+[node name="Left" type="CollisionShape2D" parent="Physics/LevelBoundary"]
+shape = SubResource("WorldBoundaryShape2D_p1qj0")
+
+[node name="Right" type="CollisionShape2D" parent="Physics/LevelBoundary"]
+shape = SubResource("WorldBoundaryShape2D_7nsbq")
+
+[node name="LevelCollision" type="StaticBody2D" parent="Physics"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="Physics/LevelCollision"]
+polygon = PackedVector2Array(43, 2, 72, -5, 96, -13, 111, -24, 119, -31, 131, -35, 186, -35, 193, -30, 196, 22, 43, 20)
+
+[node name="Props" type="Node2D" parent="."]
+
+[node name="Background" type="Sprite2D" parent="Props"]
+z_index = -1
+z_as_relative = false
+texture_repeat = 2
+material = ExtResource("2_aqtrm")
+position = Vector2(0, -28.5)
+scale = Vector2(1, 2.5119)
+texture = SubResource("GradientTexture2D_0w5sa")
+region_enabled = true
+region_rect = Rect2(0, 0, 1000, 84)
+
+[node name="Rock2" type="Sprite2D" parent="Props"]
+position = Vector2(-94, -35)
+texture = ExtResource("1_bjwek")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(55, 116, 28, 26)
+
+[node name="Rock3" type="Sprite2D" parent="Props"]
+position = Vector2(-85, -25)
+texture = ExtResource("1_bjwek")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(37, 124, 16, 18)
+
+[node name="Rock" type="Sprite2D" parent="Props"]
+position = Vector2(-88, -8)
+texture = ExtResource("1_bjwek")
+region_enabled = true
+region_rect = Rect2(55, 116, 28, 26)
+
+[node name="Rock5" type="Sprite2D" parent="Props"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(-94, -19)
+texture = ExtResource("1_bjwek")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(37, 124, 16, 18)
+
+[node name="Rock7" type="Sprite2D" parent="Props"]
+position = Vector2(182, -13)
+texture = ExtResource("1_bjwek")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(55, 116, 28, 26)
+
+[node name="Rock8" type="Sprite2D" parent="Props"]
+position = Vector2(171, -23)
+texture = ExtResource("1_bjwek")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(37, 124, 16, 18)
+
+[node name="Rock9" type="Sprite2D" parent="Props"]
+position = Vector2(185, -19)
+texture = ExtResource("1_bjwek")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(37, 124, 16, 18)
+
+[node name="Tree3" type="Sprite2D" parent="Props"]
+position = Vector2(-9, -22)
+texture = ExtResource("1_bjwek")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(23, 61, 24, 34)
+
+[node name="Tree4" type="Sprite2D" parent="Props"]
+position = Vector2(26, -27)
+texture = ExtResource("1_bjwek")
+region_enabled = true
+region_rect = Rect2(1, 4, 33, 43)
+
+[node name="Tree5" type="Sprite2D" parent="Props"]
+position = Vector2(244, -25)
+texture = ExtResource("1_bjwek")
+region_enabled = true
+region_rect = Rect2(1, 4, 33, 43)
+
+[node name="Tree2" type="Sprite2D" parent="Props"]
+position = Vector2(72, -23)
+rotation = -0.144396
+texture = ExtResource("1_bjwek")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(36, 4, 29, 43)
+
+[node name="BlackSquare" type="Sprite2D" parent="Props"]
+position = Vector2(-122, -13)
+rotation = -0.271074
+texture = SubResource("GradientTexture2D_hrw1l")
+
+[node name="Triggers" type="Node2D" parent="."]
+
+[node name="Dialogs" type="Node2D" parent="Triggers"]
+
+[node name="DialogTrigger" parent="Triggers/Dialogs" instance=ExtResource("4_gty0q")]
+position = Vector2(-73, -11)
+trigger_id = &"intro_cliff"
+dialog_ids = Array[StringName]([&"intro-cliff"])
+random = false
+
+[node name="DialogTrigger2" parent="Triggers/Dialogs" instance=ExtResource("4_gty0q")]
+position = Vector2(19, -11)
+trigger_id = &"tr_intro"
+dialog_ids = Array[StringName]([&"intro", &"lol", &"play"])
+random = false
+
+[node name="PlayerSpawn" type="Marker2D" parent="."]
+position = Vector2(-28, 0)
+
+[node name="Particles" type="Node2D" parent="."]
