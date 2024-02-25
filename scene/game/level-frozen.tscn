@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cctjx2lhey38e"]
+[gd_scene load_steps=13 format=3 uid="uid://cctjx2lhey38e"]
 
 [ext_resource type="PackedScene" uid="uid://n5iv26l5gsf2" path="res://scene/core/player.tscn" id="1_7hnpo"]
 [ext_resource type="Script" path="res://scene/game/game-map.gd" id="1_n6571"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://d1pjmsekkiy57" path="res://scene/ui/nokia.tscn" id="3_nrk03"]
 [ext_resource type="PackedScene" uid="uid://bspf32n5wp0pj" path="res://scene/fx/fx-snow.tscn" id="4_uay63"]
 [ext_resource type="PackedScene" uid="uid://bu5ptnxlx0o3w" path="res://scene/ui/dialog.tscn" id="6_kx16t"]
+[ext_resource type="PackedScene" uid="uid://blu3yvnltrg46" path="res://scene/game/game_over.tscn" id="8_fwbpe"]
 [ext_resource type="PackedScene" uid="uid://4taukevrdihr" path="res://scene/enemies/shadow.tscn" id="9_5towt"]
 
 [sub_resource type="Animation" id="Animation_2qc2c"]
@@ -191,6 +192,9 @@ nbr_letters_per_second = 60
 [node name="Timer" type="Timer" parent="."]
 wait_time = 3.0
 one_shot = true
+
+[node name="GameOver" parent="." instance=ExtResource("8_fwbpe")]
+position = Vector2(0, -400)
 
 [connection signal="dialog_ended" from="UI/DialogUI" to="." method="_on_dialog_ui_dialog_ended"]
 [connection signal="new_line_ended" from="UI/DialogUI" to="." method="_on_dialog_ui_new_line_ended"]

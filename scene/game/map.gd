@@ -9,8 +9,8 @@ var player : Player
 func _ready() -> void:
 	darkness.visible = true
 
-func get_player_spawn_point() -> Vector2:
+func get_player_spawn_point(_index: int) -> Vector2:
 	return player_spawn.global_position
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	darkness.global_position = player.global_position

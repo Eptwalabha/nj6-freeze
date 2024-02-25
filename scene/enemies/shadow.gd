@@ -39,6 +39,7 @@ var attacking : bool = false
 var waiting : bool = false
 
 func _ready() -> void:
+	# do not attack the player when bob send a SMS
 	recovery_rate = -max_light_exposure / full_recover_duration
 	animation_tree.active = true
 
