@@ -41,3 +41,6 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body is ShadowEnemy:
 		body.lit = false
+
+func is_looking_left() -> bool:
+	return sprite_2d.flip_h

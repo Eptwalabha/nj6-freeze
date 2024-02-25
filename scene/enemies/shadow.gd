@@ -28,6 +28,7 @@ enum ENEMY_STATE {
 var target : Node2D = null : set = _set_target
 var recovery_rate : float = -max_light_exposure / full_recover_duration
 var current_state : ENEMY_STATE = ENEMY_STATE.DISABLED
+var dist_to_target : float = 10000.0
 
 var time_lit : float = 0.0
 
@@ -35,6 +36,7 @@ var lit : bool = false
 var scared : bool = 0.0
 var in_range : bool = false
 var attacking : bool = false
+var waiting : bool = false
 
 func _ready() -> void:
 	recovery_rate = -max_light_exposure / full_recover_duration
@@ -46,7 +48,10 @@ func _physics_process(_delta: float) -> void:
 
 	match current_state:
 		ENEMY_STATE.CHASING:
-			velocity.x = sign(target.global_position.x - global_position.x) * SPEED
+			if not waiting:
+				velocity.x = sign(target.global_position.x - global_position.x) * SPEED
+			else:
+				velocity.x = 0.0
 		ENEMY_STATE.ESCAPING:
 			velocity.x = -sign(target.global_position.x - global_position.x) * ESCAPE_SPEED
 		_:
@@ -85,18 +90,35 @@ func update_state() -> void:
 		attacking = false
 		current_state = ENEMY_STATE.STAGGERED
 
+func is_in_penumbra() -> bool:
+	return dist_to_target > 20 and dist_to_target < 38
+
+func is_target_looking_at_me() -> bool:
+	if target == null:
+		return false
+	var is_left_to_target : bool = sign(target.global_position.x - global_position.x) > 0.0
+	if target.is_looking_left():
+		return is_left_to_target
+	else:
+		return not is_left_to_target
+
 func _update_animation_tree_states() -> void:
 	if velocity.x != 0:
 		pivot.scale.x = -1.0 if velocity.x < 0 else 1.0
+	dist_to_target = abs(target.global_position.x - global_position.x)
+
+	waiting = is_target_looking_at_me() and is_in_penumbra()
 
 	animation_tree.set("parameters/conditions/lit", lit)
 	animation_tree.set("parameters/conditions/not-lit", not lit)
 	animation_tree.set("parameters/conditions/scared", scared)
 	animation_tree.set("parameters/conditions/recovered", time_lit == 0.0)
 	animation_tree.set("parameters/conditions/attacking", attacking)
+	animation_tree.set("parameters/conditions/waiting", waiting)
+	animation_tree.set("parameters/conditions/not-waiting", not waiting)
 
 func punch() -> void:
-	if in_range:
+	if in_range and target:
 		print("ouch!")
 
 func attack_finished() -> void:
