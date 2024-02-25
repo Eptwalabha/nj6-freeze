@@ -1,0 +1,104 @@
+[gd_scene load_steps=6 format=3 uid="uid://bcei26fhiuwfn"]
+
+[ext_resource type="Texture2D" uid="uid://bjaw7b3gfr1kb" path="res://assets/img/props/nature.png" id="1_bjwek"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_k2sur"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_p1qj0"]
+normal = Vector2(1, 0)
+distance = -79.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_7nsbq"]
+normal = Vector2(-1, 0)
+distance = -500.0
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_khsu2"]
+polygon = PackedVector2Array(-83, 3, 41, 4, 99, -11, 123, -31, 136, -48, 149, -56, 188, -56, 190, 4, 298, 4, 307, 31, -150, 32, -144, -60, -101, -58, -103, -45, -105, -27, -110, -1)
+
+[node name="Layer0" type="Node2D"]
+light_mask = 3
+
+[node name="LevelBoundary" type="StaticBody2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="Bottom" type="CollisionShape2D" parent="LevelBoundary"]
+shape = SubResource("WorldBoundaryShape2D_k2sur")
+
+[node name="Left" type="CollisionShape2D" parent="LevelBoundary"]
+shape = SubResource("WorldBoundaryShape2D_p1qj0")
+
+[node name="Right" type="CollisionShape2D" parent="LevelBoundary"]
+shape = SubResource("WorldBoundaryShape2D_7nsbq")
+
+[node name="LevelCollision" type="StaticBody2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="LevelCollision"]
+polygon = PackedVector2Array(43, 2, 72, -5, 96, -13, 116, -28, 129, -44, 135, -52, 143, -57, 151.649, -59, 192, -59, 193, 20, 43, 20)
+
+[node name="Rock2" type="Sprite2D" parent="."]
+position = Vector2(-94, -35)
+texture = ExtResource("1_bjwek")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(55, 116, 28, 26)
+
+[node name="Rock4" type="Sprite2D" parent="."]
+position = Vector2(-107, -13)
+texture = ExtResource("1_bjwek")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(55, 116, 28, 26)
+
+[node name="Rock3" type="Sprite2D" parent="."]
+position = Vector2(-85, -25)
+texture = ExtResource("1_bjwek")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(37, 124, 16, 18)
+
+[node name="Rock5" type="Sprite2D" parent="."]
+position = Vector2(-94, -19)
+texture = ExtResource("1_bjwek")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(37, 124, 16, 18)
+
+[node name="Rock" type="Sprite2D" parent="."]
+position = Vector2(-88, -8)
+texture = ExtResource("1_bjwek")
+region_enabled = true
+region_rect = Rect2(55, 116, 28, 26)
+
+[node name="Tree3" type="Sprite2D" parent="."]
+position = Vector2(-27, -28)
+texture = ExtResource("1_bjwek")
+region_enabled = true
+region_rect = Rect2(1, 4, 33, 43)
+
+[node name="Tree4" type="Sprite2D" parent="."]
+position = Vector2(26, -27)
+texture = ExtResource("1_bjwek")
+region_enabled = true
+region_rect = Rect2(1, 4, 33, 43)
+
+[node name="Tree5" type="Sprite2D" parent="."]
+position = Vector2(51, -27)
+texture = ExtResource("1_bjwek")
+region_enabled = true
+region_rect = Rect2(1, 4, 33, 43)
+
+[node name="Tree2" type="Sprite2D" parent="."]
+position = Vector2(72, -23)
+rotation = -0.144396
+scale = Vector2(1, 1)
+texture = ExtResource("1_bjwek")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(36, 4, 29, 43)
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_khsu2")
+occluder_light_mask = 3

@@ -19,6 +19,7 @@ enum GAME_STATE {
 var game_states : Array[GAME_STATE] = [GAME_STATE.PLAYING]
 
 func _ready() -> void:
+	player.visible = true
 	GameData.phone_drawn.connect(_on_phone_drawn)
 	GameData.phone_hidden.connect(_on_phone_hidden)
 	GameData.phone_message_received.connect(_on_phone_message_received)
