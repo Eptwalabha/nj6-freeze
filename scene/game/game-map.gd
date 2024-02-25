@@ -8,6 +8,7 @@ extends Node
 @onready var map: GameMap = $FrozenMap
 @onready var player_camera: Camera2D = %PlayerCamera
 @onready var game_over: GameOverScreen = $GameOver
+@onready var ui: CanvasLayer = $UI
 
 var phone_visible : bool = false
 var dialog_visible : bool = true
@@ -34,9 +35,11 @@ func _ready() -> void:
 		shadow.target = player
 
 func _on_game_over() -> void:
+	ui.visible = false
 	game_over.play_dead_screen(player.is_looking_left())
 
 func _on_game_start() -> void:
+	ui.visible = true
 	player_camera.make_current()
 
 func _input(event: InputEvent) -> void:
@@ -64,14 +67,6 @@ func toggle_phone_visibility(is_visible: bool) -> void:
 		show_phone()
 	elif not is_visible and phone_visible:
 		hide_phone()
-
-func _on_timer_timeout() -> void:
-	var text : Array[String] = [
-		"test line 1\ntest line 2\ntest line 3\ntest line 4\ntest line 5",
-		#"Welcome to the 6th annual Nokia 3310 Jam! Work solo or make a team to create a game using the restrictions of the original Nokia 3310 phone from the 2000s!",
-		#"Below you will find the rules, restrictions, and ranking details of the jam. Have fun working within these restrictions! Games that fail to follow these rules will be disqualified from being ranked. For more detailed questions please view the FAQ in the jam's community tab.",
-	]
-	GameData.new_sms(text)
 
 func push_state(new_state: GAME_STATE) -> void:
 	game_states.append(new_state)

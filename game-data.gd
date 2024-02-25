@@ -11,37 +11,11 @@ signal phone_hidden
 signal game_start
 signal game_over
 
+var audio : AudioHandler
 var is_music_muted: bool = false
 var is_sound_muted: bool = false
 
-var audio : AudioHandler
-
-var scenes : Dictionary = {
-	"intro" : preload("res://scene/cutscenes/cs-intro.tscn"),
-	"lvl-01" : preload("res://scene/game/lvl-labor.tscn")
-}
-
-var current_scene = "intro"
-
-var collectible_items = {
-	"wooden_shard": false,
-	"tin_metal_shard": false,
-	"rail_nail": false,
-	"empty_lighter": false,
-	"painkiller": false
-}
-
-var affinity = {
-	"prisonner": 0.0,
-	"guards": 0.0,
-}
-
-var player_stats = {
-	"stamina": 100,
-	"health": 100,
-	"cold": 0,
-	"fever": false,
-}
+var current_checkpoint_id : int = 0
 
 func _ready() -> void:
 	audio = preload("res://scene/core/audio.tscn").instantiate()
