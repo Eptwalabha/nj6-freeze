@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://4taukevrdihr"]
+[gd_scene load_steps=42 format=3 uid="uid://4taukevrdihr"]
 
 [ext_resource type="Script" path="res://scene/enemies/shadow.gd" id="1_50h84"]
 [ext_resource type="Texture2D" uid="uid://cvqix8oeoe5o6" path="res://assets/img/spritesheets/shadow.png" id="2_pu6f8"]
@@ -323,8 +323,18 @@ animation = &"recover"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bvibi"]
 animation = &"staggered"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5yck0"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8e5g7"]
 animation = &"wait"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_nttb1"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_lwyh7"]
+nodes/Animation/node = SubResource("AnimationNodeAnimation_8e5g7")
+nodes/Animation/position = Vector2(200, 180)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_nttb1")
+nodes/TimeScale/position = Vector2(400, 160)
+nodes/output/position = Vector2(640, 180)
+node_connections = [&"TimeScale", 0, &"Animation", &"output", 0, &"TimeScale"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_v7hmj"]
 advance_mode = 2
@@ -369,15 +379,15 @@ advance_mode = 2
 advance_mode = 2
 advance_condition = &"lit"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ymv0e"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dheb0"]
 advance_mode = 2
 advance_condition = &"waiting"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0dedj"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_po1ru"]
 advance_mode = 2
 advance_condition = &"not-waiting"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_d37wd"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_phlvl"]
 advance_mode = 2
 advance_condition = &"lit"
 
@@ -385,19 +395,19 @@ advance_condition = &"lit"
 states/End/position = Vector2(1021, 100)
 states/Start/position = Vector2(-11, 100)
 states/attack/node = SubResource("AnimationNodeBlendTree_fr04p")
-states/attack/position = Vector2(572, 290)
+states/attack/position = Vector2(565, 304)
 states/chasing/node = SubResource("AnimationNodeAnimation_kr2n0")
-states/chasing/position = Vector2(395, 100)
+states/chasing/position = Vector2(238, 220)
 states/escape/node = SubResource("AnimationNodeBlendTree_u8vsk")
 states/escape/position = Vector2(824, 189)
 states/recover/node = SubResource("AnimationNodeAnimation_06pmn")
-states/recover/position = Vector2(395, -30)
+states/recover/position = Vector2(503, -180)
 states/staggered/node = SubResource("AnimationNodeAnimation_bvibi")
 states/staggered/position = Vector2(813, -41)
-states/wait/node = SubResource("AnimationNodeAnimation_5yck0")
-states/wait/position = Vector2(227, -138)
-transitions = ["chasing", "staggered", SubResource("AnimationNodeStateMachineTransition_v7hmj"), "Start", "chasing", SubResource("AnimationNodeStateMachineTransition_kp0t5"), "staggered", "escape", SubResource("AnimationNodeStateMachineTransition_bqvpn"), "chasing", "escape", SubResource("AnimationNodeStateMachineTransition_jy66a"), "staggered", "recover", SubResource("AnimationNodeStateMachineTransition_8ohvm"), "recover", "chasing", SubResource("AnimationNodeStateMachineTransition_fwtf7"), "recover", "escape", SubResource("AnimationNodeStateMachineTransition_ip2i7"), "recover", "staggered", SubResource("AnimationNodeStateMachineTransition_bg7bx"), "chasing", "attack", SubResource("AnimationNodeStateMachineTransition_o6vmy"), "attack", "chasing", SubResource("AnimationNodeStateMachineTransition_lhqbp"), "attack", "staggered", SubResource("AnimationNodeStateMachineTransition_ldt05"), "chasing", "wait", SubResource("AnimationNodeStateMachineTransition_ymv0e"), "wait", "chasing", SubResource("AnimationNodeStateMachineTransition_0dedj"), "wait", "staggered", SubResource("AnimationNodeStateMachineTransition_d37wd")]
-graph_offset = Vector2(-106, -153)
+states/wait/node = SubResource("AnimationNodeBlendTree_lwyh7")
+states/wait/position = Vector2(225, -41)
+transitions = ["chasing", "staggered", SubResource("AnimationNodeStateMachineTransition_v7hmj"), "Start", "chasing", SubResource("AnimationNodeStateMachineTransition_kp0t5"), "staggered", "escape", SubResource("AnimationNodeStateMachineTransition_bqvpn"), "chasing", "escape", SubResource("AnimationNodeStateMachineTransition_jy66a"), "staggered", "recover", SubResource("AnimationNodeStateMachineTransition_8ohvm"), "recover", "chasing", SubResource("AnimationNodeStateMachineTransition_fwtf7"), "recover", "escape", SubResource("AnimationNodeStateMachineTransition_ip2i7"), "recover", "staggered", SubResource("AnimationNodeStateMachineTransition_bg7bx"), "chasing", "attack", SubResource("AnimationNodeStateMachineTransition_o6vmy"), "attack", "chasing", SubResource("AnimationNodeStateMachineTransition_lhqbp"), "attack", "staggered", SubResource("AnimationNodeStateMachineTransition_ldt05"), "chasing", "wait", SubResource("AnimationNodeStateMachineTransition_dheb0"), "wait", "chasing", SubResource("AnimationNodeStateMachineTransition_po1ru"), "wait", "staggered", SubResource("AnimationNodeStateMachineTransition_phlvl")]
+graph_offset = Vector2(-147, -325)
 
 [node name="Shadow" type="CharacterBody2D" groups=["shadow"]]
 collision_layer = 4
@@ -459,6 +469,7 @@ parameters/conditions/scared = false
 parameters/conditions/waiting = false
 parameters/attack/TimeScale/scale = 1.0
 parameters/escape/TimeScale/scale = 3.0
+parameters/wait/TimeScale/scale = 0.5
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 3.0

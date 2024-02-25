@@ -118,7 +118,7 @@ height = 84
 [sub_resource type="CircleShape2D" id="CircleShape2D_70apu"]
 
 [node name="Player" type="CharacterBody2D"]
-collision_mask = 7
+collision_mask = 3
 slide_on_ceiling = false
 floor_max_angle = 1.0472
 script = ExtResource("1_gs02o")
