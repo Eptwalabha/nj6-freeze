@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://bcei26fhiuwfn"]
+[gd_scene load_steps=16 format=3 uid="uid://bcei26fhiuwfn"]
 
 [ext_resource type="Texture2D" uid="uid://bjaw7b3gfr1kb" path="res://assets/img/props/nature.png" id="1_bjwek"]
 [ext_resource type="Script" path="res://scene/game/map.gd" id="1_u0pnf"]
 [ext_resource type="Material" uid="uid://4qotextykkj0" path="res://assets/material/dither.tres" id="2_aqtrm"]
+[ext_resource type="PackedScene" uid="uid://p78yeca5k444" path="res://scene/core/force-trigger.tscn" id="4_7ice7"]
 [ext_resource type="PackedScene" uid="uid://cm2v0fcolsc2k" path="res://scene/core/dialog_trigger.tscn" id="4_gty0q"]
 
 [sub_resource type="Gradient" id="Gradient_4ufv7"]
@@ -178,16 +179,21 @@ texture = SubResource("GradientTexture2D_hrw1l")
 
 [node name="Triggers" type="Node2D" parent="."]
 
+[node name="Force" type="Node2D" parent="Triggers"]
+
+[node name="CarTrunk" parent="Triggers/Force" instance=ExtResource("4_7ice7")]
+position = Vector2(27, -6)
+
 [node name="Dialogs" type="Node2D" parent="Triggers"]
 
 [node name="DialogTrigger" parent="Triggers/Dialogs" instance=ExtResource("4_gty0q")]
-position = Vector2(-73, -11)
+position = Vector2(-74, -8)
 trigger_id = &"intro_cliff"
 dialog_ids = Array[StringName]([&"intro-cliff"])
 random = false
 
 [node name="DialogTrigger2" parent="Triggers/Dialogs" instance=ExtResource("4_gty0q")]
-position = Vector2(19, -11)
+position = Vector2(165, -45)
 trigger_id = &"tr_intro"
 dialog_ids = Array[StringName]([&"intro", &"lol", &"play"])
 random = false

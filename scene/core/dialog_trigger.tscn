@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://scene/core/dialog_trigger.gd" id="1_rrgp1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mnrgt"]
+resource_local_to_scene = true
 
 [node name="DialogTrigger" type="Area2D"]
 collision_layer = 0

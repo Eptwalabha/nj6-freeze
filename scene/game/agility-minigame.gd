@@ -7,26 +7,34 @@ extends Node2D
 @onready var cursor: Sprite2D = $Range/Cursor
 
 var time : float = 0.0
-var playing : bool = false
 
 func _ready() -> void:
+	visible = false
+	set_process(false)
+	GameData.ui_agility_pressed.connect(_on_agility_start)
+	GameData.ui_agility_released.connect(_on_agility_end)
 	rand_init()
 
 func _process(delta: float) -> void:
-	if playing:
-		time += delta * speed
-		cursor.position.x = (-cos(time) + 1.0) / 2.0 * 45 + 1
-
-func _input(event: InputEvent) -> void:
-	if event is InputEventKey:
-		if not playing and event.is_pressed():
-			time = 0
-			playing = true
-			rand_init()
-		
-		if not event.is_pressed():
-			playing = false
-			print("delta = %s" %  abs(round(target.position.x - cursor.position.x)))
+	time += delta * speed
+	cursor.position.x = (-cos(time) + 1.0) / 2.0 * 45 + 1
 
 func rand_init() -> void:
 	target.position.x = randi() % 29 + 9
+
+func _on_agility_start() -> void:
+	rand_init()
+	visible = true
+	set_process(true)
+	time = 0.0
+
+func _on_agility_end() -> void:
+	visible = false
+	set_process(false)
+	var dist : int = abs(round(target.position.x - cursor.position.x))
+	var score = 0.0
+	if dist <= 3:
+		score = 1.0
+	elif dist < 10:
+		score = 0.5
+	GameData.current_force_score(score)

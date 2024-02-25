@@ -1,13 +1,17 @@
-[gd_scene load_steps=13 format=3 uid="uid://cctjx2lhey38e"]
+[gd_scene load_steps=17 format=3 uid="uid://cctjx2lhey38e"]
 
 [ext_resource type="PackedScene" uid="uid://n5iv26l5gsf2" path="res://scene/core/player.tscn" id="1_7hnpo"]
 [ext_resource type="Script" path="res://scene/game/game-map.gd" id="1_n6571"]
 [ext_resource type="PackedScene" uid="uid://bcei26fhiuwfn" path="res://scene/game/frozen-map.tscn" id="3_focsm"]
 [ext_resource type="PackedScene" uid="uid://d1pjmsekkiy57" path="res://scene/ui/nokia.tscn" id="3_nrk03"]
 [ext_resource type="PackedScene" uid="uid://bspf32n5wp0pj" path="res://scene/fx/fx-snow.tscn" id="4_uay63"]
+[ext_resource type="Script" path="res://scene/game/ui-layer.gd" id="5_qsshm"]
 [ext_resource type="PackedScene" uid="uid://bu5ptnxlx0o3w" path="res://scene/ui/dialog.tscn" id="6_kx16t"]
+[ext_resource type="Material" uid="uid://bhaiush2cvw0u" path="res://assets/material/invert.tres" id="8_8f1rv"]
+[ext_resource type="PackedScene" uid="uid://ck8nfkeyiukdk" path="res://scene/game/agility-minigame.tscn" id="8_bvniu"]
 [ext_resource type="PackedScene" uid="uid://blu3yvnltrg46" path="res://scene/game/game_over.tscn" id="8_fwbpe"]
-[ext_resource type="PackedScene" uid="uid://4taukevrdihr" path="res://scene/enemies/shadow.tscn" id="9_5towt"]
+[ext_resource type="Texture2D" uid="uid://b1jv1fj6a5y4h" path="res://assets/img/props/ui.png" id="8_m1qux"]
+[ext_resource type="FontVariation" uid="uid://sutfsmsc6a1c" path="res://assets/fonts/lowrez/lowrez.tres" id="9_uyuml"]
 
 [sub_resource type="Animation" id="Animation_2qc2c"]
 length = 0.001
@@ -139,9 +143,6 @@ metadata/_edit_horizontal_guides_ = [48.0]
 [node name="Shadows" type="Node2D" parent="."]
 position = Vector2(0, -2)
 
-[node name="Shadow" parent="Shadows" instance=ExtResource("9_5towt")]
-position = Vector2(173, -37)
-
 [node name="Player" parent="." instance=ExtResource("1_7hnpo")]
 unique_name_in_owner = true
 position = Vector2(-48, -1)
@@ -176,6 +177,7 @@ initial_velocity_min = 10.0
 initial_velocity_max = 20.0
 
 [node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource("5_qsshm")
 
 [node name="Nokia" parent="UI" instance=ExtResource("3_nrk03")]
 position = Vector2(65, 100)
@@ -188,6 +190,39 @@ libraries = {
 [node name="DialogUI" parent="UI" instance=ExtResource("6_kx16t")]
 visible = false
 nbr_letters_per_second = 60
+
+[node name="Agility" parent="UI" instance=ExtResource("8_bvniu")]
+visible = false
+position = Vector2(19, 9)
+
+[node name="ContextBar" type="NinePatchRect" parent="UI"]
+offset_left = 2.0
+offset_right = 82.0
+offset_bottom = 8.0
+texture = ExtResource("8_m1qux")
+region_rect = Rect2(12, 24, 6, 6)
+patch_margin_left = 1
+patch_margin_top = 1
+patch_margin_right = 1
+patch_margin_bottom = 1
+
+[node name="UIContext" type="Label" parent="UI/ContextBar"]
+unique_name_in_owner = true
+material = ExtResource("8_8f1rv")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = -1.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("9_uyuml")
+text = "test one two"
+horizontal_alignment = 1
+clip_text = true
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 3.0
