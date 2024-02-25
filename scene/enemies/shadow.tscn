@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://4taukevrdihr"]
+[gd_scene load_steps=35 format=3 uid="uid://4taukevrdihr"]
 
 [ext_resource type="Script" path="res://scene/enemies/shadow.gd" id="1_50h84"]
 [ext_resource type="Texture2D" uid="uid://cvqix8oeoe5o6" path="res://assets/img/spritesheets/shadow.png" id="2_pu6f8"]
@@ -97,7 +97,6 @@ tracks/2/keys = {
 [sub_resource type="Animation" id="Animation_cogis"]
 resource_name = "attack"
 length = 1.5
-loop_mode = 1
 step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -130,11 +129,14 @@ tracks/2/path = NodePath(".")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(1),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(1, 1.45),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
 "method": &"punch"
+}, {
+"args": [],
+"method": &"attack_finished"
 }]
 }
 tracks/3/type = "value"
@@ -148,6 +150,36 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(5, -18), Vector2(3, -19), Vector2(2, -19), Vector2(-1, -19), Vector2(-4, -19)]
+}
+
+[sub_resource type="Animation" id="Animation_wh68e"]
+resource_name = "recover"
+length = 0.4
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [10, 11, 10, 11]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot/Eyes:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_of780"]
@@ -206,36 +238,6 @@ tracks/1/keys = {
 "values": [false]
 }
 
-[sub_resource type="Animation" id="Animation_wh68e"]
-resource_name = "recover"
-length = 0.4
-loop_mode = 1
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Pivot/Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [10, 11, 10, 11]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Pivot/Eyes:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2321w"]
 _data = {
 "RESET": SubResource("Animation_nt8d4"),
@@ -246,24 +248,33 @@ _data = {
 "staggered": SubResource("Animation_c2ooh")
 }
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ge83f"]
+animation = &"attack"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_bkknd"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_fr04p"]
+graph_offset = Vector2(-431, -8)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_ge83f")
+nodes/Animation/position = Vector2(-60, 140)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_bkknd")
+nodes/TimeScale/position = Vector2(140, 120)
+node_connections = [&"TimeScale", 0, &"Animation", &"output", 0, &"TimeScale"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kr2n0"]
+animation = &"approching"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bseam"]
 animation = &"approching"
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_ye1ps"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_u8vsk"]
-graph_offset = Vector2(-448, -15)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_bseam")
 nodes/Animation/position = Vector2(-80, 100)
 nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_ye1ps")
 nodes/TimeScale/position = Vector2(128, 121)
 node_connections = [&"TimeScale", 0, &"Animation", &"output", 0, &"TimeScale"]
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kr2n0"]
-animation = &"approching"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_knbud"]
-animation = &"attack"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_06pmn"]
 animation = &"recover"
@@ -272,18 +283,6 @@ animation = &"recover"
 animation = &"staggered"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_v7hmj"]
-advance_mode = 2
-advance_condition = &"lit"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ry1ob"]
-advance_mode = 2
-advance_condition = &"in-range"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bdvsi"]
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ohe30"]
 advance_mode = 2
 advance_condition = &"lit"
 
@@ -314,21 +313,33 @@ advance_condition = &"scared"
 advance_mode = 2
 advance_condition = &"lit"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_o6vmy"]
+advance_mode = 2
+advance_condition = &"attacking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lhqbp"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ldt05"]
+advance_mode = 2
+advance_condition = &"lit"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_06yss"]
-states/BlendTree/node = SubResource("AnimationNodeBlendTree_u8vsk")
-states/BlendTree/position = Vector2(813, 100)
 states/End/position = Vector2(1021, 100)
 states/Start/position = Vector2(199, 100)
-states/approching/node = SubResource("AnimationNodeAnimation_kr2n0")
-states/approching/position = Vector2(395, 100)
-states/attack/node = SubResource("AnimationNodeAnimation_knbud")
-states/attack/position = Vector2(594, 244)
+states/attack/node = SubResource("AnimationNodeBlendTree_fr04p")
+states/attack/position = Vector2(572, 290)
+states/chasing/node = SubResource("AnimationNodeAnimation_kr2n0")
+states/chasing/position = Vector2(395, 100)
+states/escape/node = SubResource("AnimationNodeBlendTree_u8vsk")
+states/escape/position = Vector2(824, 189)
 states/recover/node = SubResource("AnimationNodeAnimation_06pmn")
 states/recover/position = Vector2(395, -30)
 states/staggered/node = SubResource("AnimationNodeAnimation_bvibi")
-states/staggered/position = Vector2(589, -30)
-transitions = ["approching", "staggered", SubResource("AnimationNodeStateMachineTransition_v7hmj"), "approching", "attack", SubResource("AnimationNodeStateMachineTransition_ry1ob"), "attack", "approching", SubResource("AnimationNodeStateMachineTransition_bdvsi"), "attack", "staggered", SubResource("AnimationNodeStateMachineTransition_ohe30"), "Start", "approching", SubResource("AnimationNodeStateMachineTransition_kp0t5"), "staggered", "BlendTree", SubResource("AnimationNodeStateMachineTransition_bqvpn"), "approching", "BlendTree", SubResource("AnimationNodeStateMachineTransition_jy66a"), "staggered", "recover", SubResource("AnimationNodeStateMachineTransition_8ohvm"), "recover", "approching", SubResource("AnimationNodeStateMachineTransition_fwtf7"), "recover", "BlendTree", SubResource("AnimationNodeStateMachineTransition_ip2i7"), "recover", "staggered", SubResource("AnimationNodeStateMachineTransition_bg7bx")]
-graph_offset = Vector2(25, -74)
+states/staggered/position = Vector2(813, -41)
+transitions = ["chasing", "staggered", SubResource("AnimationNodeStateMachineTransition_v7hmj"), "Start", "chasing", SubResource("AnimationNodeStateMachineTransition_kp0t5"), "staggered", "escape", SubResource("AnimationNodeStateMachineTransition_bqvpn"), "chasing", "escape", SubResource("AnimationNodeStateMachineTransition_jy66a"), "staggered", "recover", SubResource("AnimationNodeStateMachineTransition_8ohvm"), "recover", "chasing", SubResource("AnimationNodeStateMachineTransition_fwtf7"), "recover", "escape", SubResource("AnimationNodeStateMachineTransition_ip2i7"), "recover", "staggered", SubResource("AnimationNodeStateMachineTransition_bg7bx"), "chasing", "attack", SubResource("AnimationNodeStateMachineTransition_o6vmy"), "attack", "chasing", SubResource("AnimationNodeStateMachineTransition_lhqbp"), "attack", "staggered", SubResource("AnimationNodeStateMachineTransition_ldt05")]
+graph_offset = Vector2(77, -49)
 
 [node name="Shadow" type="CharacterBody2D" groups=["shadow"]]
 collision_layer = 4
@@ -375,18 +386,18 @@ libraries = {
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-active = false
 libraries = {
 "": SubResource("AnimationLibrary_2321w")
 }
 tree_root = SubResource("AnimationNodeStateMachine_06yss")
 anim_player = NodePath("../AnimationPlayer")
-parameters/conditions/in-range = false
+parameters/conditions/attacking = false
 parameters/conditions/lit = false
 parameters/conditions/not-lit = false
-parameters/conditions/recovered = false
+parameters/conditions/recovered = true
 parameters/conditions/scared = false
-parameters/BlendTree/TimeScale/scale = 2.0
+parameters/attack/TimeScale/scale = 1.0
+parameters/escape/TimeScale/scale = 3.0
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 3.0

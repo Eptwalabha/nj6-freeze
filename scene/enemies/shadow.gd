@@ -7,30 +7,34 @@ extends CharacterBody2D
 @onready var eyes: Sprite2D = $Pivot/Eyes
 @onready var pivot: Marker2D = $Pivot
 
-const SPEED: float = 25.0
+const SPEED: float = 15.0
+const ESCAPE_SPEED: float = 75.0
 
 var recover_timer : float = 0.0
 
 enum ENEMY_STATE {
 	DISABLED,
-	APPROACHING,
+	CHASING,
 	STAGGERED,
-	RUNNING_AWAY,
-	ATTACKING,
 	RECOVERING,
+	ESCAPING,
+	ATTACKING,
 }
 
 @export var full_recover_duration: float = 1.0
 @export var max_light_exposure : float = 2.0
 
-var recovery_rate : float = -max_light_exposure / full_recover_duration
 
 var target : Node2D = null : set = _set_target
+var recovery_rate : float = -max_light_exposure / full_recover_duration
 var current_state : ENEMY_STATE = ENEMY_STATE.DISABLED
-var lit : bool = false : set = _set_lit
+
 var time_lit : float = 0.0
+
+var lit : bool = false
 var scared : bool = 0.0
 var in_range : bool = false
+var attacking : bool = false
 
 func _ready() -> void:
 	recovery_rate = -max_light_exposure / full_recover_duration
@@ -41,15 +45,15 @@ func _physics_process(_delta: float) -> void:
 		velocity.y += 20
 
 	match current_state:
-		ENEMY_STATE.APPROACHING:
+		ENEMY_STATE.CHASING:
 			velocity.x = sign(target.global_position.x - global_position.x) * SPEED
-		ENEMY_STATE.RUNNING_AWAY:
-			velocity.x = -sign(target.global_position.x - global_position.x) * SPEED * 2.0
+		ENEMY_STATE.ESCAPING:
+			velocity.x = -sign(target.global_position.x - global_position.x) * ESCAPE_SPEED
 		_:
 			velocity.x = 0.0
 
 	move_and_slide()
-	_update_state_machine()
+	_update_animation_tree_states()
 
 func _process(delta: float) -> void:
 	$Label.text = "state " + str(current_state)
@@ -60,66 +64,69 @@ func _process(delta: float) -> void:
 
 func update_state() -> void:
 	if time_lit >= max_light_exposure:
-		change_state(ENEMY_STATE.RUNNING_AWAY)
-	if current_state == ENEMY_STATE.RUNNING_AWAY:
+		escape()
+	if current_state == ENEMY_STATE.ESCAPING:
 		return
+
+	in_range = in_range and abs(global_position.x - target.global_position.x) < 20
+
 	match current_state:
 		ENEMY_STATE.RECOVERING:
 			if time_lit == 0.0:
-				change_state(ENEMY_STATE.APPROACHING)
+				current_state = ENEMY_STATE.CHASING
+		ENEMY_STATE.CHASING:
+			if in_range and not lit:
+				attack_target()
+		ENEMY_STATE.STAGGERED:
+			if not lit:
+				current_state = ENEMY_STATE.RECOVERING
+	
+	if lit and current_state != ENEMY_STATE.ESCAPING:
+		attacking = false
+		current_state = ENEMY_STATE.STAGGERED
 
-func _update_state_machine() -> void:
+func _update_animation_tree_states() -> void:
 	if velocity.x != 0:
 		pivot.scale.x = -1.0 if velocity.x < 0 else 1.0
 
 	animation_tree.set("parameters/conditions/lit", lit)
 	animation_tree.set("parameters/conditions/not-lit", not lit)
 	animation_tree.set("parameters/conditions/scared", scared)
-	animation_tree.set("parameters/conditions/in-range", in_range)
-	animation_tree.set("parameters/conditions/not-in-range", not in_range)
 	animation_tree.set("parameters/conditions/recovered", time_lit == 0.0)
-
-func _set_lit(is_lit) -> void:
-	lit = is_lit
-	if scared or target == null:
-		return
-	if lit:
-		change_state(ENEMY_STATE.STAGGERED)
-	else:
-		change_state(ENEMY_STATE.RECOVERING)
+	animation_tree.set("parameters/conditions/attacking", attacking)
 
 func punch() -> void:
 	if in_range:
 		print("ouch!")
-	current_state = ENEMY_STATE.APPROACHING
+
+func attack_finished() -> void:
+	if not in_range:
+		attacking = false
+		current_state = ENEMY_STATE.CHASING
 
 func _set_target(new_target: Node2D) -> void:
 	target = new_target
 	if current_state == ENEMY_STATE.DISABLED:
-		change_state(ENEMY_STATE.APPROACHING)
+		current_state = ENEMY_STATE.CHASING
 
 func _on_player_detector_body_entered(body: Node2D) -> void:
 	if body == target:
 		in_range = true
-		change_state(ENEMY_STATE.ATTACKING)
 
 func _on_player_detector_body_exited(body: Node2D) -> void:
 	if body == target:
 		in_range = false
-		change_state(ENEMY_STATE.APPROACHING)
 
-func change_state(new_state: ENEMY_STATE) -> void:
-	if current_state == ENEMY_STATE.RUNNING_AWAY:
+func attack_target() -> void:
+	if lit:
+		attacking = false
 		return
+	attacking = true
+	current_state = ENEMY_STATE.ATTACKING
 
-	if new_state == ENEMY_STATE.RUNNING_AWAY:
-		current_state = new_state
-		scared = true
-		await get_tree().create_timer(5.0).timeout
-		queue_free()
-	elif lit:
-		current_state = ENEMY_STATE.STAGGERED
-	elif current_state == ENEMY_STATE.ATTACKING and new_state == ENEMY_STATE.APPROACHING:
-		return
-	else:
-		current_state = new_state
+func escape() -> void:
+	scared = true
+	attacking = false
+	current_state = ENEMY_STATE.ESCAPING
+	await get_tree().create_timer(5.0).timeout
+	queue_free()

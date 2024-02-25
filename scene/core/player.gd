@@ -34,7 +34,6 @@ func _update_player_states() -> void:
 	animation_tree.set("parameters/conditions/moving", moving)
 	animation_tree.set("parameters/conditions/idle", not moving)
 
-
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is ShadowEnemy:
 		body.lit = true
