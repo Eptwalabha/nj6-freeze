@@ -5,6 +5,7 @@ extends Node
 @onready var dialog_ui: DialogUI = $UI/DialogUI
 @onready var shadows: Node2D = $Shadows
 @onready var player: Player = %Player
+@onready var darkness: PointLight2D = $Darkness
 
 var phone_visible : bool = false
 var dialog_visible : bool = true
@@ -20,11 +21,15 @@ var game_states : Array[GAME_STATE] = [GAME_STATE.PLAYING]
 
 func _ready() -> void:
 	player.visible = true
+	darkness.visible = true
 	GameData.phone_drawn.connect(_on_phone_drawn)
 	GameData.phone_hidden.connect(_on_phone_hidden)
 	GameData.phone_message_received.connect(_on_phone_message_received)
 	for shadow in get_tree().get_nodes_in_group("shadow"):
 		shadow.target = player
+
+func _process(delta: float) -> void:
+	darkness.global_position = player.global_position
 
 func _input(event: InputEvent) -> void:
 	match game_states[-1]:

@@ -55,3 +55,8 @@ func show_phone() -> void:
 
 func hide_phone() -> void:
 	phone_hidden.emit()
+
+func trigger_dialog(trigger_id: StringName, dialog_id: StringName) -> void:
+	print("trigger %s dialog_id %s" % [trigger_id, dialog_id])
+	if dialog_id == "lol":
+		new_sms(["salut la forme?\ntoto"])

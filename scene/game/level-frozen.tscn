@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cctjx2lhey38e"]
+[gd_scene load_steps=18 format=3 uid="uid://cctjx2lhey38e"]
 
 [ext_resource type="PackedScene" uid="uid://n5iv26l5gsf2" path="res://scene/core/player.tscn" id="1_7hnpo"]
 [ext_resource type="Script" path="res://scene/game/level-frozen.gd" id="1_n6571"]
@@ -7,15 +7,25 @@
 [ext_resource type="PackedScene" uid="uid://d1pjmsekkiy57" path="res://scene/ui/nokia.tscn" id="3_nrk03"]
 [ext_resource type="PackedScene" uid="uid://bspf32n5wp0pj" path="res://scene/fx/fx-snow.tscn" id="4_uay63"]
 [ext_resource type="PackedScene" uid="uid://bu5ptnxlx0o3w" path="res://scene/ui/dialog.tscn" id="6_kx16t"]
+[ext_resource type="PackedScene" uid="uid://cm2v0fcolsc2k" path="res://scene/core/dialog_trigger.tscn" id="6_tsl1j"]
 [ext_resource type="PackedScene" uid="uid://4taukevrdihr" path="res://scene/enemies/shadow.tscn" id="9_5towt"]
 
-[sub_resource type="Gradient" id="Gradient_fuqbt"]
+[sub_resource type="Gradient" id="Gradient_ujkcw"]
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_f8a64"]
-gradient = SubResource("Gradient_fuqbt")
+gradient = SubResource("Gradient_ujkcw")
 width = 16
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.5, 0.7)
+
+[sub_resource type="Gradient" id="Gradient_4ufv7"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8t44e"]
+gradient = SubResource("Gradient_4ufv7")
+width = 168
+height = 84
 
 [sub_resource type="Animation" id="Animation_2qc2c"]
 length = 0.001
@@ -147,10 +157,18 @@ z_index = -1
 z_as_relative = false
 texture_repeat = 2
 material = ExtResource("2_8mtf3")
-position = Vector2(0, -17)
+position = Vector2(0, -31.5)
+scale = Vector2(1, 2.15476)
 texture = SubResource("GradientTexture2D_f8a64")
 region_enabled = true
 region_rect = Rect2(0, 0, 1000, 84)
+
+[node name="Darkness" type="PointLight2D" parent="."]
+visible = false
+position = Vector2(0, -59.5119)
+scale = Vector2(1, 2.15476)
+blend_mode = 2
+texture = SubResource("GradientTexture2D_8t44e")
 
 [node name="Level" parent="." instance=ExtResource("3_focsm")]
 
@@ -160,9 +178,15 @@ position = Vector2(0, -2)
 [node name="Shadow" parent="Shadows" instance=ExtResource("9_5towt")]
 position = Vector2(201, -20)
 
+[node name="DialogTrigger" parent="." instance=ExtResource("6_tsl1j")]
+position = Vector2(-19, -12)
+trigger_id = &"tr_intro"
+dialog_ids = Array[StringName]([&"intro", &"lol", &"play"])
+random = false
+
 [node name="Player" parent="." instance=ExtResource("1_7hnpo")]
 unique_name_in_owner = true
-visible = false
+position = Vector2(-48, -1)
 
 [node name="PlayerCamera" type="Camera2D" parent="Player"]
 unique_name_in_owner = true
@@ -184,9 +208,8 @@ position = Vector2(21, -19)
 position = Vector2(0, -39)
 
 [node name="Snow" parent="." instance=ExtResource("4_uay63")]
-position = Vector2(0, -38)
-emitting = false
-amount = 500
+position = Vector2(-48, -39)
+amount = 200
 preprocess = 5.0
 emission_rect_extents = Vector2(84, 10)
 initial_velocity_min = 10.0
