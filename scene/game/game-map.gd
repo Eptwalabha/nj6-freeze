@@ -120,3 +120,6 @@ func show_phone() -> void:
 func hide_phone() -> void:
 	phone_visible = false
 	ui_animation_player.play("phone-hide")
+
+func _on_shadow_escaped() -> void:
+	GameData.dialog_triggered.emit("what was that?")

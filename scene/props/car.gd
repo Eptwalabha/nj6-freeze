@@ -3,6 +3,7 @@ extends Node2D
 
 signal battery_died
 
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var trunk: Sprite2D = $Car/Trunk
 @onready var car_outline: Sprite2D = $CarOutline
 @onready var light: Node2D = $Light
@@ -29,7 +30,11 @@ func _on_node_2d_forced() -> void:
 	car.visible = false
 	light.visible = false
 	GameData.car_battery_died()
+	animation_player.stop()
 	battery_died.emit()
+
+func battery_start_dying() -> void:
+	animation_player.play("light-flicker")
 
 func _player_found_light() -> void:
 	car.visible = true

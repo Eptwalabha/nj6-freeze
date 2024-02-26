@@ -357,7 +357,7 @@ tracks/8/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(63.5, 27.5)]
+"values": [Vector2(100, 27.5)]
 }
 tracks/9/type = "value"
 tracks/9/imported = false
@@ -532,7 +532,7 @@ region_enabled = true
 region_rect = Rect2(41, 23, 36, 18)
 
 [node name="Hand" type="Node2D" parent="."]
-position = Vector2(63.5, 27.5)
+position = Vector2(100, 27.5)
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Hand"]

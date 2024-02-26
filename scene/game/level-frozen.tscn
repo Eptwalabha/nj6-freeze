@@ -146,7 +146,6 @@ metadata/_edit_horizontal_guides_ = [48.0]
 position = Vector2(0, -2)
 
 [node name="Shadow" parent="Shadows" instance=ExtResource("9_5towt")]
-visible = false
 position = Vector2(61, -5)
 
 [node name="Player" parent="." instance=ExtResource("1_7hnpo")]
@@ -156,8 +155,6 @@ position = Vector2(-48, -1)
 [node name="PlayerCamera" type="Camera2D" parent="Player"]
 unique_name_in_owner = true
 position = Vector2(0, -18)
-limit_left = -500
-limit_right = 500
 limit_bottom = 10
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player/PlayerCamera"]
@@ -203,7 +200,7 @@ position = Vector2(19, 9)
 [node name="ContextBar" type="NinePatchRect" parent="UI"]
 offset_left = 2.0
 offset_right = 82.0
-offset_bottom = 8.0
+offset_bottom = 9.0
 texture = ExtResource("8_m1qux")
 region_rect = Rect2(12, 24, 6, 6)
 patch_margin_left = 1
@@ -219,7 +216,7 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 1.0
-offset_top = 1.0
+offset_top = 2.0
 offset_right = -1.0
 offset_bottom = -1.0
 grow_horizontal = 2
@@ -239,6 +236,7 @@ position = Vector2(200, -400)
 [node name="GameOver" parent="." instance=ExtResource("8_fwbpe")]
 position = Vector2(0, -400)
 
+[connection signal="escaped" from="Shadows/Shadow" to="." method="_on_shadow_escaped"]
 [connection signal="dialog_ended" from="UI/DialogUI" to="." method="_on_dialog_ui_dialog_ended"]
 [connection signal="new_line_ended" from="UI/DialogUI" to="." method="_on_dialog_ui_new_line_ended"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

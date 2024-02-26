@@ -65,16 +65,18 @@ func trigger_dialog(trigger_id: StringName, dialog_id: StringName) -> void:
 
 func trigger(trigger_id: StringName) -> void:
 	match trigger_id:
-		"debug-die":
+		"player-dies":
 			game_over.emit()
-		"debug-bob":
+		"summon-bob":
 			bob_arrived.emit()
+		"scare-enemies":
+			despawn_enemies()
 
 func force_available(the_trigger: ForceTrigger, available: bool) -> void:
 	if available:
 		active_force_trigger = the_trigger
 		force_trigger_entered.emit(the_trigger)
-		ui_context_requested.emit("force_available")
+		ui_context_requested.emit(the_trigger.context)
 	else:
 		force_trigger_exited.emit()
 		ui_context_hidden.emit()
@@ -93,4 +95,4 @@ func is_checkpoint_passed(checkpoint_id: int) -> bool:
 
 func despawn_enemies() -> void:
 	for enemy in get_tree().get_nodes_in_group("shadow"):
-		enemy.queue_free()
+		enemy.escape()

@@ -24,7 +24,6 @@ GameData="*res://game-data.gd"
 [display]
 
 window/size/viewport_width=873
-window/size/always_on_top=true
 
 [editor]
 

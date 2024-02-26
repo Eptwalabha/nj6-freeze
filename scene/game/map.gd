@@ -12,7 +12,7 @@ func _ready() -> void:
 
 func reset() -> void:
 	tutorial_boundary.set_deferred("disabled", GameData.current_checkpoint_id > 0)
-	$Triggers/Dialogs/DialogTrigger.set_active(GameData.current_checkpoint_id == 0)
+	$Triggers/Dialogs/TooDark.set_active(GameData.current_checkpoint_id == 0)
 
 func get_player_spawn_point(_index: int) -> Vector2:
 	return player_spawn.global_position
@@ -21,5 +21,6 @@ func _process(_delta: float) -> void:
 	darkness.global_position = player.global_position
 
 func _on_car_battery_died() -> void:
+	print("ici")
 	tutorial_boundary.set_deferred("disabled", true)
-	$Triggers/Dialogs/DialogTrigger.set_active(false)
+	$Triggers/Dialogs/TooDark.set_active(false)

@@ -134,6 +134,8 @@ func attack_finished() -> void:
 
 func _set_target(new_target: Node2D) -> void:
 	target = new_target
+
+func activate() -> void:
 	if current_state == ENEMY_STATE.DISABLED:
 		current_state = ENEMY_STATE.CHASING
 

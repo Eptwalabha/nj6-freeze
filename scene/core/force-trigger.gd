@@ -3,6 +3,7 @@ extends Area2D
 
 signal forced
 
+@export var context : StringName = "SPACE to force"
 @export var trigger_id : StringName = ""
 @export var enabled : bool = true
 @export var health : float = 2.0
