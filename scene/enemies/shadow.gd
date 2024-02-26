@@ -88,7 +88,7 @@ func update_state() -> void:
 		ENEMY_STATE.STAGGERED:
 			if not lit:
 				current_state = ENEMY_STATE.RECOVERING
-	
+
 	if lit and current_state != ENEMY_STATE.ESCAPING:
 		attacking = false
 		current_state = ENEMY_STATE.STAGGERED

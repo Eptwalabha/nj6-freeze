@@ -13,8 +13,7 @@ var is_light_on : bool = false
 var heating : bool = false
 var working : bool = false
 
-var target_position : Vector2 = Vector2.ZERO
-var target_face_left : bool = false
+var force_target : ForceTrigger
 
 var force_ready : bool = false
 
@@ -102,8 +101,7 @@ func _set_current_state(new_state: PLAYER_STATE) -> void:
 	set_process_input(current_state == PLAYER_STATE.CONTROL or current_state == PLAYER_STATE.FORCE)
 
 func _on_force_trigger_entered(target: ForceTrigger) -> void:
-	target_position = target.global_position
-	target_face_left = target.face_left
+	force_target = target
 	force_ready = true
 
 func _on_force_trigger_exited() -> void:

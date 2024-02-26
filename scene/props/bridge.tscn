@@ -18,6 +18,9 @@ resource_local_to_scene = true
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_k0ce6"]
 normal = Vector2(-1, 0)
 
+[sub_resource type="Animation" id="Animation_wdejl"]
+length = 0.001
+
 [sub_resource type="Animation" id="Animation_xrgg3"]
 resource_name = "lower-the-bridge"
 length = 3.0
@@ -47,9 +50,6 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 1, 1.6, 1.9)
 }
 
-[sub_resource type="Animation" id="Animation_wdejl"]
-length = 0.001
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1rirh"]
 _data = {
 "RESET": SubResource("Animation_wdejl"),
@@ -64,6 +64,7 @@ texture = SubResource("GradientTexture2D_jhyu3")
 offset = Vector2(0, -53)
 
 [node name="ForceTrigger" parent="." instance=ExtResource("2_x826d")]
+context = &"SPACE to forca"
 health = 4.0
 
 [node name="CollisionShape2D" parent="ForceTrigger" index="1"]
@@ -76,6 +77,7 @@ offset_right = 18.0
 offset_bottom = -12.0
 
 [node name="Bridge" type="StaticBody2D" parent="."]
+collision_layer = 16
 
 [node name="Bridge" type="CollisionShape2D" parent="Bridge" groups=["reset"]]
 shape = SubResource("WorldBoundaryShape2D_k0ce6")

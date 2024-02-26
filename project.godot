@@ -125,7 +125,8 @@ locale/translations=PackedStringArray("res://assets/i18n/translations.en.transla
 2d_physics/layer_1="player"
 2d_physics/layer_2="map"
 2d_physics/layer_3="enemies"
-2d_physics/layer_5="interactive"
+2d_physics/layer_4="trigger"
+2d_physics/layer_5="temporary-bounds"
 
 [rendering]
 

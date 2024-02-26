@@ -252,9 +252,10 @@ transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition
 graph_offset = Vector2(-70.15, 25.06)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_70apu"]
+radius = 11.0454
 
 [node name="Player" type="CharacterBody2D" groups=["reset"]]
-collision_mask = 3
+collision_mask = 19
 slide_on_ceiling = false
 floor_max_angle = 1.0472
 script = ExtResource("1_gs02o")
@@ -323,6 +324,7 @@ collision_layer = 0
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Light/Torch/Area2D"]
+position = Vector2(-1, 0)
 shape = SubResource("CircleShape2D_70apu")
 
 [node name="Bob" parent="." instance=ExtResource("5_kfx0j")]

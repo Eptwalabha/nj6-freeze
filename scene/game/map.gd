@@ -21,6 +21,5 @@ func _process(_delta: float) -> void:
 	darkness.global_position = player.global_position
 
 func _on_car_battery_died() -> void:
-	print("ici")
 	tutorial_boundary.set_deferred("disabled", true)
 	$Triggers/Dialogs/TooDark.set_active(false)
