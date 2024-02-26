@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cctjx2lhey38e"]
+[gd_scene load_steps=19 format=3 uid="uid://cctjx2lhey38e"]
 
 [ext_resource type="PackedScene" uid="uid://n5iv26l5gsf2" path="res://scene/core/player.tscn" id="1_7hnpo"]
 [ext_resource type="Script" path="res://scene/game/game-map.gd" id="1_n6571"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://b1jv1fj6a5y4h" path="res://assets/img/props/ui.png" id="8_m1qux"]
 [ext_resource type="PackedScene" uid="uid://4taukevrdihr" path="res://scene/enemies/shadow.tscn" id="9_5towt"]
 [ext_resource type="FontVariation" uid="uid://sutfsmsc6a1c" path="res://assets/fonts/lowrez/lowrez.tres" id="9_uyuml"]
+[ext_resource type="PackedScene" uid="uid://dsuxju20jnadc" path="res://scene/game/final_scene.tscn" id="13_ytxiu"]
 
 [sub_resource type="Animation" id="Animation_2qc2c"]
 length = 0.001
@@ -197,7 +198,6 @@ visible = false
 nbr_letters_per_second = 60
 
 [node name="Agility" parent="UI" instance=ExtResource("8_bvniu")]
-visible = false
 position = Vector2(19, 9)
 
 [node name="ContextBar" type="NinePatchRect" parent="UI"]
@@ -232,6 +232,9 @@ clip_text = true
 [node name="Timer" type="Timer" parent="."]
 wait_time = 3.0
 one_shot = true
+
+[node name="FinalScene" parent="." instance=ExtResource("13_ytxiu")]
+position = Vector2(200, -400)
 
 [node name="GameOver" parent="." instance=ExtResource("8_fwbpe")]
 position = Vector2(0, -400)

@@ -1,0 +1,191 @@
+[gd_scene load_steps=8 format=3 uid="uid://hryylb2xbq5s"]
+
+[ext_resource type="Script" path="res://scene/props/bob.gd" id="1_0lulx"]
+[ext_resource type="Texture2D" uid="uid://r1g82xx1adcn" path="res://assets/img/props/bob-hand.png" id="1_li82s"]
+[ext_resource type="Texture2D" uid="uid://5vij36722j32" path="res://assets/img/spritesheets/player.png" id="3_1ilxn"]
+[ext_resource type="Texture2D" uid="uid://b5j051ul54vyn" path="res://assets/light/light-torch.png" id="4_tttos"]
+
+[sub_resource type="Animation" id="Animation_60va6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hand:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hand/Sprite2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hand:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hand/Torch:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_wd0ng"]
+resource_name = "grab"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hand:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4.7, 4.9, 5.1, 5.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 0, 1, 2, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hand/Sprite2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 5.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hand:position:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(-100, -0.25, 0, 0.7, 5.5, 0, -0.6, -58.5, 0.25, 0, 0, -0.25, 0, 1.8, -1.5, -100, -0.251793, 16.5, 0.25, 0),
+"times": PackedFloat32Array(0, 5, 6, 9)
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(5.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"grabbed"
+}]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Hand:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Hand/Torch:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 5.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jjen3"]
+_data = {
+"RESET": SubResource("Animation_60va6"),
+"grab": SubResource("Animation_wd0ng")
+}
+
+[node name="Bob" type="Node2D"]
+light_mask = 0
+visibility_layer = 3
+script = ExtResource("1_0lulx")
+
+[node name="Hand" type="Sprite2D" parent="."]
+visible = false
+light_mask = 0
+texture = ExtResource("1_li82s")
+hframes = 5
+
+[node name="Torch" type="PointLight2D" parent="Hand"]
+visible = false
+blend_mode = 2
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 1)
+texture = ExtResource("4_tttos")
+metadata/_edit_vertical_guides_ = [84.0]
+metadata/_edit_horizontal_guides_ = [48.0]
+
+[node name="Sprite2D" type="Sprite2D" parent="Hand"]
+visible = false
+light_mask = 0
+z_index = -1
+position = Vector2(-2, -2)
+texture = ExtResource("3_1ilxn")
+hframes = 6
+vframes = 3
+
+[node name="Harm" type="ColorRect" parent="Hand"]
+light_mask = 0
+offset_left = 3.0
+offset_top = -130.0
+offset_right = 9.0
+offset_bottom = -12.0
+
+[node name="ColorRect2" type="ColorRect" parent="Hand/Harm"]
+light_mask = 0
+layout_mode = 0
+offset_left = 1.0
+offset_right = 5.0
+offset_bottom = 118.0
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_jjen3")
+}
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

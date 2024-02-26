@@ -9,7 +9,7 @@
 resource_local_to_scene = true
 size = Vector2(10, 16)
 
-[node name="Car" type="Node2D"]
+[node name="Car" type="Node2D" groups=["reset"]]
 script = ExtResource("1_folp1")
 
 [node name="Light" type="Node2D" parent="."]
@@ -43,17 +43,17 @@ texture = ExtResource("1_qp2pm")
 region_enabled = true
 region_rect = Rect2(1, 2, 12, 10)
 
-[node name="Node2D" parent="." instance=ExtResource("2_xb72t")]
+[node name="ForceTrunk" parent="." instance=ExtResource("2_xb72t")]
 position = Vector2(-18, 0)
 
-[node name="CollisionShape2D" parent="Node2D" index="1"]
+[node name="CollisionShape2D" parent="ForceTrunk" index="1"]
 position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_n0bfx")
 
-[node name="HealthBar" parent="Node2D" index="2"]
+[node name="HealthBar" parent="ForceTrunk" index="2"]
 offset_top = 2.0
 offset_bottom = 5.0
 
-[connection signal="forced" from="Node2D" to="." method="_on_node_2d_forced"]
+[connection signal="forced" from="ForceTrunk" to="." method="_on_node_2d_forced"]
 
-[editable path="Node2D"]
+[editable path="ForceTrunk"]

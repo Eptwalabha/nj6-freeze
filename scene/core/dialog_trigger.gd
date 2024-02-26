@@ -3,11 +3,11 @@ extends Area2D
 
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 
-@export var checkpoint_id : int = 0
+@export var checkpoint_id : int = -1
 @export var enabled : bool = true
 @export var trigger_id : StringName
 @export var dialog_ids : Array[StringName]
-@export var random : bool = true
+@export var random : bool = false
 @export var trigger_once : bool = true
 
 var current_dialog : int = 0
@@ -18,8 +18,7 @@ func _ready() -> void:
 	reset()
 
 func reset() -> void:
-	var after_checkpoint = (checkpoint_id == -1 or checkpoint_id >= GameData.current_checkpoint_id)
-	set_active(init_enabled and after_checkpoint)
+	set_active(init_enabled and GameData.is_checkpoint_passed(checkpoint_id))
 
 func set_active(is_enabled: bool) -> void:
 	enabled = is_enabled

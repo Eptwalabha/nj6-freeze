@@ -55,6 +55,9 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 	_update_player_states()
 
+func reset() -> void:
+	switch_flashlight(GameData.current_checkpoint_id != 0)
+
 func _process(delta: float) -> void:
 	torch.global_position = torch.global_position.lerp(torch_target.global_position, delta * 8.0)
 
@@ -113,3 +116,8 @@ func switch_flashlight(on: bool) -> void:
 	is_light_on = on
 	$Light.visible = on
 	$Light/Torch/Area2D.set_deferred("monitoring", on)
+
+func _on_bob_player_grabbed() -> void:
+	switch_flashlight(false)
+	sprite_2d.visible = false
+	current_state = PLAYER_STATE.CUTSCENE

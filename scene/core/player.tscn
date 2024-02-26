@@ -1,7 +1,8 @@
-[gd_scene load_steps=40 format=3 uid="uid://n5iv26l5gsf2"]
+[gd_scene load_steps=41 format=3 uid="uid://n5iv26l5gsf2"]
 
 [ext_resource type="Script" path="res://scene/core/player.gd" id="1_gs02o"]
 [ext_resource type="Texture2D" uid="uid://5vij36722j32" path="res://assets/img/spritesheets/player.png" id="2_vlalk"]
+[ext_resource type="PackedScene" uid="uid://hryylb2xbq5s" path="res://scene/props/bob.tscn" id="5_kfx0j"]
 [ext_resource type="Texture2D" uid="uid://da0fdpb0oyw6c" path="res://assets/light/light-player.png" id="6_34hx8"]
 [ext_resource type="Texture2D" uid="uid://b5j051ul54vyn" path="res://assets/light/light-torch.png" id="6_dbnpc"]
 
@@ -25,6 +26,86 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_bb008"]
+resource_name = "air_down"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [7]
+}
+
+[sub_resource type="Animation" id="Animation_jun7r"]
+resource_name = "air_up"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+
+[sub_resource type="Animation" id="Animation_lt3x0"]
+resource_name = "force-charge"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [8, 9]
+}
+
+[sub_resource type="Animation" id="Animation_ebeta"]
+resource_name = "force-idle"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+
+[sub_resource type="Animation" id="Animation_2h8f5"]
+resource_name = "force-release"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [9, 10, 8]
 }
 
 [sub_resource type="Animation" id="Animation_p0n8i"]
@@ -56,86 +137,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [1, 2, 3, 4]
-}
-
-[sub_resource type="Animation" id="Animation_lt3x0"]
-resource_name = "force-charge"
-length = 0.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [8, 9]
-}
-
-[sub_resource type="Animation" id="Animation_2h8f5"]
-resource_name = "force-release"
-length = 0.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [9, 10, 8]
-}
-
-[sub_resource type="Animation" id="Animation_ebeta"]
-resource_name = "force-idle"
-length = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [8]
-}
-
-[sub_resource type="Animation" id="Animation_jun7r"]
-resource_name = "air_up"
-length = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [6]
-}
-
-[sub_resource type="Animation" id="Animation_bb008"]
-resource_name = "air_down"
-length = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [7]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ibhdy"]
@@ -252,7 +253,7 @@ graph_offset = Vector2(-70.15, 25.06)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_70apu"]
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["reset"]]
 collision_mask = 3
 slide_on_ceiling = false
 floor_max_angle = 1.0472
@@ -324,5 +325,9 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Light/Torch/Area2D"]
 shape = SubResource("CircleShape2D_70apu")
 
+[node name="Bob" parent="." instance=ExtResource("5_kfx0j")]
+position = Vector2(0, -13)
+
 [connection signal="body_entered" from="Light/Torch/Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Light/Torch/Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="player_grabbed" from="Bob" to="." method="_on_bob_player_grabbed"]

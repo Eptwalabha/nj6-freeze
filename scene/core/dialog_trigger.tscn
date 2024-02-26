@@ -10,7 +10,7 @@ collision_layer = 0
 monitorable = false
 script = ExtResource("1_rrgp1")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["trigger", "trigger-dialog"]]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["reset", "trigger", "trigger-dialog"]]
 shape = SubResource("RectangleShape2D_mnrgt")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

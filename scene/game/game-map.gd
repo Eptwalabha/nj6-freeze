@@ -8,6 +8,8 @@ extends Node
 @onready var map: GameMap = $FrozenMap
 @onready var player_camera: Camera2D = %PlayerCamera
 @onready var game_over: GameOverScreen = $GameOver
+@onready var final_scene: FinalScreen = $FinalScene
+
 @onready var ui: CanvasLayer = $UI
 
 var phone_visible : bool = false
@@ -28,6 +30,7 @@ func _ready() -> void:
 	player.visible = true
 	GameData.game_over.connect(_on_game_over)
 	GameData.game_start.connect(_on_game_start)
+	GameData.final_scene.connect(_on_final_scene)
 	GameData.phone_drawn.connect(_on_phone_drawn)
 	GameData.phone_hidden.connect(_on_phone_hidden)
 	GameData.phone_message_received.connect(_on_phone_message_received)
@@ -37,10 +40,20 @@ func _ready() -> void:
 
 func _on_game_over() -> void:
 	ui.visible = false
+	GameData.despawn_enemies()
 	game_over.play_dead_screen(player.is_looking_left())
+
+func _on_final_scene() -> void:
+	ui.visible = false
+	GameData.despawn_enemies()
+	final_scene.play_scene()
 
 func _on_game_start() -> void:
 	ui.visible = true
+	for item in get_tree().get_nodes_in_group("reset"):
+		if item.has_method("reset"):
+			item.reset()
+	map.reset()
 	player_camera.make_current()
 
 func _input(event: InputEvent) -> void:

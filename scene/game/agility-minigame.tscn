@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b1jv1fj6a5y4h" path="res://assets/img/props/ui.png" id="1_nb0g7"]
 
 [node name="Agility" type="Node2D"]
+visible = false
 light_mask = 0
 script = ExtResource("1_7n0qd")
 speed = 6.0

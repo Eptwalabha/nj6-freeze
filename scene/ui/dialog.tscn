@@ -66,6 +66,7 @@ libraries = {
 autoplay = "move-next"
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
+light_mask = 0
 offset_left = 4.0
 offset_top = 31.0
 offset_right = 80.0
@@ -98,6 +99,7 @@ visible_ratio = 0.0
 
 [node name="NextArrow" type="Sprite2D" parent="NinePatchRect"]
 visible = false
+visibility_layer = 0
 position = Vector2(75, 15)
 texture = ExtResource("2_fcbn2")
 offset = Vector2(1, -2)

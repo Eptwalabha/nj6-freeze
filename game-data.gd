@@ -12,6 +12,7 @@ signal phone_hidden
 
 signal game_start
 signal game_over
+signal final_scene
 
 signal ui_context_requested(message)
 signal ui_context_hidden
@@ -25,6 +26,8 @@ signal ui_agility_released
 signal ui_agility_score(score)
 
 signal flashlight_found
+signal bob_arrived
+signal player_grabbed_by_bob
 
 var audio : AudioHandler
 var is_music_muted: bool = false
@@ -60,10 +63,17 @@ func trigger_dialog(trigger_id: StringName, dialog_id: StringName) -> void:
 		"dialog-phone":
 			new_sms([dialog_id])
 
-func force_available(trigger: ForceTrigger, available: bool) -> void:
+func trigger(trigger_id: StringName) -> void:
+	match trigger_id:
+		"debug-die":
+			game_over.emit()
+		"debug-bob":
+			bob_arrived.emit()
+
+func force_available(the_trigger: ForceTrigger, available: bool) -> void:
 	if available:
-		active_force_trigger = trigger
-		force_trigger_entered.emit(trigger)
+		active_force_trigger = the_trigger
+		force_trigger_entered.emit(the_trigger)
 		ui_context_requested.emit("force_available")
 	else:
 		force_trigger_exited.emit()
@@ -77,3 +87,10 @@ func current_force_score(score: float) -> void:
 func car_battery_died() -> void:
 	await get_tree().create_timer(2.0).timeout
 	flashlight_found.emit()
+
+func is_checkpoint_passed(checkpoint_id: int) -> bool:
+	return (checkpoint_id == -1 or current_checkpoint_id >= checkpoint_id)
+
+func despawn_enemies() -> void:
+	for enemy in get_tree().get_nodes_in_group("shadow"):
+		enemy.queue_free()

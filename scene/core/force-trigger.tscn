@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lo7ub"]
 resource_local_to_scene = true
 
-[node name="Node2D" type="Area2D" groups=["trigger"]]
+[node name="ForceTrigger" type="Area2D" groups=["reset", "trigger"]]
 collision_layer = 0
 script = ExtResource("1_52h62")
 

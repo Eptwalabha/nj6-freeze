@@ -16,6 +16,7 @@ func play_dead_screen(flip: bool) -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("action-confirm"):
+		set_process_input(false)
 		GameData.reload_game()
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
