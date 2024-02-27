@@ -5,16 +5,19 @@ signal player_entered
 signal player_exited
 signal player_interacted
 
-@export var item_name : String = ""
+@export var item_name: String = ""
 
-var in_range : bool = false
-var enabled : bool = true : set = _set_enabled
+var in_range: bool = false
+var enabled: bool = true:
+	set = _set_enabled
 
-@onready var collision : CollisionShape2D = $CollisionShape2D
+@onready var collision: CollisionShape2D = $CollisionShape2D
+
 
 func _set_enabled(is_enabled: bool) -> void:
 	enabled = is_enabled
 	collision.set_deferred("disabled", not enabled)
+
 
 func _input(event):
 	if not enabled:
@@ -23,10 +26,12 @@ func _input(event):
 		player_interacted.emit()
 		_set_enabled(false)
 
+
 func _on_body_entered(body: Node2D) -> void:
 	if not in_range and body is Player:
 		in_range = true
 		player_entered.emit()
+
 
 func _on_body_exited(body: Node2D) -> void:
 	if in_range and body is Player:

@@ -9,11 +9,13 @@ signal battery_died
 @onready var light: Node2D = $Light
 @onready var car: Sprite2D = $Car
 
+
 func _ready() -> void:
 	reset()
 	GameData.flashlight_found.connect(_player_found_light)
 	trunk.visible = false
 	car_outline.visible = false
+
 
 func reset() -> void:
 	car.visible = true
@@ -22,6 +24,7 @@ func reset() -> void:
 	trunk.visible = is_checkpoint_passed
 	light.visible = not is_checkpoint_passed
 	$ForceTrunk.set_active(not is_checkpoint_passed)
+
 
 func _on_node_2d_forced() -> void:
 	trunk.visible = true
@@ -33,8 +36,10 @@ func _on_node_2d_forced() -> void:
 	animation_player.stop()
 	battery_died.emit()
 
+
 func battery_start_dying() -> void:
 	animation_player.play("light-flicker")
+
 
 func _player_found_light() -> void:
 	car.visible = true

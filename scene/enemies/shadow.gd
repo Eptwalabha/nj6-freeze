@@ -16,19 +16,20 @@ const SPEED: float = 15.0
 const ESCAPE_SPEED: float = 75.0
 
 @export var full_recover_duration: float = 1.0
-@export var max_light_exposure : float = 2.0
+@export var max_light_exposure: float = 2.0
 
-var recover_timer : float = 0.0
-var target : Node2D = null : set = _set_target
-var recovery_rate : float = -max_light_exposure / full_recover_duration
-var current_state : EnemyState = EnemyState.DISABLED
-var dist_to_target : float = 10000.0
-var time_lit : float = 0.0
-var lit : bool = false
-var scared : bool = 0.0
-var in_range : bool = false
-var attacking : bool = false
-var waiting : bool = false
+var recover_timer: float = 0.0
+var target: Node2D = null:
+	set = _set_target
+var recovery_rate: float = -max_light_exposure / full_recover_duration
+var current_state: EnemyState = EnemyState.DISABLED
+var dist_to_target: float = 10000.0
+var time_lit: float = 0.0
+var lit: bool = false
+var scared: bool = 0.0
+var in_range: bool = false
+var attacking: bool = false
+var waiting: bool = false
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var animation_tree: AnimationTree = $AnimationTree
@@ -36,10 +37,12 @@ var waiting : bool = false
 @onready var eyes: Sprite2D = $Pivot/Eyes
 @onready var pivot: Marker2D = $Pivot
 
+
 func _ready() -> void:
 	# do not attack the player when bob send a SMS
 	recovery_rate = -max_light_exposure / full_recover_duration
 	animation_tree.active = true
+
 
 func _physics_process(_delta: float) -> void:
 	if not is_on_floor():
@@ -59,12 +62,14 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 	_update_animation_tree_states()
 
+
 func _process(delta: float) -> void:
 	$Label.text = "state " + str(current_state)
 	if scared:
 		return
 	time_lit = max(time_lit + delta * (1.0 if lit else recovery_rate), 0.0)
 	update_state()
+
 
 func update_state() -> void:
 	if time_lit >= max_light_exposure:
@@ -89,17 +94,21 @@ func update_state() -> void:
 		attacking = false
 		current_state = EnemyState.STAGGERED
 
+
 func is_in_penumbra() -> bool:
 	return dist_to_target > 20 and dist_to_target < 38
 
+
 func is_target_looking_at_me() -> bool:
-	var is_left_to_target : bool = sign(target.global_position.x - global_position.x) > 0.0
+	var is_left_to_target: bool = sign(target.global_position.x - global_position.x) > 0.0
 	if target.is_looking_left():
 		return is_left_to_target
 	return not is_left_to_target
 
+
 func is_target_has_light() -> bool:
 	return target.is_light_on
+
 
 func _update_animation_tree_states() -> void:
 	if velocity.x != 0:
@@ -118,29 +127,36 @@ func _update_animation_tree_states() -> void:
 	animation_tree.set("parameters/conditions/waiting", waiting)
 	animation_tree.set("parameters/conditions/not-waiting", not waiting)
 
+
 func punch() -> void:
 	if in_range and target:
 		print("ouch!")
+
 
 func attack_finished() -> void:
 	if not in_range:
 		attacking = false
 		current_state = EnemyState.CHASING
 
+
 func _set_target(new_target: Node2D) -> void:
 	target = new_target
+
 
 func activate() -> void:
 	if current_state == EnemyState.DISABLED:
 		current_state = EnemyState.CHASING
 
+
 func _on_player_detector_body_entered(body: Node2D) -> void:
 	if body == target:
 		in_range = true
 
+
 func _on_player_detector_body_exited(body: Node2D) -> void:
 	if body == target:
 		in_range = false
+
 
 func attack_target() -> void:
 	if lit:
@@ -148,6 +164,7 @@ func attack_target() -> void:
 		return
 	attacking = true
 	current_state = EnemyState.ATTACKING
+
 
 func escape() -> void:
 	scared = true

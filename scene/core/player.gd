@@ -10,18 +10,20 @@ enum PlayerState {
 
 const SPEED = 50.0
 
-var is_light_on : bool = false
-var heating : bool = false
-var working : bool = false
-var force_target : ForceTrigger
-var force_ready : bool = false
-var current_state : PlayerState = PlayerState.CONTROL : set = _set_current_state
+var is_light_on: bool = false
+var heating: bool = false
+var working: bool = false
+var force_target: ForceTrigger
+var force_ready: bool = false
+var current_state: PlayerState = PlayerState.CONTROL:
+	set = _set_current_state
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var torch: PointLight2D = $Light/Torch
 @onready var torch_target: Marker2D = $Pivot/TorchTarget
+
 
 func _ready() -> void:
 	switch_flashlight(false)
@@ -30,6 +32,7 @@ func _ready() -> void:
 	GameData.force_trigger_exited.connect(_on_force_trigger_exited)
 	animation_tree.active = true
 	_set_current_state(current_state)
+
 
 func _physics_process(_delta: float) -> void:
 	if current_state == PlayerState.DISABLED:
@@ -51,11 +54,14 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 	_update_player_states()
 
+
 func reset() -> void:
 	switch_flashlight(GameData.current_checkpoint_id != 0)
 
+
 func _process(delta: float) -> void:
 	torch.global_position = torch.global_position.lerp(torch_target.global_position, delta * 8.0)
+
 
 func _input(event: InputEvent) -> void:
 	if force_ready:
@@ -69,6 +75,7 @@ func _input(event: InputEvent) -> void:
 			animation_tree.set("parameters/force/conditions/force-release", true)
 			current_state = PlayerState.CONTROL
 			GameData.ui_agility_released.emit()
+
 
 func _update_player_states() -> void:
 	var moving = false
@@ -84,33 +91,41 @@ func _update_player_states() -> void:
 	animation_tree.set("parameters/conditions/not-on-floor", not is_on_floor())
 	animation_tree.set("parameters/conditions/on-floor", is_on_floor())
 
+
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is ShadowEnemy:
 		body.lit = true
 
+
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body is ShadowEnemy:
 		body.lit = false
+
 
 func _set_current_state(new_state: PlayerState) -> void:
 	current_state = new_state
 	set_physics_process(current_state != PlayerState.DISABLED)
 	set_process_input(current_state == PlayerState.CONTROL or current_state == PlayerState.FORCE)
 
+
 func _on_force_trigger_entered(target: ForceTrigger) -> void:
 	force_target = target
 	force_ready = true
 
+
 func _on_force_trigger_exited() -> void:
 	force_ready = false
 
+
 func is_looking_left() -> bool:
 	return sprite_2d.flip_h
+
 
 func switch_flashlight(on: bool) -> void:
 	is_light_on = on
 	$Light.visible = on
 	$Light/Torch/Area2D.set_deferred("monitoring", on)
+
 
 func _on_bob_player_grabbed() -> void:
 	switch_flashlight(false)

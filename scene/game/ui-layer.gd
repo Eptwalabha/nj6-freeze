@@ -5,6 +5,7 @@ extends CanvasLayer
 @onready var context_bar: NinePatchRect = $ContextBar
 @onready var agility: Node2D = $Agility
 
+
 func _ready() -> void:
 	context_bar.visible = false
 	agility.visible = false
@@ -12,8 +13,10 @@ func _ready() -> void:
 	GameData.ui_context_requested.connect(_on_context_requested)
 	GameData.ui_agility_pressed.connect(_on_context_hidden)
 
+
 func _on_context_hidden() -> void:
 	context_bar.visible = false
+
 
 func _on_context_requested(message: StringName) -> void:
 	ui_context.text = tr(message)
