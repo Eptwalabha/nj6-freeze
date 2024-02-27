@@ -1,28 +1,31 @@
 class_name Trigger
 extends Area2D
 
+@export var checkpoint_id: int = -1
+@export var enabled: bool = true
+@export var trigger_id: StringName
+@export var dialog_ids: Array[StringName]
+@export var random: bool = false
+@export var trigger_once: bool = true
+
+var current_dialog: int = 0
+var init_enabled: bool = enabled
+
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 
-@export var checkpoint_id : int = -1
-@export var enabled : bool = true
-@export var trigger_id : StringName
-@export var dialog_ids : Array[StringName]
-@export var random : bool = false
-@export var trigger_once : bool = true
-
-var current_dialog : int = 0
-
-var init_enabled : bool = enabled
 
 func _ready() -> void:
 	reset()
 
+
 func reset() -> void:
 	set_active(init_enabled and GameData.is_checkpoint_passed(checkpoint_id))
+
 
 func set_active(is_enabled: bool) -> void:
 	enabled = is_enabled
 	set_deferred("monitoring", enabled)
+
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is Player and enabled:
