@@ -5,10 +5,11 @@ signal skipped
 
 @export var time_to_skip : float = 1.0
 @export var enable : bool = false
-@onready var progress: Sprite2D = $Progress
 
 var skip = 0.0
 var skipping = false
+
+@onready var progress: Sprite2D = $Progress
 
 func _ready() -> void:
 	visible = false

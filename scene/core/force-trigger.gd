@@ -9,11 +9,11 @@ signal forced
 @export var health : float = 2.0
 @export var face_left : bool = false
 
-@onready var health_bar: NinePatchRect = %HealthBar
-@onready var health_progress: ColorRect = %HealthProgress
-
 var init_health : float = health
 var init_enabled : bool = enabled
+
+@onready var health_bar: NinePatchRect = %HealthBar
+@onready var health_progress: ColorRect = %HealthProgress
 
 func _ready() -> void:
 	health_bar.visible = false

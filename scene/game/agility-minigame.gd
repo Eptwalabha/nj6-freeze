@@ -2,10 +2,10 @@ extends Node2D
 
 @export var speed : float = 5
 
+var time : float = 0.0
+
 @onready var target: Sprite2D = $Range/Target
 @onready var cursor: Sprite2D = $Range/Cursor
-
-var time : float = 0.0
 
 func _ready() -> void:
 	visible = false

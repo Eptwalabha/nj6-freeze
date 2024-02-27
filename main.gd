@@ -1,14 +1,6 @@
 @tool
 extends Node
 
-@onready var screen : SubViewport = %Screen
-@onready var aspect_ratio_container: AspectRatioContainer = %AspectRatioContainer
-
-@export var screen_orientation: ORIENTATION = ORIENTATION.LANDSCAPE : set = set_orientation
-@export var palette: PALETTE = PALETTE.ORIGINAL : set = set_palette
-# (30mm / 84px) / (22mm / 48px) = 0.779
-@export var pixel_ratio : float = 0.779 : set = set_pixel_ratio
-
 enum ORIENTATION {
 	LANDSCAPE,
 	PORTRAIT
@@ -20,13 +12,21 @@ enum PALETTE {
 	GREY
 }
 
-const palettes = {
+const PALETTES = {
 	PALETTE.ORIGINAL: ["#c7f0d8", "#43523d"],
 	PALETTE.HARSH: ["#9bc700", "#2b3f09"],
 	PALETTE.GREY: ["#879188", "#1a1914"]
 }
 
+@export var screen_orientation: ORIENTATION = ORIENTATION.LANDSCAPE : set = set_orientation
+@export var palette: PALETTE = PALETTE.ORIGINAL : set = set_palette
+# (30mm / 84px) / (22mm / 48px) = 0.779
+@export var pixel_ratio : float = 0.779 : set = set_pixel_ratio
+
 var resolution = Vector2(84, 48)
+
+@onready var screen : SubViewport = %Screen
+@onready var aspect_ratio_container: AspectRatioContainer = %AspectRatioContainer
 
 func _ready() -> void:
 	_update_aspect_ratio()
@@ -55,6 +55,6 @@ func _update_aspect_ratio() -> void:
 
 func set_palette(new_palette: PALETTE) -> void:
 	palette = new_palette
-	RenderingServer.global_shader_parameter_set("color_palette_light", Color(palettes[palette][0]))
-	RenderingServer.global_shader_parameter_set("color_palette_dark",  Color(palettes[palette][1]))
+	RenderingServer.global_shader_parameter_set("color_palette_light", Color(PALETTES[palette][0]))
+	RenderingServer.global_shader_parameter_set("color_palette_dark",  Color(PALETTES[palette][1]))
 

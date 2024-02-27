@@ -1,11 +1,11 @@
 class_name GameMap
 extends Node2D
 
+var player : Player
+
 @onready var player_spawn: Marker2D = $PlayerSpawn
 @onready var darkness: PointLight2D = %Darkness
 @onready var tutorial_boundary: CollisionShape2D = %TutorialBoundary
-
-var player : Player
 
 func _ready() -> void:
 	darkness.visible = true

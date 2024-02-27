@@ -1,8 +1,6 @@
 class_name Trigger
 extends Area2D
 
-@onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
-
 @export var checkpoint_id : int = -1
 @export var enabled : bool = true
 @export var trigger_id : StringName
@@ -11,8 +9,9 @@ extends Area2D
 @export var trigger_once : bool = true
 
 var current_dialog : int = 0
-
 var init_enabled : bool = enabled
+
+@onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 
 func _ready() -> void:
 	reset()

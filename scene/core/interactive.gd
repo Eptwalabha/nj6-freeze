@@ -5,11 +5,12 @@ signal player_entered
 signal player_exited
 signal player_interacted
 
-@onready var collision : CollisionShape2D = $CollisionShape2D
 @export var item_name : String = ""
 
 var in_range : bool = false
 var enabled : bool = true : set = _set_enabled
+
+@onready var collision : CollisionShape2D = $CollisionShape2D
 
 func _set_enabled(is_enabled: bool) -> void:
 	enabled = is_enabled

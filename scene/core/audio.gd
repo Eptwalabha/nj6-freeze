@@ -1,13 +1,13 @@
 class_name AudioHandler
 extends Node
 
-@onready var music: AudioStreamPlayer = $Music
-@onready var sound: AudioStreamPlayer = $Sound
-
 var streams = {
 	"Hit1": preload("res://assets/sounds/hit1.wav"),
 	"Hit2": preload("res://assets/sounds/hit2.wav")
 }
+
+@onready var music: AudioStreamPlayer = $Music
+@onready var sound: AudioStreamPlayer = $Sound
 
 func play_sound(sound_name: String) -> void:
 	sound.stream = streams[sound_name]
