@@ -116,10 +116,6 @@ action-confirm={
 ]
 }
 
-[internationalization]
-
-locale/translations=PackedStringArray("res://assets/i18n/translations.en.translation", "res://assets/i18n/translations.fr.translation", "res://assets/i18n/translations.es.translation")
-
 [layer_names]
 
 2d_physics/layer_1="player"
