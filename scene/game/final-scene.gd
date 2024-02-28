@@ -23,15 +23,8 @@ func _input(event: InputEvent) -> void:
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	match anim_name:
 		"intro":
-			dialog_ui.set_dialog_lines(
-				[
-					"HELLO",
-					"NICE TO MEET YOU\nI'AM BOB",
-					"THANK YOU FOR NOT DYING OF COLD",
-					"...",
-					"I REALLY DON'T LIKE FROZEN MEAT"
-				]
-			)
+			dialog_ui.set_dialog_lines([tr("DIALOG-BOB-ENDING")])
+
 			set_process_input(true)
 			dialog_ui.next_dialog()
 

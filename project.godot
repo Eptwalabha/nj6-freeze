@@ -116,6 +116,11 @@ action-confirm={
 ]
 }
 
+[internationalization]
+
+locale/translations=PackedStringArray("res://i18n/en.po")
+locale/translations_pot_files=PackedStringArray("res://scene/game/game-over.tscn", "res://scene/game/final-scene.gd", "res://scene/game/final-scene.tscn")
+
 [layer_names]
 
 2d_physics/layer_1="player"

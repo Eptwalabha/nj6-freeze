@@ -20,7 +20,7 @@ var game_states: Array[GameState] = [GameState.PLAYING]
 @onready var player_camera: Camera2D = %PlayerCamera
 @onready var game_over: GameOverScreen = $GameOver
 @onready var final_scene: FinalScreen = $FinalScene
-@onready var ui: CanvasLayer = $UI
+@onready var main_hud: CanvasLayer = $UI
 
 
 func _ready() -> void:
@@ -39,19 +39,19 @@ func _ready() -> void:
 
 
 func _on_game_over() -> void:
-	ui.visible = false
+	main_hud.visible = false
 	GameData.despawn_enemies()
 	game_over.play_dead_screen(player.is_looking_left())
 
 
 func _on_final_scene() -> void:
-	ui.visible = false
+	main_hud.visible = false
 	GameData.despawn_enemies()
 	final_scene.play_scene()
 
 
 func _on_game_start() -> void:
-	ui.visible = true
+	main_hud.visible = true
 	for item in get_tree().get_nodes_in_group("reset"):
 		if item.has_method("reset"):
 			item.reset()
@@ -98,7 +98,6 @@ func push_state(new_state: GameState) -> void:
 func pop_state() -> void:
 	if len(game_states) == 1:
 		return
-	# do things with poped state
 	match game_states.pop_back():
 		GameState.DIALOG:
 			GameData.hide_phone()
@@ -130,11 +129,10 @@ func show_phone() -> void:
 	phone_visible = true
 	ui_animation_player.play("phone-show")
 
-
 func hide_phone() -> void:
 	phone_visible = false
 	ui_animation_player.play("phone-hide")
 
 
 func _on_shadow_escaped() -> void:
-	GameData.dialog_triggered.emit("what was that?")
+	GameData.dialog_triggered.emit("scene_first_encounter")

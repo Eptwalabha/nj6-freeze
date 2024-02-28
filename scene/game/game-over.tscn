@@ -1,11 +1,11 @@
 [gd_scene load_steps=13 format=3 uid="uid://blu3yvnltrg46"]
 
-[ext_resource type="Script" path="res://scene/game/game_over.gd" id="1_o2k6y"]
-[ext_resource type="Material" uid="uid://4qotextykkj0" path="res://assets/material/dither.tres" id="2_5egu8"]
-[ext_resource type="PackedScene" uid="uid://bspf32n5wp0pj" path="res://scene/fx/fx-snow.tscn" id="3_43pig"]
-[ext_resource type="Texture2D" uid="uid://5vij36722j32" path="res://assets/img/spritesheets/player.png" id="3_im12t"]
-[ext_resource type="FontFile" uid="uid://cpxiyj34edml5" path="res://assets/fonts/nokia/nokiafc22.ttf" id="5_i5gdm"]
-[ext_resource type="FontVariation" uid="uid://sutfsmsc6a1c" path="res://assets/fonts/lowrez/lowrez.tres" id="6_em58x"]
+[ext_resource type="Script" path="res://scene/game/game-over.gd" id="1_5g0s0"]
+[ext_resource type="Material" uid="uid://4qotextykkj0" path="res://assets/material/dither.tres" id="2_qgqiq"]
+[ext_resource type="Texture2D" uid="uid://5vij36722j32" path="res://assets/img/spritesheets/player.png" id="3_8bdqw"]
+[ext_resource type="PackedScene" uid="uid://bspf32n5wp0pj" path="res://scene/fx/fx-snow.tscn" id="4_ai33g"]
+[ext_resource type="FontFile" uid="uid://cpxiyj34edml5" path="res://assets/fonts/nokia/nokiafc22.ttf" id="5_2b0mh"]
+[ext_resource type="FontVariation" uid="uid://sutfsmsc6a1c" path="res://assets/fonts/lowrez/lowrez.tres" id="6_tbyrl"]
 
 [sub_resource type="Animation" id="Animation_5ed6i"]
 length = 0.001
@@ -169,7 +169,7 @@ height = 168
 fill_to = Vector2(0, 1)
 
 [node name="GameOver" type="Node2D"]
-script = ExtResource("1_o2k6y")
+script = ExtResource("1_5g0s0")
 metadata/_edit_vertical_guides_ = [84.0]
 metadata/_edit_horizontal_guides_ = [48.0]
 
@@ -181,19 +181,19 @@ libraries = {
 [node name="Node2D" type="Node2D" parent="."]
 
 [node name="Backgound" type="Sprite2D" parent="Node2D"]
-material = ExtResource("2_5egu8")
+material = ExtResource("2_qgqiq")
 position = Vector2(0, -7.15256e-07)
 texture = SubResource("GradientTexture2D_1hb1f")
 centered = false
 
 [node name="DeadPlayer" type="Sprite2D" parent="Node2D"]
 position = Vector2(43, 29)
-texture = ExtResource("3_im12t")
+texture = ExtResource("3_8bdqw")
 hframes = 6
 vframes = 3
 frame = 12
 
-[node name="Snow" parent="." instance=ExtResource("3_43pig")]
+[node name="Snow" parent="." instance=ExtResource("4_ai33g")]
 position = Vector2(42, 0)
 lifetime = 3.0
 preprocess = 3.0
@@ -221,9 +221,9 @@ offset_bottom = -6.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/line_spacing = 0
-theme_override_fonts/font = ExtResource("5_i5gdm")
+theme_override_fonts/font = ExtResource("5_2b0mh")
 theme_override_font_sizes/font_size = 12
-text = "YOU DIED"
+text = "GAME-OVER-YOU-DIED"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -240,9 +240,8 @@ offset_bottom = 47.0002
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/line_spacing = 0
-theme_override_fonts/font = ExtResource("6_em58x")
-text = "press SPACE
-to try again"
+theme_override_fonts/font = ExtResource("6_tbyrl")
+text = "GAME-OVER-RESTART"
 horizontal_alignment = 1
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
