@@ -135,4 +135,4 @@ func hide_phone() -> void:
 
 
 func _on_shadow_escaped() -> void:
-	GameData.dialog_triggered.emit("scene_first_encounter")
+	GameData.dialog_triggered.emit("FIRST_ENCOUNTER")

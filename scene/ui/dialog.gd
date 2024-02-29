@@ -34,7 +34,6 @@ var state: DialogState = DialogState.HIDDEN
 func set_dialog_lines(new_lines: Array[String], _options: Dictionary = {}) -> void:
 	lines = []
 	for line in new_lines:
-		line = tr(line)
 		lines.append_array(_split_line(line))
 	nbr_lines = len(lines)
 	current_line_index = -1
@@ -88,7 +87,6 @@ func _process(delta: float) -> void:
 			if dialog.visible_ratio >= 1.0:
 				_end_of_line()
 
-
 func next_dialog() -> void:
 	if nbr_lines == 0:
 		return
@@ -101,6 +99,8 @@ func next_dialog() -> void:
 	elif state == DialogState.DONE:
 		visible = false
 		state = DialogState.HIDDEN
+	elif (current_line_index + 1) >= nbr_lines:
+		return
 	else:
 		next_arrow.visible = false
 		current_line_index += 1

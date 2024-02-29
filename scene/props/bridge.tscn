@@ -64,7 +64,7 @@ texture = SubResource("GradientTexture2D_jhyu3")
 offset = Vector2(0, -53)
 
 [node name="ForceTrigger" parent="." instance=ExtResource("2_x826d")]
-context = &"SPACE to forca"
+context = &"PRESS_SPACE_TO_OPEN_BRIDGE"
 health = 4.0
 
 [node name="CollisionShape2D" parent="ForceTrigger" index="1"]

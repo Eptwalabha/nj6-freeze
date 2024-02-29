@@ -119,7 +119,7 @@ action-confirm={
 [internationalization]
 
 locale/translations=PackedStringArray("res://i18n/en.po")
-locale/translations_pot_files=PackedStringArray("res://scene/game/game-over.tscn", "res://scene/game/final-scene.gd", "res://scene/game/final-scene.tscn")
+locale/translations_pot_files=PackedStringArray("res://scene/game/game-over.tscn", "res://scene/game/final-scene.gd", "res://scene/game/final-scene.tscn", "res://scene/game/level-frozen.tscn", "res://scene/props/bridge.tscn", "res://scene/props/car.tscn", "res://scene/core/dialog_trigger.tscn", "res://scene/core/force-trigger.tscn")
 
 [layer_names]
 

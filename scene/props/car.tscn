@@ -83,6 +83,7 @@ region_rect = Rect2(1, 2, 12, 10)
 
 [node name="ForceTrunk" parent="." instance=ExtResource("2_xb72t")]
 position = Vector2(-18, 0)
+context = &"PRESS_SPACE_TO_OPEN_TRUNK"
 
 [node name="Handle" parent="ForceTrunk" index="0"]
 position = Vector2(0, -6)
