@@ -21,6 +21,8 @@ func _get_recognized_extensions():
 func _find_trigger(node: Node) -> Array[StringName]:
 	var dialog_ids: Array[StringName] = []
 	for child in node.get_children(true):
+		if child is Label and child.text.dedent() != "":
+			dialog_ids.append(child.text.dedent())
 		for key in DIALOG_KEYS:
 			dialog_ids.append_array(_extract_dialog_ids(child, key))
 		dialog_ids.append_array(_find_trigger(child))
