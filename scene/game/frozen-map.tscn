@@ -232,9 +232,10 @@ position = Vector2(537, -15)
 
 [node name="TooDark" parent="Triggers/Dialogs" groups=["reset"] instance=ExtResource("4_gty0q")]
 trigger_id = &"dialog-player"
-dialog_ids = Array[StringName]([&"TUTORIAL_TOO_DARK"])
+dialog_lines = "TUTORIAL_VERY_DARK
+TUTORIAL_TOO_DARK"
 
-[node name="Bob" parent="Triggers/Dialogs" instance=ExtResource("4_gty0q")]
+[node name="TriggerFinalScene" parent="Triggers/Dialogs" instance=ExtResource("4_gty0q")]
 position = Vector2(-80, -9)
 trigger_id = &"summon-bob"
 

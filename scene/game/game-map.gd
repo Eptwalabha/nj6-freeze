@@ -113,13 +113,13 @@ func _on_phone_hidden() -> void:
 		hide_phone()
 
 
-func _on_phone_message_received(sms: Array[String]) -> void:
+func _on_phone_message_received(sms: Array[StringName]) -> void:
 	dialog_ui.set_dialog_lines(sms)
 	push_state(GameState.DIALOG)
 	toggle_phone_visibility(true)
 
 
-func _on_dialog_triggered(dialog: String) -> void:
+func _on_dialog_triggered(dialog: StringName) -> void:
 	dialog_ui.set_dialog_lines([dialog])
 	push_state(GameState.DIALOG)
 	dialog_ui.next_dialog()

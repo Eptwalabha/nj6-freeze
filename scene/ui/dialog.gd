@@ -31,7 +31,7 @@ var state: DialogState = DialogState.HIDDEN
 @onready var dialog: Label = %Dialog
 
 
-func set_dialog_lines(new_lines: Array[String], _options: Dictionary = {}) -> void:
+func set_dialog_lines(new_lines: Array[StringName], _options: Dictionary = {}) -> void:
 	lines = []
 	for line in new_lines:
 		lines.append_array(_split_line(line))
