@@ -1,9 +1,10 @@
-[gd_scene load_steps=19 format=3 uid="uid://cctjx2lhey38e"]
+[gd_scene load_steps=20 format=3 uid="uid://cctjx2lhey38e"]
 
 [ext_resource type="PackedScene" uid="uid://n5iv26l5gsf2" path="res://scene/core/player.tscn" id="1_7hnpo"]
 [ext_resource type="Script" path="res://scene/game/game-map.gd" id="1_n6571"]
 [ext_resource type="PackedScene" uid="uid://bcei26fhiuwfn" path="res://scene/game/frozen-map.tscn" id="3_focsm"]
 [ext_resource type="PackedScene" uid="uid://d1pjmsekkiy57" path="res://scene/ui/nokia.tscn" id="3_nrk03"]
+[ext_resource type="PackedScene" uid="uid://cy0s5wjn5u0l3" path="res://scene/core/dialog.tscn" id="4_cfoia"]
 [ext_resource type="PackedScene" uid="uid://bspf32n5wp0pj" path="res://scene/fx/fx-snow.tscn" id="4_uay63"]
 [ext_resource type="Script" path="res://scene/game/ui-layer.gd" id="5_qsshm"]
 [ext_resource type="PackedScene" uid="uid://bu5ptnxlx0o3w" path="res://scene/ui/dialog.tscn" id="6_kx16t"]
@@ -148,6 +149,9 @@ position = Vector2(0, -2)
 [node name="Shadow" parent="Shadows" instance=ExtResource("9_5towt")]
 position = Vector2(61, -5)
 
+[node name="Dialog" parent="Shadows" instance=ExtResource("4_cfoia")]
+dialog_lines = "FIRST_ENCOUNTER"
+
 [node name="Player" parent="." instance=ExtResource("1_7hnpo")]
 unique_name_in_owner = true
 position = Vector2(-48, -1)
@@ -225,10 +229,6 @@ theme_override_fonts/font = ExtResource("9_uyuml")
 horizontal_alignment = 1
 clip_text = true
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 3.0
-one_shot = true
-
 [node name="FinalScene" parent="." instance=ExtResource("13_ytxiu")]
 position = Vector2(200, -400)
 
@@ -236,4 +236,3 @@ position = Vector2(200, -400)
 position = Vector2(0, -400)
 
 [connection signal="escaped" from="Shadows/Shadow" to="." method="_on_shadow_escaped"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

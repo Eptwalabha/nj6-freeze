@@ -134,6 +134,5 @@ func hide_phone() -> void:
 	phone_visible = false
 	ui_animation_player.play("phone-hide")
 
-
 func _on_shadow_escaped() -> void:
-	GameData.dialog_triggered.emit("FIRST_ENCOUNTER")
+	GameData.dialog_triggered.emit($Shadows/Dialog.dialog_keys[0])

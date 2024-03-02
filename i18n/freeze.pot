@@ -29,6 +29,10 @@ msgid "TUTORIAL_TOO_DARK"
 msgstr ""
 
 #: scene/game/level-frozen.tscn
+msgid "FIRST_ENCOUNTER"
+msgstr ""
+
+#: scene/game/level-frozen.tscn
 msgid "BOB_FINAL_SPEECH"
 msgstr ""
 

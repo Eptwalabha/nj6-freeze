@@ -34,6 +34,7 @@ var state: DialogState = DialogState.HIDDEN
 func set_dialog_lines(new_lines: Array[StringName], _options: Dictionary = {}) -> void:
 	lines = []
 	for line in new_lines:
+		line = tr(line)
 		lines.append_array(_split_line(line))
 	nbr_lines = len(lines)
 	current_line_index = -1
