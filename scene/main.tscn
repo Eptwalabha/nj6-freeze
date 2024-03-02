@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://pstqes7jcym2"]
 
-[ext_resource type="Script" path="res://main.gd" id="1_nrtmp"]
+[ext_resource type="Script" path="res://scene/main.gd" id="1_nrtmp"]
 [ext_resource type="PackedScene" uid="uid://cctjx2lhey38e" path="res://scene/game/level-frozen.tscn" id="2_vypyr"]
 [ext_resource type="Shader" path="res://assets/shaders/nokia-3310.gdshader" id="3_dhqyx"]
 
