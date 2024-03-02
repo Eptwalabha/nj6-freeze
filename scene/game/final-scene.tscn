@@ -1,13 +1,14 @@
-[gd_scene load_steps=18 format=3 uid="uid://dsuxju20jnadc"]
+[gd_scene load_steps=19 format=3 uid="uid://dsuxju20jnadc"]
 
-[ext_resource type="Script" path="res://scene/game/final_scene.gd" id="1_36ftf"]
-[ext_resource type="Texture2D" uid="uid://r1g82xx1adcn" path="res://assets/img/props/bob-hand.png" id="1_dglnf"]
-[ext_resource type="Texture2D" uid="uid://b5j051ul54vyn" path="res://assets/light/light-torch.png" id="2_fov0y"]
-[ext_resource type="Texture2D" uid="uid://chn3qxg83x8t0" path="res://assets/img/props/bob.png" id="2_jq5aj"]
-[ext_resource type="Texture2D" uid="uid://5vij36722j32" path="res://assets/img/spritesheets/player.png" id="3_00kxf"]
-[ext_resource type="PackedScene" uid="uid://bu5ptnxlx0o3w" path="res://scene/ui/dialog.tscn" id="4_stfgq"]
-[ext_resource type="FontFile" uid="uid://cpxiyj34edml5" path="res://assets/fonts/nokia/nokiafc22.ttf" id="7_oj5r3"]
-[ext_resource type="FontFile" uid="uid://ddrvtpu5ltmdj" path="res://assets/fonts/effort-pro/EffortsPro.woff" id="8_lmh36"]
+[ext_resource type="Script" path="res://scene/game/final-scene.gd" id="1_80vgy"]
+[ext_resource type="PackedScene" uid="uid://cy0s5wjn5u0l3" path="res://scene/core/dialog.tscn" id="2_6n651"]
+[ext_resource type="Texture2D" uid="uid://chn3qxg83x8t0" path="res://assets/img/props/bob.png" id="2_ibfji"]
+[ext_resource type="Texture2D" uid="uid://5vij36722j32" path="res://assets/img/spritesheets/player.png" id="3_lj6ss"]
+[ext_resource type="Texture2D" uid="uid://r1g82xx1adcn" path="res://assets/img/props/bob-hand.png" id="4_oe1jk"]
+[ext_resource type="Texture2D" uid="uid://b5j051ul54vyn" path="res://assets/light/light-torch.png" id="5_fh38f"]
+[ext_resource type="PackedScene" uid="uid://bu5ptnxlx0o3w" path="res://scene/ui/dialog.tscn" id="6_7k4lv"]
+[ext_resource type="FontFile" uid="uid://cpxiyj34edml5" path="res://assets/fonts/nokia/nokiafc22.ttf" id="7_dryqr"]
+[ext_resource type="FontFile" uid="uid://ddrvtpu5ltmdj" path="res://assets/fonts/effort-pro/EffortsPro.woff" id="8_ee7vl"]
 
 [sub_resource type="Gradient" id="Gradient_qxto6"]
 offsets = PackedFloat32Array(0)
@@ -27,54 +28,175 @@ gradient = SubResource("Gradient_oo5mn")
 width = 84
 height = 48
 
-[sub_resource type="Animation" id="Animation_cvxm3"]
-resource_name = "intro"
-length = 6.0
-tracks/0/type = "bezier"
+[sub_resource type="Animation" id="Animation_0u2q5"]
+length = 0.001
+tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Hand:position:x")
+tracks/0/path = NodePath("Face:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(84, -0.25, 0, 0.25, 0, 63.5, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 3)
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-21, 26)]
 }
-tracks/1/type = "bezier"
+tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Hand:position:y")
+tracks/1/path = NodePath("Face/Bob/Jaw:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(84, -0.25, 0, 0.25, 0, 27.5, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 3)
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Face:position")
+tracks/2/path = NodePath("Face/Bob/Eyes/Eye1:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(3, 5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(-21, 26), Vector2(16, 15)]
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Face/Bob/Jaw:position")
-tracks/3/interp = 0
+tracks/3/path = NodePath("Face/Bob/Eyes/Closed:visible")
+tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(5, 5.8),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Face/Bob/Eyes/Eye2:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Face/Bob/Tongue:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Face/Bob/Jaw:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Face:scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(0, 1)]
+"values": [Vector2(1, 1)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Hand:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(100, 27.5)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Hand:scale")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("PointLight2D:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("ColorRect:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("ColorRect/TheEnd:visible")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("ColorRect/Thanks:visible")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_x8qh4"]
@@ -249,175 +371,54 @@ tracks/13/keys = {
 "values": [false, true]
 }
 
-[sub_resource type="Animation" id="Animation_0u2q5"]
-length = 0.001
-tracks/0/type = "value"
+[sub_resource type="Animation" id="Animation_cvxm3"]
+resource_name = "intro"
+length = 6.0
+tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Face:position")
+tracks/0/path = NodePath("Hand:position:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-21, 26)]
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(84, -0.25, 0, 0.25, 0, 63.5, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 3)
 }
-tracks/1/type = "value"
+tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Face/Bob/Jaw:position")
+tracks/1/path = NodePath("Hand:position:y")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(84, -0.25, 0, 0.25, 0, 27.5, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 3)
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Face/Bob/Eyes/Eye1:visible")
+tracks/2/path = NodePath("Face:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
+"times": PackedFloat32Array(3, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-21, 26), Vector2(16, 15)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Face/Bob/Eyes/Closed:visible")
-tracks/3/interp = 1
+tracks/3/path = NodePath("Face/Bob/Jaw:position")
+tracks/3/interp = 0
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Face/Bob/Eyes/Eye2:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Face/Bob/Tongue:visible")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Face/Bob/Jaw:visible")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("Face:scale")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(5, 5.8),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("Hand:position")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(100, 27.5)]
-}
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("Hand:scale")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/10/type = "value"
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/path = NodePath("PointLight2D:visible")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/11/type = "value"
-tracks/11/imported = false
-tracks/11/enabled = true
-tracks/11/path = NodePath("ColorRect:visible")
-tracks/11/interp = 1
-tracks/11/loop_wrap = true
-tracks/11/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/12/type = "value"
-tracks/12/imported = false
-tracks/12/enabled = true
-tracks/12/path = NodePath("ColorRect/TheEnd:visible")
-tracks/12/interp = 1
-tracks/12/loop_wrap = true
-tracks/12/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/13/type = "value"
-tracks/13/imported = false
-tracks/13/enabled = true
-tracks/13/path = NodePath("ColorRect/Thanks:visible")
-tracks/13/interp = 1
-tracks/13/loop_wrap = true
-tracks/13/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
+"values": [Vector2(0, 0), Vector2(0, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_im8db"]
@@ -469,9 +470,14 @@ _data = {
 }
 
 [node name="FinalScene" type="Node2D"]
-script = ExtResource("1_36ftf")
+script = ExtResource("1_80vgy")
 metadata/_edit_vertical_guides_ = [84.0]
 metadata/_edit_horizontal_guides_ = [48.0]
+
+[node name="Dialog" type="Node2D" parent="."]
+
+[node name="Dialog" parent="Dialog" instance=ExtResource("2_6n651")]
+dialog_lines = "BOB_FINAL_SPEECH"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = -1
@@ -490,7 +496,7 @@ metadata/_edit_group_ = true
 
 [node name="Bob" type="Sprite2D" parent="Face"]
 light_mask = 0
-texture = ExtResource("2_jq5aj")
+texture = ExtResource("2_ibfji")
 region_enabled = true
 region_rect = Rect2(2, 2, 36, 38)
 
@@ -500,19 +506,19 @@ position = Vector2(2, -4)
 
 [node name="Eye2" type="Sprite2D" parent="Face/Bob/Eyes"]
 light_mask = 0
-texture = ExtResource("2_jq5aj")
+texture = ExtResource("2_ibfji")
 region_enabled = true
 region_rect = Rect2(30, 47, 24, 14)
 
 [node name="Eye1" type="Sprite2D" parent="Face/Bob/Eyes"]
 light_mask = 0
-texture = ExtResource("2_jq5aj")
+texture = ExtResource("2_ibfji")
 region_enabled = true
 region_rect = Rect2(2, 47, 24, 14)
 
 [node name="Closed" type="Sprite2D" parent="Face/Bob/Eyes"]
 light_mask = 0
-texture = ExtResource("2_jq5aj")
+texture = ExtResource("2_ibfji")
 region_enabled = true
 region_rect = Rect2(58, 47, 24, 14)
 
@@ -520,13 +526,13 @@ region_rect = Rect2(58, 47, 24, 14)
 visible = false
 light_mask = 0
 position = Vector2(6, 26)
-texture = ExtResource("2_jq5aj")
+texture = ExtResource("2_ibfji")
 region_enabled = true
 region_rect = Rect2(46, 3, 18, 16)
 
 [node name="Jaw" type="Sprite2D" parent="Face/Bob"]
 light_mask = 0
-texture = ExtResource("2_jq5aj")
+texture = ExtResource("2_ibfji")
 offset = Vector2(0, 11)
 region_enabled = true
 region_rect = Rect2(41, 23, 36, 18)
@@ -538,7 +544,7 @@ metadata/_edit_group_ = true
 [node name="Sprite2D" type="Sprite2D" parent="Hand"]
 light_mask = 0
 position = Vector2(1, -4)
-texture = ExtResource("3_00kxf")
+texture = ExtResource("3_lj6ss")
 flip_h = true
 hframes = 6
 vframes = 3
@@ -561,7 +567,7 @@ color = Color(0, 0, 0, 1)
 
 [node name="Hand" type="Sprite2D" parent="Hand"]
 light_mask = 0
-texture = ExtResource("1_dglnf")
+texture = ExtResource("4_oe1jk")
 hframes = 5
 frame = 4
 metadata/_edit_group_ = true
@@ -570,7 +576,7 @@ metadata/_edit_group_ = true
 blend_mode = 2
 shadow_enabled = true
 shadow_color = Color(0, 0, 0, 1)
-texture = ExtResource("2_fov0y")
+texture = ExtResource("5_fh38f")
 metadata/_edit_vertical_guides_ = [84.0]
 metadata/_edit_horizontal_guides_ = [48.0]
 
@@ -582,7 +588,7 @@ libraries = {
 "": SubResource("AnimationLibrary_duu6i")
 }
 
-[node name="DialogUI" parent="." instance=ExtResource("4_stfgq")]
+[node name="DialogUI" parent="." instance=ExtResource("6_7k4lv")]
 visible = false
 light_mask = 0
 nbr_letters_per_second = 60
@@ -607,9 +613,8 @@ offset_bottom = 24.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/line_spacing = 0
-theme_override_fonts/font = ExtResource("7_oj5r3")
-text = "THE
-END"
+theme_override_fonts/font = ExtResource("7_dryqr")
+text = "THE_END"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -627,8 +632,8 @@ offset_bottom = 24.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/line_spacing = 0
-theme_override_fonts/font = ExtResource("8_lmh36")
-text = "Thank you for playing"
+theme_override_fonts/font = ExtResource("8_ee7vl")
+text = "THANKS_FOR_PLAYING"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2

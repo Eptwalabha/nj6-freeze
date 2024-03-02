@@ -91,7 +91,6 @@ offset_top = 0.005
 offset_bottom = -0.00500107
 theme_override_constants/line_spacing = 0
 theme_override_fonts/font = ExtResource("3_1fcxf")
-text = "space"
 vertical_alignment = 1
 autowrap_mode = 3
 visible_characters = 0

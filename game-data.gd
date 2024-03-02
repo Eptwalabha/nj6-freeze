@@ -85,7 +85,7 @@ func force_available(the_trigger: ForceTrigger, available: bool) -> void:
 	if available:
 		active_force_trigger = the_trigger
 		force_trigger_entered.emit(the_trigger)
-		ui_context_requested.emit(the_trigger.context)
+		ui_context_requested.emit(the_trigger.context_line)
 	else:
 		force_trigger_exited.emit()
 		ui_context_hidden.emit()

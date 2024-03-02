@@ -31,7 +31,7 @@ var state: DialogState = DialogState.HIDDEN
 @onready var dialog: Label = %Dialog
 
 
-func set_dialog_lines(new_lines: Array[String], _options: Dictionary = {}) -> void:
+func set_dialog_lines(new_lines: Array[StringName], _options: Dictionary = {}) -> void:
 	lines = []
 	for line in new_lines:
 		line = tr(line)
@@ -101,6 +101,8 @@ func next_dialog() -> void:
 	elif state == DialogState.DONE:
 		visible = false
 		state = DialogState.HIDDEN
+	elif (current_line_index + 1) >= nbr_lines:
+		return
 	else:
 		next_arrow.visible = false
 		current_line_index += 1

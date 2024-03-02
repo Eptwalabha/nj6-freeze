@@ -4,6 +4,7 @@ extends Node2D
 @onready var camera_2d: Camera2D = $Camera2D
 @onready var dialog_ui: DialogUI = $DialogUI
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var dialog: Dialog = $Dialog/Dialog
 
 
 func _ready() -> void:
@@ -23,15 +24,7 @@ func _input(event: InputEvent) -> void:
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	match anim_name:
 		"intro":
-			dialog_ui.set_dialog_lines(
-				[
-					"HELLO",
-					"NICE TO MEET YOU\nI'AM BOB",
-					"THANK YOU FOR NOT DYING OF COLD",
-					"...",
-					"I REALLY DON'T LIKE FROZEN MEAT"
-				]
-			)
+			dialog_ui.set_dialog_lines(dialog.dialog_keys)
 			set_process_input(true)
 			dialog_ui.next_dialog()
 
