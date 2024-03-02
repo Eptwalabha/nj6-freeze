@@ -31,6 +31,10 @@ movie_writer/mjpeg_quality=0.5
 movie_writer/movie_file="/tmp/freeze.avi"
 movie_writer/fps=15
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/my_gettext_plugin/plugin.cfg")
+
 [gui]
 
 fonts/dynamic_fonts/use_oversampling=false
@@ -118,8 +122,7 @@ action-confirm={
 
 [internationalization]
 
-locale/translations=PackedStringArray("res://i18n/en.po")
-locale/translations_pot_files=PackedStringArray("res://scene/game/game-over.tscn", "res://scene/game/final-scene.gd", "res://scene/game/final-scene.tscn", "res://scene/game/level-frozen.tscn", "res://scene/props/bridge.tscn", "res://scene/props/car.tscn", "res://scene/core/dialog_trigger.tscn", "res://scene/core/force-trigger.tscn")
+locale/translations_pot_files=PackedStringArray("res://scene/game/level-frozen.tscn")
 
 [layer_names]
 

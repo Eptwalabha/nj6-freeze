@@ -87,6 +87,7 @@ func _process(delta: float) -> void:
 			if dialog.visible_ratio >= 1.0:
 				_end_of_line()
 
+
 func next_dialog() -> void:
 	if nbr_lines == 0:
 		return

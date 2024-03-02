@@ -129,6 +129,7 @@ func show_phone() -> void:
 	phone_visible = true
 	ui_animation_player.play("phone-show")
 
+
 func hide_phone() -> void:
 	phone_visible = false
 	ui_animation_player.play("phone-hide")
