@@ -1,6 +1,6 @@
 [gd_scene load_steps=42 format=3 uid="uid://4taukevrdihr"]
 
-[ext_resource type="Script" path="res://scene/enemies/shadow.gd" id="1_50h84"]
+[ext_resource type="Script" path="res://scene/entities/shadow.gd" id="1_50h84"]
 [ext_resource type="Texture2D" uid="uid://cvqix8oeoe5o6" path="res://assets/img/spritesheets/shadow.png" id="2_pu6f8"]
 [ext_resource type="Texture2D" uid="uid://b1jv1fj6a5y4h" path="res://assets/img/props/ui.png" id="3_1m313"]
 

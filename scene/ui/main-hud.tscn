@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://clu14w5020gde"]
 
-[ext_resource type="Script" path="res://scene/game/ui-layer.gd" id="1_dklbt"]
+[ext_resource type="Script" path="res://scene/ui/main-hud.gd" id="1_dklbt"]
 [ext_resource type="PackedScene" uid="uid://d1pjmsekkiy57" path="res://scene/ui/nokia.tscn" id="2_mjpt4"]
 [ext_resource type="PackedScene" uid="uid://bu5ptnxlx0o3w" path="res://scene/ui/dialog.tscn" id="3_5165q"]
 [ext_resource type="PackedScene" uid="uid://ck8nfkeyiukdk" path="res://scene/game/agility-minigame.tscn" id="4_pavyu"]

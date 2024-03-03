@@ -1,14 +1,14 @@
 [gd_scene load_steps=4 format=3 uid="uid://p78yeca5k444"]
 
-[ext_resource type="Script" path="res://scene/core/force-trigger.gd" id="1_52h62"]
-[ext_resource type="Texture2D" uid="uid://b1jv1fj6a5y4h" path="res://assets/img/props/ui.png" id="2_ig1mx"]
+[ext_resource type="Script" path="res://scene/core/trigger/force-trigger.gd" id="1_1511n"]
+[ext_resource type="Texture2D" uid="uid://b1jv1fj6a5y4h" path="res://assets/img/props/ui.png" id="2_vyvwn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_apvdy"]
 resource_local_to_scene = true
 
 [node name="ForceTrigger" type="Area2D" groups=["reset", "trigger"]]
 collision_layer = 0
-script = ExtResource("1_52h62")
+script = ExtResource("1_1511n")
 
 [node name="Handle" type="Marker2D" parent="."]
 
@@ -23,7 +23,7 @@ z_index = 1
 offset_left = -7.0
 offset_top = -3.0
 offset_right = 7.0
-texture = ExtResource("2_ig1mx")
+texture = ExtResource("2_vyvwn")
 region_rect = Rect2(12, 24, 6, 6)
 patch_margin_left = 1
 patch_margin_top = 1

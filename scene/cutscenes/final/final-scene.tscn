@@ -1,7 +1,7 @@
 [gd_scene load_steps=19 format=3 uid="uid://dsuxju20jnadc"]
 
-[ext_resource type="Script" path="res://scene/game/final-scene.gd" id="1_80vgy"]
-[ext_resource type="PackedScene" uid="uid://cy0s5wjn5u0l3" path="res://scene/core/dialog.tscn" id="2_6n651"]
+[ext_resource type="Script" path="res://scene/cutscenes/final/final-scene.gd" id="1_80vgy"]
+[ext_resource type="PackedScene" uid="uid://cy0s5wjn5u0l3" path="res://scene/core/dialog/dialog-lines.tscn" id="2_6n651"]
 [ext_resource type="Texture2D" uid="uid://chn3qxg83x8t0" path="res://assets/img/props/bob.png" id="2_ibfji"]
 [ext_resource type="Texture2D" uid="uid://5vij36722j32" path="res://assets/img/spritesheets/player.png" id="3_lj6ss"]
 [ext_resource type="Texture2D" uid="uid://r1g82xx1adcn" path="res://assets/img/props/bob-hand.png" id="4_oe1jk"]

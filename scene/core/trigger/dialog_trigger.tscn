@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cm2v0fcolsc2k"]
 
-[ext_resource type="Script" path="res://scene/core/dialog_trigger.gd" id="1_rrgp1"]
+[ext_resource type="Script" path="res://scene/core/trigger/dialog_trigger.gd" id="1_njtx0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mnrgt"]
 resource_local_to_scene = true
@@ -8,7 +8,7 @@ resource_local_to_scene = true
 [node name="DialogTrigger" type="Area2D"]
 collision_layer = 0
 monitorable = false
-script = ExtResource("1_rrgp1")
+script = ExtResource("1_njtx0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["reset", "trigger", "trigger-dialog"]]
 shape = SubResource("RectangleShape2D_mnrgt")
