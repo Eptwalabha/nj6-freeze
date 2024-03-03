@@ -15,17 +15,14 @@ jobs:
     - uses: Scony/godot-gdscript-toolkit@master
     - run: gdformat --check .
     - run: gdlint .
-#  unit-tests:
-#    name: 'Run GUT'
-#    runs-on: ubuntu-latest
-#    steps:
-#      - name: Checkout
-#        uses: actions/checkout@v4
-#      - name: Run godot once
-#        run: |
-#          godot --project . --headless --quit-after 30 -e 2>/dev/null
-#      - name: Run test
-#        uses: ceceppa/godot-gut-ci@main
-#        with:
-#          godot_version: 4.2
-#          gut_params: -gconfig=res://.gutconfig.json
+  unit-tests:
+    name: 'Run GUT'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Run test
+        uses: ceceppa/godot-gut-ci@main
+        with:
+          godot_version: 4.2
+          gut_params: -gconfig=res://.gutconfig.json
