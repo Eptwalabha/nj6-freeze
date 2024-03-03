@@ -23,9 +23,9 @@ jobs:
         uses: actions/checkout@v4
       - name: Run godot once
         run: |
-          cd $PROJECT_PATH
+          cd nj6-freeze
           godot --project . --headless --quit-after 20 -e 2>/dev/null
-      - name: Docker test
+      - name: Run test
         uses: ceceppa/godot-gut-ci@main
         with:
           godot_version: 4.2
