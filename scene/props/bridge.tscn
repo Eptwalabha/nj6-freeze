@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://dsfyrowdi8bou"]
 
 [ext_resource type="Script" path="res://scene/props/bridge.gd" id="1_lus7j"]
-[ext_resource type="PackedScene" uid="uid://p78yeca5k444" path="res://scene/core/force-trigger.tscn" id="2_x826d"]
+[ext_resource type="PackedScene" uid="uid://p78yeca5k444" path="res://scene/core/trigger/force-trigger.tscn" id="2_x826d"]
 
 [sub_resource type="Gradient" id="Gradient_uqmly"]
 offsets = PackedFloat32Array(0)

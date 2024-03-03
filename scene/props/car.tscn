@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scene/props/car.gd" id="1_folp1"]
 [ext_resource type="Texture2D" uid="uid://djs6rscpca1kh" path="res://assets/img/props/car.png" id="1_qp2pm"]
 [ext_resource type="Texture2D" uid="uid://b5j051ul54vyn" path="res://assets/light/light-torch.png" id="2_jh52e"]
-[ext_resource type="PackedScene" uid="uid://p78yeca5k444" path="res://scene/core/force-trigger.tscn" id="2_xb72t"]
+[ext_resource type="PackedScene" uid="uid://p78yeca5k444" path="res://scene/core/trigger/force-trigger.tscn" id="2_xb72t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n0bfx"]
 resource_local_to_scene = true
