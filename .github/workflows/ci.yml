@@ -1,10 +1,7 @@
 name: Static checks
 
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+  push
 
 permissions:
   contents: read
@@ -18,4 +15,14 @@ jobs:
     - uses: Scony/godot-gdscript-toolkit@master
     - run: gdformat --check .
     - run: gdlint .
-
+  unit-tests:
+    name: 'Run GUT'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: action/checkout@v3
+      - name: Docker test
+        uses: ceceppa/godot-gut-ci@main
+        with:
+          godot_version: 4.2
+          gut_params: -gconfig=res://.gutconfig.json
