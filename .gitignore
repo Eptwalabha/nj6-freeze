@@ -18,5 +18,3 @@ render
 ext-data
 addons/gut
 
-# Allow
-!.godot/global_script_class_cache.cfg
