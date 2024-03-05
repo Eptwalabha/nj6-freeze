@@ -13,8 +13,8 @@ enum DialogState {
 	DONE,
 }
 
-const MAX_CHARACTERS: int = 34
-const MAX_CHARACTERS_PER_LINE: int = 17
+const MAX_CHARACTERS: int = 36
+const MAX_CHARACTERS_PER_LINE: int = 18
 
 @export var nbr_letters_per_second: int = 40:
 	set = _set_speed
@@ -35,48 +35,43 @@ func set_dialog_lines(new_lines: Array[StringName], _options: Dictionary = {}) -
 	lines = []
 	for line in new_lines:
 		line = tr(line)
-		lines.append_array(_split_line(line))
+		lines.append_array(DialogUI.split_into_lines(line))
 	nbr_lines = len(lines)
 	current_line_index = -1
 
 
-func _split_line(line: String) -> Array[String]:
-	var lines_acc: Array[String] = []
-	var current_line: String = ""
-	var current_word: String = ""
-	for letter in line:
-		current_word += letter
-		if letter == "\n":
-			current_line += current_word
-			lines_acc.append(current_line)
-			current_word = ""
-			current_line = ""
-		if letter == " ":
-			if len(current_line) > MAX_CHARACTERS_PER_LINE:
-				lines_acc.append(current_line)
-				current_line = ""
-			current_line += current_word
-			current_word = ""
+static func split_into_lines(line: String) -> Array[StringName]:
+	var p_lines: Array[StringName] = []
+	var line_counter: int = 0
+	for segment in line.split("\n"):
+		if segment.length() <= MAX_CHARACTERS_PER_LINE:
+			p_lines.append(segment)
 		else:
-			if len(current_line + current_word) > MAX_CHARACTERS_PER_LINE:
-				lines_acc.append(current_line)
-				current_line = ""
-	current_line += current_word
-	if len(current_line) > 0:
-		lines_acc.append(current_line)
-	var final_lines: Array[String] = []
-	var line_count: int = 0
-	current_line = ""
-	for line_acc in lines_acc:
-		current_line += line_acc
-		line_count += 1
-		if line_count > 1:
-			line_count = 0
-			final_lines.append(current_line)
-			current_line = ""
-	if len(lines_acc) % 2 == 1:
-		final_lines.append(lines_acc[-1])
-	return final_lines
+			var current_line: String = ""
+			for letter in segment:
+				if (current_line + letter).length() < MAX_CHARACTERS_PER_LINE:
+					current_line += letter
+				else:
+					if letter == " ":
+						p_lines.append(current_line)
+						current_line = ""
+					else:
+						var last_space_index: int = current_line.rfind(" ")
+						if last_space_index == -1:
+							p_lines.append(current_line + letter)
+							current_line = ""
+						else:
+							p_lines.append(current_line.substr(0, last_space_index))
+							current_line = current_line.substr(last_space_index + 1) + letter
+			if current_line != "":
+				p_lines.append(current_line)
+	var p_lines2: Array[StringName] = []
+	while p_lines.size() > 0:
+		if p_lines.size() > 1:
+			p_lines2.append(p_lines.pop_front() + "\n" + p_lines.pop_front())
+		else:
+			p_lines2.append(p_lines.pop_front())
+	return p_lines2
 
 
 func _process(delta: float) -> void:

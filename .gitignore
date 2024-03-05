@@ -3,7 +3,7 @@
 .*.swp
 .~lock*
 .import/
-.godot/
+.godot/**/*
 export.cfg
 export_presets.cfg
 exports/
@@ -16,3 +16,5 @@ exports/
 
 render
 ext-data
+addons/gut
+
