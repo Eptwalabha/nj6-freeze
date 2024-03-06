@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dsuxju20jnadc"]
+[gd_scene load_steps=18 format=3 uid="uid://dsuxju20jnadc"]
 
 [ext_resource type="Script" path="res://scene/cutscenes/final/final-scene.gd" id="1_80vgy"]
 [ext_resource type="PackedScene" uid="uid://cy0s5wjn5u0l3" path="res://scene/core/dialog/dialog-lines.tscn" id="2_6n651"]
@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://5vij36722j32" path="res://assets/img/spritesheets/player.png" id="3_lj6ss"]
 [ext_resource type="Texture2D" uid="uid://r1g82xx1adcn" path="res://assets/img/props/bob-hand.png" id="4_oe1jk"]
 [ext_resource type="Texture2D" uid="uid://b5j051ul54vyn" path="res://assets/light/light-torch.png" id="5_fh38f"]
-[ext_resource type="PackedScene" uid="uid://bu5ptnxlx0o3w" path="res://scene/ui/dialog.tscn" id="6_7k4lv"]
 [ext_resource type="FontFile" uid="uid://cpxiyj34edml5" path="res://assets/fonts/nokia/nokiafc22.ttf" id="7_dryqr"]
 [ext_resource type="FontFile" uid="uid://ddrvtpu5ltmdj" path="res://assets/fonts/effort-pro/EffortsPro.woff" id="8_ee7vl"]
 
@@ -588,11 +587,6 @@ libraries = {
 "": SubResource("AnimationLibrary_duu6i")
 }
 
-[node name="DialogUI" parent="." instance=ExtResource("6_7k4lv")]
-visible = false
-light_mask = 0
-nbr_letters_per_second = 60
-
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false
 offset_right = 84.0
@@ -639,5 +633,3 @@ vertical_alignment = 1
 autowrap_mode = 2
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
-[connection signal="dialog_ended" from="DialogUI" to="." method="_on_dialog_ui_dialog_ended"]
-[connection signal="new_line_started" from="DialogUI" to="." method="_on_dialog_ui_new_line_started"]

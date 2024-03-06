@@ -27,8 +27,14 @@ var t: float = 0
 var state: DialogState = DialogState.HIDDEN
 
 @onready var next_arrow: Sprite2D = $NinePatchRect/NextArrow
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var dialog: Label = %Dialog
+
+
+func stop() -> void:
+	state = DialogState.DONE
+	lines = []
+	current_line_index = 0
+	visible = false
 
 
 func set_dialog_lines(new_lines: Array[StringName], _options: Dictionary = {}) -> void:
@@ -38,11 +44,11 @@ func set_dialog_lines(new_lines: Array[StringName], _options: Dictionary = {}) -
 		lines.append_array(DialogUI.split_into_lines(line))
 	nbr_lines = len(lines)
 	current_line_index = -1
+	state = DialogState.HIDDEN
 
 
 static func split_into_lines(line: String) -> Array[StringName]:
 	var p_lines: Array[StringName] = []
-	var line_counter: int = 0
 	for segment in line.split("\n"):
 		if segment.length() <= MAX_CHARACTERS_PER_LINE:
 			p_lines.append(segment)
@@ -88,7 +94,7 @@ func next_dialog() -> void:
 	if nbr_lines == 0:
 		return
 	if state == DialogState.DONE:
-		visible = false
+		stop()
 		dialog_ended.emit()
 	if state == DialogState.TYPING:
 		dialog.visible_characters = -1

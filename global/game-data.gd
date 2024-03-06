@@ -2,13 +2,13 @@ extends Node
 
 signal temperature_changed(temp)
 
-signal dialog_triggered(dialog)
+#signal dialog_triggered(dialog)
 
-signal phone_message_received(dialog)
-signal phone_message_opened
-signal phone_change_screen(screen_name)
-signal phone_drawn
-signal phone_hidden
+#signal phone_message_received(dialog)
+#signal phone_message_opened
+#signal phone_change_screen(screen_name)
+#signal phone_drawn
+#signal phone_hidden
 
 signal game_start
 signal game_over
@@ -47,28 +47,19 @@ func reload_game() -> void:
 	game_start.emit()
 
 
-func new_sms(text: Array[String]) -> void:
-	phone_message_received.emit(text)
-
-
 func open_sms() -> void:
-	phone_message_opened.emit()
+	#phone_message_opened.emit()
+	pass
 
 
 func show_phone() -> void:
-	phone_drawn.emit()
+	#phone_drawn.emit()
+	pass
 
 
 func hide_phone() -> void:
-	phone_hidden.emit()
-
-
-func trigger_dialog(trigger_id: StringName, dialog_id: StringName) -> void:
-	match trigger_id:
-		"dialog-player":
-			dialog_triggered.emit(dialog_id)
-		"dialog-phone":
-			new_sms([dialog_id])
+	#phone_hidden.emit()
+	pass
 
 
 func trigger(trigger_id: StringName) -> void:
@@ -79,6 +70,15 @@ func trigger(trigger_id: StringName) -> void:
 			bob_arrived.emit()
 		"scare-enemies":
 			despawn_enemies()
+
+
+func trigger_dialog(trigger_id: StringName, dialog_id: StringName) -> void:
+	match trigger_id:
+		"dialog-player":
+			GameUI.request_dialog_line(dialog_id)
+		"dialog-phone":
+			GameUI.phone_sms_received.emit()
+			GameUI.request_dialog_line(dialog_id)
 
 
 func force_available(the_trigger: ForceTrigger, available: bool) -> void:
