@@ -2,20 +2,18 @@ extends Node
 
 signal temperature_changed(temp)
 
-signal dialog_triggered(dialog)
+signal dialog_started(dialog_id)
+signal dialog_ended(dialog_id)
 
-signal phone_message_received(dialog)
-signal phone_message_opened
-signal phone_change_screen(screen_name)
-signal phone_drawn
-signal phone_hidden
+#signal phone_message_received(dialog)
+#signal phone_message_opened
+#signal phone_change_screen(screen_name)
+#signal phone_drawn
+#signal phone_hidden
 
 signal game_start
 signal game_over
 signal final_scene
-
-signal ui_context_requested(message)
-signal ui_context_hidden
 
 signal force_trigger_entered(trigger)
 signal force_trigger_exited
@@ -29,12 +27,12 @@ signal flashlight_found
 signal bob_arrived
 signal player_grabbed_by_bob
 
+const DRAWN_SPEED: float = 5.0
+
 var audio: AudioHandler
 var is_music_muted: bool = false
 var is_sound_muted: bool = false
-
 var current_checkpoint_id: int = 0
-
 var active_force_trigger: ForceTrigger
 
 
@@ -47,28 +45,16 @@ func reload_game() -> void:
 	game_start.emit()
 
 
-func new_sms(text: Array[String]) -> void:
-	phone_message_received.emit(text)
-
-
 func open_sms() -> void:
-	phone_message_opened.emit()
+	pass
 
 
 func show_phone() -> void:
-	phone_drawn.emit()
+	GameUI.phone_drawn.emit()
 
 
 func hide_phone() -> void:
-	phone_hidden.emit()
-
-
-func trigger_dialog(trigger_id: StringName, dialog_id: StringName) -> void:
-	match trigger_id:
-		"dialog-player":
-			dialog_triggered.emit(dialog_id)
-		"dialog-phone":
-			new_sms([dialog_id])
+	GameUI.phone_hidden.emit()
 
 
 func trigger(trigger_id: StringName) -> void:
@@ -81,14 +67,23 @@ func trigger(trigger_id: StringName) -> void:
 			despawn_enemies()
 
 
+func trigger_dialog(trigger_id: StringName, dialog_id: StringName) -> void:
+	match trigger_id:
+		"dialog-player":
+			GameUI.request_dialog_line(trigger_id, dialog_id)
+		"dialog-phone":
+			GameUI.phone_sms_received.emit()
+			GameUI.request_dialog_line(trigger_id, dialog_id)
+
+
 func force_available(the_trigger: ForceTrigger, available: bool) -> void:
 	if available:
 		active_force_trigger = the_trigger
 		force_trigger_entered.emit(the_trigger)
-		ui_context_requested.emit(the_trigger.context_line)
+		GameUI.show_action_context(the_trigger.context_line)
 	else:
 		force_trigger_exited.emit()
-		ui_context_hidden.emit()
+		GameUI.hide_action_context()
 
 
 func current_force_score(score: float) -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cctjx2lhey38e"]
+[gd_scene load_steps=11 format=3 uid="uid://cctjx2lhey38e"]
 
 [ext_resource type="Script" path="res://scene/level/frozen.gd" id="1_dox7i"]
 [ext_resource type="PackedScene" uid="uid://bcei26fhiuwfn" path="res://scene/level/map/frozen-map.tscn" id="2_1mycd"]
@@ -6,142 +6,17 @@
 [ext_resource type="PackedScene" uid="uid://cy0s5wjn5u0l3" path="res://scene/core/dialog/dialog-lines.tscn" id="4_uoste"]
 [ext_resource type="PackedScene" uid="uid://n5iv26l5gsf2" path="res://scene/entities/player.tscn" id="5_j37pm"]
 [ext_resource type="PackedScene" uid="uid://bspf32n5wp0pj" path="res://scene/fx/fx-snow.tscn" id="6_fra0j"]
-[ext_resource type="Script" path="res://scene/ui/main-hud.gd" id="7_lsr8v"]
-[ext_resource type="PackedScene" uid="uid://d1pjmsekkiy57" path="res://scene/ui/nokia.tscn" id="8_bebo3"]
-[ext_resource type="PackedScene" uid="uid://bu5ptnxlx0o3w" path="res://scene/ui/dialog.tscn" id="9_5faa3"]
-[ext_resource type="PackedScene" uid="uid://ck8nfkeyiukdk" path="res://scene/game/agility-minigame.tscn" id="10_giark"]
-[ext_resource type="Texture2D" uid="uid://b1jv1fj6a5y4h" path="res://assets/img/props/ui.png" id="11_3h6mh"]
-[ext_resource type="Material" uid="uid://bhaiush2cvw0u" path="res://assets/material/invert.tres" id="12_0b6la"]
-[ext_resource type="FontVariation" uid="uid://sutfsmsc6a1c" path="res://assets/fonts/lowrez/lowrez.tres" id="13_fvsas"]
+[ext_resource type="PackedScene" uid="uid://djy0mhvanst05" path="res://scene/entities/player_camera.tscn" id="6_io8w1"]
+[ext_resource type="PackedScene" uid="uid://clu14w5020gde" path="res://scene/ui/main-hud.tscn" id="7_ugduo"]
 [ext_resource type="PackedScene" uid="uid://dsuxju20jnadc" path="res://scene/cutscenes/final/final-scene.tscn" id="14_yiqm2"]
 [ext_resource type="PackedScene" uid="uid://blu3yvnltrg46" path="res://scene/cutscenes/game-over/game-over.tscn" id="15_58ewk"]
 
-[sub_resource type="Animation" id="Animation_2qc2c"]
-length = 0.001
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Nokia:position:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(65, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Nokia:position:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(100, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("%PlayerCamera:offset")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_fuwyk"]
-resource_name = "phone-hide"
-length = 0.5
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Nokia:position:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(65, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Nokia:position:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(36, -0.25, 0, 0.1, 40, 100, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.5)
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("%PlayerCamera:offset")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(14, 0), Vector2(0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_hea7x"]
-resource_name = "phone-show"
-length = 0.5
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Nokia:position:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(65, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Nokia:position:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(100, -0.25, 0, 0.1, -40, 36, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.5)
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("%PlayerCamera:offset")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(14, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_offg3"]
-_data = {
-"RESET": SubResource("Animation_2qc2c"),
-"phone-hide": SubResource("Animation_fuwyk"),
-"phone-show": SubResource("Animation_hea7x")
-}
-
-[node name="LevelFrozen" type="Node"]
+[node name="Level" type="Node"]
 script = ExtResource("1_dox7i")
 metadata/_edit_vertical_guides_ = [84.0]
 metadata/_edit_horizontal_guides_ = [48.0]
 
-[node name="FrozenMap" parent="." instance=ExtResource("2_1mycd")]
+[node name="Map" parent="." instance=ExtResource("2_1mycd")]
 
 [node name="Shadows" type="Node2D" parent="."]
 position = Vector2(0, -2)
@@ -150,25 +25,21 @@ position = Vector2(0, -2)
 position = Vector2(61, -5)
 
 [node name="Dialog" parent="Shadows" instance=ExtResource("4_uoste")]
+dialog_id = &"first_encounter"
 dialog_lines = "FIRST_ENCOUNTER"
 
 [node name="Player" parent="." instance=ExtResource("5_j37pm")]
 unique_name_in_owner = true
 position = Vector2(-48, -1)
 
-[node name="PlayerCamera" type="Camera2D" parent="Player"]
+[node name="PlayerCamera" parent="Player" instance=ExtResource("6_io8w1")]
 unique_name_in_owner = true
-position = Vector2(0, -18)
-limit_bottom = 10
 
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player/PlayerCamera"]
-position = Vector2(0, -20)
-remote_path = NodePath("../../../Snow")
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
+position = Vector2(0, -38)
+remote_path = NodePath("../../Snow")
 update_rotation = false
 update_scale = false
-
-[node name="Marker2D" type="Marker2D" parent="Player"]
-position = Vector2(21, -19)
 
 [node name="BackBufferCopy" type="BackBufferCopy" parent="."]
 position = Vector2(0, -39)
@@ -183,51 +54,7 @@ emission_rect_extents = Vector2(84, 10)
 initial_velocity_min = 10.0
 initial_velocity_max = 20.0
 
-[node name="UI" type="CanvasLayer" parent="."]
-script = ExtResource("7_lsr8v")
-
-[node name="Nokia" parent="UI" instance=ExtResource("8_bebo3")]
-position = Vector2(65, 100)
-
-[node name="UIAnimationPlayer" type="AnimationPlayer" parent="UI"]
-libraries = {
-"": SubResource("AnimationLibrary_offg3")
-}
-
-[node name="DialogUI" parent="UI" instance=ExtResource("9_5faa3")]
-visible = false
-nbr_letters_per_second = 60
-
-[node name="Agility" parent="UI" instance=ExtResource("10_giark")]
-position = Vector2(19, 9)
-
-[node name="ContextBar" type="NinePatchRect" parent="UI"]
-offset_left = 2.0
-offset_right = 82.0
-offset_bottom = 9.0
-texture = ExtResource("11_3h6mh")
-region_rect = Rect2(12, 24, 6, 6)
-patch_margin_left = 1
-patch_margin_top = 1
-patch_margin_right = 1
-patch_margin_bottom = 1
-
-[node name="UIContext" type="Label" parent="UI/ContextBar"]
-unique_name_in_owner = true
-material = ExtResource("12_0b6la")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 1.0
-offset_top = 2.0
-offset_right = -1.0
-offset_bottom = -1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("13_fvsas")
-horizontal_alignment = 1
-clip_text = true
+[node name="MainHUD" parent="." instance=ExtResource("7_ugduo")]
 
 [node name="FinalScene" parent="." instance=ExtResource("14_yiqm2")]
 position = Vector2(200, -400)

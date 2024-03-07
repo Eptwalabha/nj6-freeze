@@ -236,7 +236,7 @@ dialog_lines = "TUTORIAL_VERY_DARK
 TUTORIAL_TOO_DARK"
 
 [node name="TriggerFinalScene" parent="Triggers/Dialogs" instance=ExtResource("4_gty0q")]
-position = Vector2(-80, -9)
+position = Vector2(778, -27)
 trigger_id = &"summon-bob"
 
 [node name="PlayerSpawn" type="Marker2D" parent="."]
