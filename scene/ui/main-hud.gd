@@ -1,6 +1,7 @@
 class_name UI
 extends CanvasLayer
 
+@onready var nokia: PhoneUI = %Nokia
 @onready var ui_context: Label = %UIContext
 @onready var context_bar: NinePatchRect = $ContextBar
 @onready var agility: Node2D = $Agility
@@ -14,6 +15,8 @@ func _ready() -> void:
 	GameUI.dialog_stopped.connect(_on_dialog_stopped)
 	GameUI.action_context_shown.connect(_on_action_context_shown)
 	GameUI.action_context_hidden.connect(_on_action_context_hidden)
+	GameUI.phone_drawn.connect(_on_phone_drawn)
+	GameUI.phone_hidden.connect(_on_phone_hidden)
 
 	GameData.ui_agility_pressed.connect(_on_action_context_hidden)
 
@@ -36,6 +39,14 @@ func _on_action_context_hidden() -> void:
 	context_bar.visible = false
 
 
-func _on_action_context_shown(_on_action_context_hidden: StringName) -> void:
-	ui_context.text = tr(_on_action_context_hidden)
+func _on_action_context_shown(context_label: StringName) -> void:
+	ui_context.text = tr(context_label)
 	context_bar.visible = true
+
+
+func _on_phone_drawn() -> void:
+	nokia.toggle(true)
+
+
+func _on_phone_hidden() -> void:
+	nokia.toggle(false)

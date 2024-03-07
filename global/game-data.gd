@@ -27,12 +27,12 @@ signal flashlight_found
 signal bob_arrived
 signal player_grabbed_by_bob
 
+const DRAWN_SPEED: float = 5.0
+
 var audio: AudioHandler
 var is_music_muted: bool = false
 var is_sound_muted: bool = false
-
 var current_checkpoint_id: int = 0
-
 var active_force_trigger: ForceTrigger
 
 
@@ -50,11 +50,11 @@ func open_sms() -> void:
 
 
 func show_phone() -> void:
-	pass
+	GameUI.phone_drawn.emit()
 
 
 func hide_phone() -> void:
-	pass
+	GameUI.phone_hidden.emit()
 
 
 func trigger(trigger_id: StringName) -> void:

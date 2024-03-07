@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cctjx2lhey38e"]
+[gd_scene load_steps=11 format=3 uid="uid://cctjx2lhey38e"]
 
 [ext_resource type="Script" path="res://scene/level/frozen.gd" id="1_dox7i"]
 [ext_resource type="PackedScene" uid="uid://bcei26fhiuwfn" path="res://scene/level/map/frozen-map.tscn" id="2_1mycd"]
@@ -6,16 +6,17 @@
 [ext_resource type="PackedScene" uid="uid://cy0s5wjn5u0l3" path="res://scene/core/dialog/dialog-lines.tscn" id="4_uoste"]
 [ext_resource type="PackedScene" uid="uid://n5iv26l5gsf2" path="res://scene/entities/player.tscn" id="5_j37pm"]
 [ext_resource type="PackedScene" uid="uid://bspf32n5wp0pj" path="res://scene/fx/fx-snow.tscn" id="6_fra0j"]
+[ext_resource type="PackedScene" uid="uid://djy0mhvanst05" path="res://scene/entities/player_camera.tscn" id="6_io8w1"]
 [ext_resource type="PackedScene" uid="uid://clu14w5020gde" path="res://scene/ui/main-hud.tscn" id="7_ugduo"]
 [ext_resource type="PackedScene" uid="uid://dsuxju20jnadc" path="res://scene/cutscenes/final/final-scene.tscn" id="14_yiqm2"]
 [ext_resource type="PackedScene" uid="uid://blu3yvnltrg46" path="res://scene/cutscenes/game-over/game-over.tscn" id="15_58ewk"]
 
-[node name="LevelFrozen" type="Node"]
+[node name="Level" type="Node"]
 script = ExtResource("1_dox7i")
 metadata/_edit_vertical_guides_ = [84.0]
 metadata/_edit_horizontal_guides_ = [48.0]
 
-[node name="FrozenMap" parent="." instance=ExtResource("2_1mycd")]
+[node name="Map" parent="." instance=ExtResource("2_1mycd")]
 
 [node name="Shadows" type="Node2D" parent="."]
 position = Vector2(0, -2)
@@ -31,19 +32,14 @@ dialog_lines = "FIRST_ENCOUNTER"
 unique_name_in_owner = true
 position = Vector2(-48, -1)
 
-[node name="PlayerCamera" type="Camera2D" parent="Player"]
+[node name="PlayerCamera" parent="Player" instance=ExtResource("6_io8w1")]
 unique_name_in_owner = true
-position = Vector2(0, -18)
-limit_bottom = 10
 
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player/PlayerCamera"]
-position = Vector2(0, -20)
-remote_path = NodePath("../../../Snow")
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
+position = Vector2(0, -38)
+remote_path = NodePath("../../Snow")
 update_rotation = false
 update_scale = false
-
-[node name="Marker2D" type="Marker2D" parent="Player"]
-position = Vector2(21, -19)
 
 [node name="BackBufferCopy" type="BackBufferCopy" parent="."]
 position = Vector2(0, -39)

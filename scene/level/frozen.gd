@@ -13,7 +13,7 @@ var game_states: Array[GameState] = [GameState.PLAYING]
 
 @onready var shadows: Node2D = $Shadows
 @onready var player: Player = %Player
-@onready var map: GameMap = $FrozenMap
+@onready var map: GameMap = $Map
 @onready var player_camera: Camera2D = %PlayerCamera
 @onready var game_over: GameOverScreen = $GameOver
 @onready var final_scene: FinalScreen = $FinalScene

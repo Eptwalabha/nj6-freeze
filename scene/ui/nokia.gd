@@ -7,13 +7,23 @@ enum PhoneScreen {
 	READING_MESSAGE,
 }
 
+var drawn: bool = false
+var target: Vector2 = Vector2.ZERO
+
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var screen: Sprite2D = $Nokia/Screen
+@onready var screen: Sprite2D = %Screen
+@onready var position_down: Marker2D = $PositionDown
+@onready var pivot: Node2D = $Pivot
 
 
 func _ready() -> void:
 	GameUI.phone_sms_received.connect(_on_message_received)
-	#GameData.phone_message_opened.connect(_on_message_opened)
+	toggle(drawn)
+	pivot.position = target
+
+
+func _process(delta: float) -> void:
+	pivot.position = pivot.position.slerp(target, delta * GameData.DRAWN_SPEED)
 
 
 func _check_network() -> void:
@@ -38,3 +48,8 @@ func set_screen(screen_type: PhoneScreen) -> void:
 			screen.frame = 2
 		_:
 			screen.frame = 0
+
+
+func toggle(is_drawn: bool) -> void:
+	drawn = is_drawn
+	target = Vector2.ZERO if drawn else position_down.position

@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://djy0mhvanst05"]
+
+[ext_resource type="Script" path="res://scene/entities/player_camera.gd" id="1_4y67e"]
+
+[node name="PlayerCamera" type="Camera2D"]
+position = Vector2(0, -18)
+limit_bottom = 10
+script = ExtResource("1_4y67e")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(18, 0)
