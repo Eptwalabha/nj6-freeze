@@ -476,6 +476,7 @@ metadata/_edit_horizontal_guides_ = [48.0]
 [node name="Dialog" type="Node2D" parent="."]
 
 [node name="Dialog" parent="Dialog" instance=ExtResource("2_6n651")]
+dialog_id = &"final_dialog"
 dialog_lines = "BOB_FINAL_SPEECH"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

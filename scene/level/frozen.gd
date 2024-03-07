@@ -56,9 +56,6 @@ func _on_game_start() -> void:
 
 func _input(event: InputEvent) -> void:
 	match game_states[-1]:
-		GameState.DIALOG:
-			if event.is_action_pressed("action-confirm") and dialog_visible:
-				GameUI.next_dialog_line()
 		GameState.PLAYING:
 			if event.is_action_pressed("move_up"):
 				GameData.show_phone()
@@ -109,21 +106,17 @@ func _on_phone_hidden() -> void:
 
 
 func _on_phone_message_received(_sms: Array[StringName]) -> void:
-	#dialog_ui.set_dialog_lines(sms)
 	push_state(GameState.DIALOG)
 	toggle_phone_visibility(true)
 
 
 func show_phone() -> void:
 	phone_visible = true
-	#ui_animation_player.play("phone-show")
 
 
 func hide_phone() -> void:
 	phone_visible = false
-	#ui_animation_player.play("phone-hide")
 
 
 func _on_shadow_escaped() -> void:
-	#GameData.dialog_triggered.emit($Shadows/Dialog.dialog_keys[0])
-	pass
+	GameUI.request_dialog($Shadows/Dialog)

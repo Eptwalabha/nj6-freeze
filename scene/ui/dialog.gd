@@ -1,11 +1,6 @@
 class_name DialogUI
 extends Node2D
 
-signal dialog_started
-signal dialog_ended
-signal new_line_started(line_index)
-signal new_line_ended(line_index)
-
 enum DialogState {
 	HIDDEN,
 	TYPING,
@@ -19,9 +14,9 @@ const MAX_CHARACTERS_PER_LINE: int = 18
 @export var nbr_letters_per_second: int = 40:
 	set = _set_speed
 
+var current_dialog_id: StringName = ""
 var current_line_index: int = 0
 var lines: Array[String] = []
-var nbr_lines: int = 0
 var char_timer: float = 0.1
 var t: float = 0
 var state: DialogState = DialogState.HIDDEN
@@ -30,19 +25,24 @@ var state: DialogState = DialogState.HIDDEN
 @onready var dialog: Label = %Dialog
 
 
+func _ready() -> void:
+	set_process_input(false)
+
+
 func stop() -> void:
+	set_process_input(false)
 	state = DialogState.DONE
 	lines = []
 	current_line_index = 0
 	visible = false
 
 
-func set_dialog_lines(new_lines: Array[StringName], _options: Dictionary = {}) -> void:
+func set_dialog_lines(new_dialog_id: StringName, new_lines: Array[StringName], _options: Dictionary = {}) -> void:
+	current_dialog_id = new_dialog_id
 	lines = []
 	for line in new_lines:
 		line = tr(line)
 		lines.append_array(DialogUI.split_into_lines(line))
-	nbr_lines = len(lines)
 	current_line_index = -1
 	state = DialogState.HIDDEN
 
@@ -89,13 +89,17 @@ func _process(delta: float) -> void:
 			if dialog.visible_ratio >= 1.0:
 				_end_of_line()
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("action-confirm"):
+		next_dialog()
 
 func next_dialog() -> void:
+	var nbr_lines: int = lines.size()
 	if nbr_lines == 0:
 		return
 	if state == DialogState.DONE:
 		stop()
-		dialog_ended.emit()
+		GameData.dialog_ended.emit(current_dialog_id)
 	if state == DialogState.TYPING:
 		dialog.visible_characters = -1
 		_end_of_line()
@@ -105,26 +109,25 @@ func next_dialog() -> void:
 	elif (current_line_index + 1) >= nbr_lines:
 		return
 	else:
+		set_process_input(true)
 		next_arrow.visible = false
 		current_line_index += 1
 		dialog.visible_characters = 0
 		dialog.text = tr(lines[current_line_index])
-		new_line_started.emit(current_line_index)
 		if state == DialogState.HIDDEN:
-			dialog_started.emit()
+			GameData.dialog_started.emit(current_dialog_id)
 			GameData.open_sms()
 			visible = true
 		state = DialogState.TYPING
 
 
 func _end_of_line() -> void:
-	if current_line_index < (nbr_lines - 1):
+	if current_line_index < (lines.size() - 1):
 		state = DialogState.WAITING
 		next_arrow.visible = true
 	else:
 		state = DialogState.DONE
 		next_arrow.visible = false
-	new_line_ended.emit(current_line_index)
 
 
 func _set_speed(new_nbr_letters_per_second: int) -> void:

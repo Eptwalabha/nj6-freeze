@@ -12,11 +12,10 @@ func _ready() -> void:
 	agility.visible = false
 	GameUI.dialog_requested.connect(_on_dialog_requested)
 	GameUI.dialog_stopped.connect(_on_dialog_stopped)
-	GameUI.dialog_next_line_requested.connect(_on_next_line_requested)
+	GameUI.action_context_shown.connect(_on_action_context_shown)
+	GameUI.action_context_hidden.connect(_on_action_context_hidden)
 
-	GameData.ui_context_hidden.connect(_on_context_hidden)
-	GameData.ui_context_requested.connect(_on_context_requested)
-	GameData.ui_agility_pressed.connect(_on_context_hidden)
+	GameData.ui_agility_pressed.connect(_on_action_context_hidden)
 
 
 func clear() -> void:
@@ -24,24 +23,19 @@ func clear() -> void:
 	context_bar.visible = false
 
 
-func _on_dialog_requested(dialog_lines: Array[StringName]) -> void:
-	print(dialog_lines)
-	dialog_ui.set_dialog_lines(dialog_lines)
+func _on_dialog_requested(dialog_id: StringName, dialog_lines: Array[StringName]) -> void:
+	dialog_ui.set_dialog_lines(dialog_id, dialog_lines)
 	dialog_ui.next_dialog()
 
 
 func _on_dialog_stopped() -> void:
-	dialog_ui.visible = false
+	dialog_ui.stop()
 
 
-func _on_next_line_requested() -> void:
-	dialog_ui.next_dialog()
-
-
-func _on_context_hidden() -> void:
+func _on_action_context_hidden() -> void:
 	context_bar.visible = false
 
 
-func _on_context_requested(message: StringName) -> void:
-	ui_context.text = tr(message)
+func _on_action_context_shown(_on_action_context_hidden: StringName) -> void:
+	ui_context.text = tr(_on_action_context_hidden)
 	context_bar.visible = true

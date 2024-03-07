@@ -3,8 +3,7 @@ extends Node
 signal action_context_shown(action_context)
 signal action_context_hidden
 
-signal dialog_requested(dialog_keys)
-#signal dialog_triggered(dialog_key)
+signal dialog_requested(dialog_id, dialog_keys)
 signal dialog_next_line_requested
 signal dialog_stopped
 
@@ -14,11 +13,11 @@ signal phone_sms_received
 
 
 func request_dialog(dialog: Dialog) -> void:
-	dialog_requested.emit(dialog.dialog_keys)
+	dialog_requested.emit(dialog.dialog_id, dialog.dialog_keys)
 
 
-func request_dialog_line(line: StringName) -> void:
-	dialog_requested.emit([line] as Array[StringName])
+func request_dialog_line(dialog_id: StringName, line: StringName) -> void:
+	dialog_requested.emit(dialog_id, [line] as Array[StringName])
 
 
 func hide_dialog() -> void:
