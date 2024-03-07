@@ -37,7 +37,9 @@ func stop() -> void:
 	visible = false
 
 
-func set_dialog_lines(new_dialog_id: StringName, new_lines: Array[StringName], _options: Dictionary = {}) -> void:
+func set_dialog_lines(
+	new_dialog_id: StringName, new_lines: Array[StringName], _options: Dictionary = {}
+) -> void:
 	current_dialog_id = new_dialog_id
 	lines = []
 	for line in new_lines:
@@ -89,9 +91,11 @@ func _process(delta: float) -> void:
 			if dialog.visible_ratio >= 1.0:
 				_end_of_line()
 
+
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("action-confirm"):
 		next_dialog()
+
 
 func next_dialog() -> void:
 	var nbr_lines: int = lines.size()
