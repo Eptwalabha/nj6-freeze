@@ -4,9 +4,10 @@ extends Node
 signal cut_scene_stated(cut_scene_id)
 signal cut_scene_ended(cut_scene_id)
 
-var level : GameLevel
+@export var cut_scene_id: StringName = ""
 
-@export var cut_scene_id : StringName = ""
+var level: GameLevel
+
 
 func _ready() -> void:
 	if cut_scene_id == "":
