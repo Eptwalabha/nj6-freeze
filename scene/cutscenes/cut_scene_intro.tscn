@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://ceftora1i8cml"]
+
+[ext_resource type="PackedScene" uid="uid://bjg5nh3ac77wk" path="res://scene/cutscenes/in-game/cut_scene.tscn" id="1_agq0m"]
+[ext_resource type="Script" path="res://scene/cutscenes/cut_scene_intro.gd" id="2_04fua"]
+[ext_resource type="PackedScene" uid="uid://cy0s5wjn5u0l3" path="res://scene/core/dialog/dialog_lines.tscn" id="3_nr2e0"]
+
+[sub_resource type="Animation" id="Animation_f45fp"]
+resource_name = "intro"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"wake_up_player"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dqfx1"]
+_data = {
+"intro": SubResource("Animation_f45fp")
+}
+
+[node name="CutSceneIntro" instance=ExtResource("1_agq0m")]
+script = ExtResource("2_04fua")
+
+[node name="Dialogs" type="Node" parent="." index="0"]
+
+[node name="FirstEncounter" parent="Dialogs" index="0" instance=ExtResource("3_nr2e0")]
+dialog_id = &"first_encounter"
+dialog_lines = "FIRST_ENCOUNTER"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
+libraries = {
+"": SubResource("AnimationLibrary_dqfx1")
+}

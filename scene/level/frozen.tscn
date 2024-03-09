@@ -1,11 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://cctjx2lhey38e"]
+[gd_scene load_steps=11 format=3 uid="uid://cctjx2lhey38e"]
 
 [ext_resource type="Script" path="res://scene/level/frozen.gd" id="1_dox7i"]
 [ext_resource type="PackedScene" uid="uid://bcei26fhiuwfn" path="res://scene/level/map/frozen_map.tscn" id="2_1mycd"]
-[ext_resource type="PackedScene" uid="uid://bjg5nh3ac77wk" path="res://scene/cutscenes/in-game/cut_scene.tscn" id="2_h6vsu"]
 [ext_resource type="PackedScene" uid="uid://ceftora1i8cml" path="res://scene/cutscenes/cut_scene_intro.tscn" id="3_ectq5"]
 [ext_resource type="PackedScene" uid="uid://4taukevrdihr" path="res://scene/entities/shadow.tscn" id="3_xev4a"]
-[ext_resource type="PackedScene" uid="uid://cy0s5wjn5u0l3" path="res://scene/core/dialog/dialog_lines.tscn" id="4_uoste"]
 [ext_resource type="PackedScene" uid="uid://n5iv26l5gsf2" path="res://scene/entities/player.tscn" id="5_j37pm"]
 [ext_resource type="PackedScene" uid="uid://bspf32n5wp0pj" path="res://scene/fx/fx_snow.tscn" id="6_fra0j"]
 [ext_resource type="PackedScene" uid="uid://djy0mhvanst05" path="res://scene/entities/player_camera.tscn" id="6_io8w1"]
@@ -20,8 +18,6 @@ metadata/_edit_horizontal_guides_ = [48.0]
 
 [node name="CutScenes" type="Node" parent="."]
 
-[node name="CutScene" parent="CutScenes" instance=ExtResource("2_h6vsu")]
-
 [node name="CutSceneIntro" parent="CutScenes" instance=ExtResource("3_ectq5")]
 
 [node name="Map" parent="." instance=ExtResource("2_1mycd")]
@@ -31,10 +27,6 @@ position = Vector2(0, -2)
 
 [node name="Shadow" parent="Shadows" instance=ExtResource("3_xev4a")]
 position = Vector2(61, -5)
-
-[node name="Dialog" parent="Shadows" instance=ExtResource("4_uoste")]
-dialog_id = &"first_encounter"
-dialog_lines = "FIRST_ENCOUNTER"
 
 [node name="Player" parent="." instance=ExtResource("5_j37pm")]
 unique_name_in_owner = true
