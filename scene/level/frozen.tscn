@@ -1,20 +1,28 @@
-[gd_scene load_steps=11 format=3 uid="uid://cctjx2lhey38e"]
+[gd_scene load_steps=13 format=3 uid="uid://cctjx2lhey38e"]
 
 [ext_resource type="Script" path="res://scene/level/frozen.gd" id="1_dox7i"]
-[ext_resource type="PackedScene" uid="uid://bcei26fhiuwfn" path="res://scene/level/map/frozen-map.tscn" id="2_1mycd"]
+[ext_resource type="PackedScene" uid="uid://bcei26fhiuwfn" path="res://scene/level/map/frozen_map.tscn" id="2_1mycd"]
+[ext_resource type="PackedScene" uid="uid://bjg5nh3ac77wk" path="res://scene/cutscenes/in-game/cut_scene.tscn" id="2_h6vsu"]
+[ext_resource type="PackedScene" uid="uid://ceftora1i8cml" path="res://scene/cutscenes/cut_scene_intro.tscn" id="3_ectq5"]
 [ext_resource type="PackedScene" uid="uid://4taukevrdihr" path="res://scene/entities/shadow.tscn" id="3_xev4a"]
-[ext_resource type="PackedScene" uid="uid://cy0s5wjn5u0l3" path="res://scene/core/dialog/dialog-lines.tscn" id="4_uoste"]
+[ext_resource type="PackedScene" uid="uid://cy0s5wjn5u0l3" path="res://scene/core/dialog/dialog_lines.tscn" id="4_uoste"]
 [ext_resource type="PackedScene" uid="uid://n5iv26l5gsf2" path="res://scene/entities/player.tscn" id="5_j37pm"]
-[ext_resource type="PackedScene" uid="uid://bspf32n5wp0pj" path="res://scene/fx/fx-snow.tscn" id="6_fra0j"]
+[ext_resource type="PackedScene" uid="uid://bspf32n5wp0pj" path="res://scene/fx/fx_snow.tscn" id="6_fra0j"]
 [ext_resource type="PackedScene" uid="uid://djy0mhvanst05" path="res://scene/entities/player_camera.tscn" id="6_io8w1"]
-[ext_resource type="PackedScene" uid="uid://clu14w5020gde" path="res://scene/ui/main-hud.tscn" id="7_ugduo"]
-[ext_resource type="PackedScene" uid="uid://dsuxju20jnadc" path="res://scene/cutscenes/final/final-scene.tscn" id="14_yiqm2"]
-[ext_resource type="PackedScene" uid="uid://blu3yvnltrg46" path="res://scene/cutscenes/game-over/game-over.tscn" id="15_58ewk"]
+[ext_resource type="PackedScene" uid="uid://clu14w5020gde" path="res://scene/ui/main_hud.tscn" id="7_ugduo"]
+[ext_resource type="PackedScene" uid="uid://dsuxju20jnadc" path="res://scene/cutscenes/final/final_scene.tscn" id="14_yiqm2"]
+[ext_resource type="PackedScene" uid="uid://blu3yvnltrg46" path="res://scene/cutscenes/game-over/game_over.tscn" id="15_58ewk"]
 
 [node name="Level" type="Node"]
 script = ExtResource("1_dox7i")
 metadata/_edit_vertical_guides_ = [84.0]
 metadata/_edit_horizontal_guides_ = [48.0]
+
+[node name="CutScenes" type="Node" parent="."]
+
+[node name="CutScene" parent="CutScenes" instance=ExtResource("2_h6vsu")]
+
+[node name="CutSceneIntro" parent="CutScenes" instance=ExtResource("3_ectq5")]
 
 [node name="Map" parent="." instance=ExtResource("2_1mycd")]
 

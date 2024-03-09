@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dvcgcpotar8c3"]
 
-[ext_resource type="Script" path="res://scene/cutscenes/skip-cutscene.gd" id="1_ib0s6"]
+[ext_resource type="Script" path="res://scene/cutscenes/skip_cutscene.gd" id="1_ib0s6"]
 [ext_resource type="Texture2D" uid="uid://c6ub2d4kngpp3" path="res://assets/img/arts/arts.png" id="2_r0q0i"]
 
 [node name="Skip" type="Node2D"]

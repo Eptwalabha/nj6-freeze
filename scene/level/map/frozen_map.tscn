@@ -1,7 +1,7 @@
 [gd_scene load_steps=18 format=3 uid="uid://bcei26fhiuwfn"]
 
 [ext_resource type="Texture2D" uid="uid://bjaw7b3gfr1kb" path="res://assets/img/props/nature.png" id="1_bjwek"]
-[ext_resource type="Script" path="res://scene/level/map/frozen-map.gd" id="1_u0pnf"]
+[ext_resource type="Script" path="res://scene/level/map/frozen_map.gd" id="1_u0pnf"]
 [ext_resource type="Material" uid="uid://4qotextykkj0" path="res://assets/material/dither.tres" id="2_aqtrm"]
 [ext_resource type="PackedScene" uid="uid://boi6ijo0a41n8" path="res://scene/props/car.tscn" id="4_aeg14"]
 [ext_resource type="PackedScene" uid="uid://cm2v0fcolsc2k" path="res://scene/core/trigger/dialog_trigger.tscn" id="4_gty0q"]

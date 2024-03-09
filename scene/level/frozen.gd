@@ -1,3 +1,4 @@
+class_name GameLevel
 extends Node
 
 enum GameState {

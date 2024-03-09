@@ -19,8 +19,8 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-GameData="*res://global/game-data.gd"
-GameUI="*res://global/game-ui.gd"
+GameData="*res://global/game_data.gd"
+GameUI="*res://global/game_ui.gd"
 
 [display]
 

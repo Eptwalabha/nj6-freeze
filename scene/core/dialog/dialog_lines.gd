@@ -3,7 +3,6 @@ extends Node
 
 @export var dialog_id: StringName = &""
 @export_multiline var dialog_lines: String = ""
-
 var dialog_keys: Array[StringName] = []
 
 
