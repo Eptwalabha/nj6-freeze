@@ -1,9 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://cctjx2lhey38e"]
+[gd_scene load_steps=10 format=3 uid="uid://cctjx2lhey38e"]
 
 [ext_resource type="Script" path="res://scene/level/frozen.gd" id="1_dox7i"]
 [ext_resource type="PackedScene" uid="uid://bcei26fhiuwfn" path="res://scene/level/map/frozen_map.tscn" id="2_1mycd"]
 [ext_resource type="PackedScene" uid="uid://ceftora1i8cml" path="res://scene/cutscenes/cut_scene_intro.tscn" id="3_ectq5"]
-[ext_resource type="PackedScene" uid="uid://4taukevrdihr" path="res://scene/entities/shadow.tscn" id="3_xev4a"]
 [ext_resource type="PackedScene" uid="uid://n5iv26l5gsf2" path="res://scene/entities/player.tscn" id="5_j37pm"]
 [ext_resource type="PackedScene" uid="uid://bspf32n5wp0pj" path="res://scene/fx/fx_snow.tscn" id="6_fra0j"]
 [ext_resource type="PackedScene" uid="uid://djy0mhvanst05" path="res://scene/entities/player_camera.tscn" id="6_io8w1"]
@@ -21,12 +20,6 @@ metadata/_edit_horizontal_guides_ = [48.0]
 [node name="CutSceneIntro" parent="CutScenes" instance=ExtResource("3_ectq5")]
 
 [node name="Map" parent="." instance=ExtResource("2_1mycd")]
-
-[node name="Shadows" type="Node2D" parent="."]
-position = Vector2(0, -2)
-
-[node name="Shadow" parent="Shadows" instance=ExtResource("3_xev4a")]
-position = Vector2(61, -5)
 
 [node name="Player" parent="." instance=ExtResource("5_j37pm")]
 unique_name_in_owner = true
@@ -61,5 +54,3 @@ position = Vector2(200, -400)
 
 [node name="GameOver" parent="." instance=ExtResource("15_58ewk")]
 position = Vector2(0, -400)
-
-[connection signal="escaped" from="Shadows/Shadow" to="." method="_on_shadow_escaped"]

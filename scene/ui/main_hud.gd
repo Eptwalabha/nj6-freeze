@@ -23,6 +23,7 @@ func _ready() -> void:
 
 func clear() -> void:
 	dialog_ui.stop()
+	nokia.toggle(false)
 	context_bar.visible = false
 
 
