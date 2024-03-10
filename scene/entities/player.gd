@@ -121,6 +121,14 @@ func is_looking_left() -> bool:
 	return sprite_2d.flip_h
 
 
+func enters_cutscene(in_cutscene: bool) -> void:
+	current_state = PlayerState.CUTSCENE if in_cutscene else PlayerState.CONTROL
+
+
+func looks_left(looking_left: bool) -> void:
+	sprite_2d.flip_h = looking_left
+
+
 func switch_flashlight(on: bool) -> void:
 	is_light_on = on
 	$Light.visible = on

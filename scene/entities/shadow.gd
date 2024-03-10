@@ -55,7 +55,9 @@ func _physics_process(_delta: float) -> void:
 			else:
 				velocity.x = 0.0
 		EnemyState.ESCAPING:
-			velocity.x = -sign(target.global_position.x - global_position.x) * ESCAPE_SPEED
+			velocity.x = -ESCAPE_SPEED
+			if target != null:
+				velocity.x = -sign(target.global_position.x - global_position.x) * ESCAPE_SPEED
 		_:
 			velocity.x = 0.0
 
@@ -113,10 +115,11 @@ func is_target_has_light() -> bool:
 func _update_animation_tree_states() -> void:
 	if velocity.x != 0:
 		pivot.scale.x = -1.0 if velocity.x < 0 else 1.0
-	dist_to_target = abs(target.global_position.x - global_position.x)
 
+	dist_to_target = 10000.0
 	waiting = true
 	if target != null:
+		dist_to_target = abs(target.global_position.x - global_position.x)
 		waiting = is_target_has_light() and is_target_looking_at_me() and is_in_penumbra()
 
 	animation_tree.set("parameters/conditions/lit", lit)

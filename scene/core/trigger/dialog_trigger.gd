@@ -23,6 +23,7 @@ func _ready() -> void:
 
 func reset() -> void:
 	set_active(init_enabled and GameData.is_checkpoint_passed(checkpoint_id))
+	current_dialog = 0
 
 
 func set_active(is_enabled: bool) -> void:

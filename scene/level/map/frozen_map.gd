@@ -6,10 +6,15 @@ var player: Player
 @onready var player_spawn: Marker2D = $PlayerSpawn
 @onready var darkness: PointLight2D = %Darkness
 @onready var tutorial_boundary: CollisionShape2D = %TutorialBoundary
+@onready var markers = $Map/Markers
 
 
 func _ready() -> void:
 	darkness.visible = true
+	GameData.flashlight_found.connect(
+		func () -> void:
+			tutorial_boundary.set_deferred("disabled", true)
+	)
 
 
 func reset() -> void:
@@ -26,5 +31,11 @@ func _process(_delta: float) -> void:
 
 
 func _on_car_battery_died() -> void:
-	tutorial_boundary.set_deferred("disabled", true)
 	$Triggers/Dialogs/TooDark.set_active(false)
+
+
+func get_marker_position(marker_id: StringName) -> Vector2:
+	for marker in markers.get_children():
+		if marker.has_meta("id") and marker.get_meta("id") == marker_id:
+			return marker.global_position
+	return Vector2.ZERO

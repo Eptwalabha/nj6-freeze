@@ -8,6 +8,8 @@ enum GameState {
 	PLAYING,
 }
 
+const SHADOW_ENEMY = preload("res://scene/entities/shadow.tscn")
+
 var phone_visible: bool = false
 var dialog_visible: bool = true
 var current_game_state: GameState = GameState.PLAYING
@@ -27,8 +29,7 @@ func _ready() -> void:
 	GameData.game_over.connect(_on_game_over)
 	GameData.game_start.connect(_on_game_start)
 	GameData.final_scene.connect(_on_final_scene)
-	for shadow in get_tree().get_nodes_in_group("shadow"):
-		shadow.target = player
+	GameData.game_start.emit()
 
 
 func _on_game_over() -> void:
@@ -49,6 +50,7 @@ func _on_game_start() -> void:
 		if item.has_method("reset"):
 			item.reset()
 	map.reset()
+	player.global_position = map.get_player_spawn_point(0)
 	player_camera.make_current()
 	current_game_state = GameState.PLAYING
 
@@ -66,3 +68,11 @@ func _input(event: InputEvent) -> void:
 
 func _on_dialog_ui_new_line_ended(_line_index: Variant) -> void:
 	pass
+
+
+func spawn_enemy_at(marker_id: StringName) -> ShadowEnemy:
+	var position : Vector2 = map.get_marker_position(marker_id)
+	var enemy: ShadowEnemy = SHADOW_ENEMY.instantiate()
+	map.add_child(enemy)
+	enemy.global_position = position
+	return enemy

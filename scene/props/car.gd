@@ -32,7 +32,7 @@ func _on_node_2d_forced() -> void:
 	car_outline.visible = true
 	car.visible = false
 	light.visible = false
-	GameData.car_battery_died()
+	GameData.triggered.emit("car_battery_died")
 	animation_player.stop()
 	battery_died.emit()
 

@@ -17,7 +17,7 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"wake_up_player"
+"method": &"battery_car_dies_out"
 }]
 }
 

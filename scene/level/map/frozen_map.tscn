@@ -184,6 +184,11 @@ texture = SubResource("GradientTexture1D_qdsis")
 texture_rotation = 0.518363
 polygon = PackedVector2Array(37, 3, 65, -3, 83, -9, 98, -14, 114, -27, 130, -34, 149, -34, 185, -35, 191, -32, 194, -26, 192, -23, 188, -26, 173, -24, 176, -9, 187, -1, 194, -1, 220, 1, 345.595, 0.243393, 391, -3, 431, -12, 468, -8, 499, -12, 519, -13, 541, -13, 542, 35, 645, 32, 639, -12, 668, -2, 691, -3, 753, -17, 798, -14, 856, -12, 890, 0, 897, 41, -169, 37, -168, -53, -119, -53, -103, -47, -104, -37, -93, -26, -91, -13, -80, -1)
 
+[node name="Markers" type="Node2D" parent="Map"]
+
+[node name="Spawner0" type="Marker2D" parent="Map/Markers"]
+metadata/id = &"tutorial_spawner"
+
 [node name="Props" type="Node2D" parent="."]
 
 [node name="Car" parent="Props" instance=ExtResource("4_aeg14")]
@@ -238,6 +243,13 @@ TUTORIAL_TOO_DARK"
 [node name="TriggerFinalScene" parent="Triggers/Dialogs" instance=ExtResource("4_gty0q")]
 position = Vector2(778, -27)
 trigger_id = &"summon-bob"
+
+[node name="Debug" type="Node2D" parent="Triggers"]
+
+[node name="KillPlayer" parent="Triggers/Debug" instance=ExtResource("4_gty0q")]
+position = Vector2(28, -5)
+trigger_id = &"player-dies"
+trigger_once = false
 
 [node name="PlayerSpawn" type="Marker2D" parent="."]
 position = Vector2(-28, 0)

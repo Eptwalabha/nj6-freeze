@@ -5,6 +5,7 @@ signal temperature_changed(temp)
 signal dialog_started(dialog_id)
 signal dialog_ended(dialog_id)
 
+signal triggered(trigger_name)
 #signal phone_message_received(dialog)
 #signal phone_message_opened
 #signal phone_change_screen(screen_name)
@@ -92,15 +93,10 @@ func current_force_score(score: float) -> void:
 	GameData.ui_agility_score.emit(score)
 
 
-func car_battery_died() -> void:
-	await get_tree().create_timer(2.0).timeout
-	flashlight_found.emit()
-
-
 func is_checkpoint_passed(checkpoint_id: int) -> bool:
 	return checkpoint_id == -1 or current_checkpoint_id >= checkpoint_id
 
 
 func despawn_enemies() -> void:
 	for enemy in get_tree().get_nodes_in_group("shadow"):
-		enemy.escape()
+		enemy.queue_free()
