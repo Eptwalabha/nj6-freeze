@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://n5iv26l5gsf2"]
+[gd_scene load_steps=44 format=3 uid="uid://n5iv26l5gsf2"]
 
 [ext_resource type="Script" path="res://scene/entities/player.gd" id="1_gs02o"]
 [ext_resource type="Texture2D" uid="uid://5vij36722j32" path="res://assets/img/spritesheets/player.png" id="2_vlalk"]
@@ -139,6 +139,20 @@ tracks/0/keys = {
 "values": [1, 2, 3, 4]
 }
 
+[sub_resource type="Animation" id="Animation_ickfr"]
+resource_name = "get-up"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 6.32, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ibhdy"]
 _data = {
 "RESET": SubResource("Animation_412vt"),
@@ -147,6 +161,7 @@ _data = {
 "force-charge": SubResource("Animation_lt3x0"),
 "force-idle": SubResource("Animation_ebeta"),
 "force-release": SubResource("Animation_2h8f5"),
+"get-up": SubResource("Animation_ickfr"),
 "idle": SubResource("Animation_p0n8i"),
 "walk": SubResource("Animation_mi3f6")
 }
@@ -181,6 +196,9 @@ states/force-charge/position = Vector2(354, 100)
 states/force-release/node = SubResource("AnimationNodeAnimation_qf33h")
 states/force-release/position = Vector2(624, 100)
 transitions = ["force-charge", "force-release", SubResource("AnimationNodeStateMachineTransition_xvlv7"), "Start", "force-charge", SubResource("AnimationNodeStateMachineTransition_b260d"), "force-release", "End", SubResource("AnimationNodeStateMachineTransition_5xrpa")]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jckof"]
+animation = &"get-up"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_f5rsa"]
 animation = &"idle"
@@ -237,6 +255,10 @@ advance_condition = &"not-on-floor"
 advance_mode = 2
 advance_condition = &"on-floor"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bi8gb"]
+switch_mode = 2
+advance_mode = 2
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_gkmwf"]
 states/air_down/node = SubResource("AnimationNodeAnimation_11i06")
 states/air_down/position = Vector2(386, -82.94)
@@ -244,12 +266,14 @@ states/air_up/node = SubResource("AnimationNodeAnimation_wrv4p")
 states/air_up/position = Vector2(658.85, -82.94)
 states/force/node = SubResource("AnimationNodeStateMachine_21xjp")
 states/force/position = Vector2(386, 282.06)
+states/get-up/node = SubResource("AnimationNodeAnimation_jckof")
+states/get-up/position = Vector2(249.65, -20.05)
 states/idle/node = SubResource("AnimationNodeAnimation_f5rsa")
 states/idle/position = Vector2(386, 100)
 states/walking/node = SubResource("AnimationNodeBlendTree_l87dj")
 states/walking/position = Vector2(658.85, 100)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_lrf72"), "idle", "walking", SubResource("AnimationNodeStateMachineTransition_pbrdv"), "walking", "idle", SubResource("AnimationNodeStateMachineTransition_smryo"), "idle", "force", SubResource("AnimationNodeStateMachineTransition_2n2tm"), "force", "idle", SubResource("AnimationNodeStateMachineTransition_gasje"), "idle", "air_up", SubResource("AnimationNodeStateMachineTransition_8tr38"), "air_up", "air_down", SubResource("AnimationNodeStateMachineTransition_b7b4k"), "air_down", "idle", SubResource("AnimationNodeStateMachineTransition_0emhw"), "walking", "air_up", SubResource("AnimationNodeStateMachineTransition_jwi66"), "air_up", "idle", SubResource("AnimationNodeStateMachineTransition_g3gp1")]
-graph_offset = Vector2(-70.15, 25.06)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_lrf72"), "idle", "walking", SubResource("AnimationNodeStateMachineTransition_pbrdv"), "walking", "idle", SubResource("AnimationNodeStateMachineTransition_smryo"), "idle", "force", SubResource("AnimationNodeStateMachineTransition_2n2tm"), "force", "idle", SubResource("AnimationNodeStateMachineTransition_gasje"), "idle", "air_up", SubResource("AnimationNodeStateMachineTransition_8tr38"), "air_up", "air_down", SubResource("AnimationNodeStateMachineTransition_b7b4k"), "air_down", "idle", SubResource("AnimationNodeStateMachineTransition_0emhw"), "walking", "air_up", SubResource("AnimationNodeStateMachineTransition_jwi66"), "air_up", "idle", SubResource("AnimationNodeStateMachineTransition_g3gp1"), "get-up", "idle", SubResource("AnimationNodeStateMachineTransition_bi8gb")]
+graph_offset = Vector2(-83.7401, -102.65)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_70apu"]
 radius = 11.0454

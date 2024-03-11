@@ -31,7 +31,18 @@ script = ExtResource("2_04fua")
 
 [node name="Dialogs" type="Node" parent="." index="0"]
 
-[node name="FirstEncounter" parent="Dialogs" index="0" instance=ExtResource("3_nr2e0")]
+[node name="PlayerWakesUp" parent="Dialogs" index="0" instance=ExtResource("3_nr2e0")]
+dialog_id = &"player_wake_up"
+dialog_lines = "INTRO_WHERE_AM_I
+DID_I_JUST_CRASH_MY_CAR
+I_NEED_HELP
+"
+
+[node name="CarBatteryIsDead" parent="Dialogs" index="1" instance=ExtResource("3_nr2e0")]
+dialog_id = &"dead_car_battery"
+dialog_lines = "THE_CAR_BATTERY_DIED"
+
+[node name="FirstEncounter" parent="Dialogs" index="2" instance=ExtResource("3_nr2e0")]
 dialog_id = &"first_encounter"
 dialog_lines = "FIRST_ENCOUNTER"
 

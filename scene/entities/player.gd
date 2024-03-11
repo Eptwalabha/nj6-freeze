@@ -139,3 +139,7 @@ func _on_bob_player_grabbed() -> void:
 	switch_flashlight(false)
 	sprite_2d.visible = false
 	current_state = PlayerState.CUTSCENE
+
+
+func get_up() -> void:
+	animation_tree["parameters/playback"].travel("get-up")

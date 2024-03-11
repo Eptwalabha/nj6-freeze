@@ -20,10 +20,11 @@ var current_game_state: GameState = GameState.PLAYING
 @onready var game_over: GameOverScreen = $GameOver
 @onready var final_scene: FinalScreen = $FinalScene
 @onready var main_hud: UI = $MainHUD
+@onready var cut_scene_intro = $CutScenes/CutSceneIntro
 
 
 func _ready() -> void:
-	player.global_position = map.get_player_spawn_point(0)
+	reset_player_position()
 	map.player = player
 	player.visible = true
 	GameData.game_over.connect(_on_game_over)
@@ -50,9 +51,13 @@ func _on_game_start() -> void:
 		if item.has_method("reset"):
 			item.reset()
 	map.reset()
-	player.global_position = map.get_player_spawn_point(0)
+	reset_player_position()
 	player_camera.make_current()
-	current_game_state = GameState.PLAYING
+	cut_scene_intro.start()
+
+
+func reset_player_position() -> void:
+	player.global_position = map.get_player_spawn_point(0)
 
 
 func _input(event: InputEvent) -> void:

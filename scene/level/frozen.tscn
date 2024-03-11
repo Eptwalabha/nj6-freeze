@@ -50,7 +50,7 @@ initial_velocity_max = 20.0
 [node name="MainHUD" parent="." instance=ExtResource("7_ugduo")]
 
 [node name="FinalScene" parent="." instance=ExtResource("14_yiqm2")]
-position = Vector2(200, -400)
+position = Vector2(200, 200)
 
 [node name="GameOver" parent="." instance=ExtResource("15_58ewk")]
-position = Vector2(0, -400)
+position = Vector2(0, 200)
