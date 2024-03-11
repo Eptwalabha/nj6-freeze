@@ -1,12 +1,13 @@
 class_name CutSceneIntro
 extends CutScene
 
+var shade: ShadowEnemy
+
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
-var shade : ShadowEnemy
 
 func _ready() -> void:
-	super._ready()
+	super()
 	GameData.triggered.connect(_on_triggered_emited)
 
 

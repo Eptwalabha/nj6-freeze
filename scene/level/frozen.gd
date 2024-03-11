@@ -71,8 +71,8 @@ func _on_dialog_ui_new_line_ended(_line_index: Variant) -> void:
 
 
 func spawn_enemy_at(marker_id: StringName) -> ShadowEnemy:
-	var position : Vector2 = map.get_marker_position(marker_id)
+	var enemy_position: Vector2 = map.get_marker_position(marker_id)
 	var enemy: ShadowEnemy = SHADOW_ENEMY.instantiate()
 	map.add_child(enemy)
-	enemy.global_position = position
+	enemy.global_position = enemy_position
 	return enemy

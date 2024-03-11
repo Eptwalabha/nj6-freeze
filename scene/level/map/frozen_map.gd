@@ -12,8 +12,7 @@ var player: Player
 func _ready() -> void:
 	darkness.visible = true
 	GameData.flashlight_found.connect(
-		func () -> void:
-			tutorial_boundary.set_deferred("disabled", true)
+		func() -> void: tutorial_boundary.set_deferred("disabled", true)
 	)
 
 
