@@ -1,6 +1,5 @@
 # LANGUAGE translation for Freeze for the following files:
-# res://scene/game/level-frozen.tscn
-# res://scene/enemies/shadow.tscn
+# res://scene/level/frozen.tscn
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -12,42 +11,62 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8-bit\n"
 
-#: scene/game/level-frozen.tscn
-msgid "FORCE_TRUNK"
+#: scene/level/frozen.tscn
+msgid "INTRO_WHERE_AM_I"
 msgstr ""
 
-#: scene/game/level-frozen.tscn
-msgid "LOWER_BRIDGE"
+#: scene/level/frozen.tscn
+msgid "DID_I_JUST_CRASH_MY_CAR"
 msgstr ""
 
-#: scene/game/level-frozen.tscn
-msgid "TUTORIAL_VERY_DARK"
+#: scene/level/frozen.tscn
+msgid "I_NEED_HELP"
 msgstr ""
 
-#: scene/game/level-frozen.tscn
-msgid "TUTORIAL_TOO_DARK"
+#: scene/level/frozen.tscn
+msgid "THE_CAR_BATTERY_DIED"
 msgstr ""
 
-#: scene/game/level-frozen.tscn
+#: scene/level/frozen.tscn
 msgid "FIRST_ENCOUNTER"
 msgstr ""
 
-#: scene/game/level-frozen.tscn
+#: scene/level/frozen.tscn
+msgid "FORCE_TRUNK"
+msgstr ""
+
+#: scene/level/frozen.tscn
+msgid "LOWER_BRIDGE"
+msgstr ""
+
+#: scene/level/frozen.tscn
+msgid "TUTORIAL_VERY_DARK"
+msgstr ""
+
+#: scene/level/frozen.tscn
+msgid "TUTORIAL_TOO_DARK"
+msgstr ""
+
+#: scene/level/frozen.tscn
+msgid "test one two"
+msgstr ""
+
+#: scene/level/frozen.tscn
 msgid "BOB_FINAL_SPEECH"
 msgstr ""
 
-#: scene/game/level-frozen.tscn
+#: scene/level/frozen.tscn
 msgid "THE_END"
 msgstr ""
 
-#: scene/game/level-frozen.tscn
+#: scene/level/frozen.tscn
 msgid "THANKS_FOR_PLAYING"
 msgstr ""
 
-#: scene/game/level-frozen.tscn
+#: scene/level/frozen.tscn
 msgid "YOU_DIED"
 msgstr ""
 
-#: scene/game/level-frozen.tscn
+#: scene/level/frozen.tscn
 msgid "RESTART"
 msgstr ""
