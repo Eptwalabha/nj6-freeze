@@ -191,6 +191,7 @@ metadata/id = &"tutorial_spawner"
 [node name="Props" type="Node2D" parent="."]
 
 [node name="Car" parent="Props" instance=ExtResource("4_aeg14")]
+unique_name_in_owner = true
 position = Vector2(-44, -2)
 
 [node name="Physics" type="Node2D" parent="."]

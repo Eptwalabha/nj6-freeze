@@ -23,18 +23,15 @@ func start() -> void:
 
 func _on_triggered_emited(trigger_id: StringName) -> void:
 	if trigger_id == &"car_battery_died":
-		level.player.enters_cutscene(true)
-		GameUI.request_dialog($Dialogs/CarBatteryIsDead)
-		await GameData.dialog_ended
-		level.player.looks_left(false)
-		battery_car_dies_out()
+		car_battery_died()
 
 
-func player_wakesup() -> void:
-	level.player.get_up()
-
-
-func battery_car_dies_out() -> void:
+func car_battery_died() -> void:
+	level.player.enters_cutscene(true)
+	await get_tree().create_timer(0.5).timeout
+	GameUI.request_dialog($Dialogs/CarBatteryIsDead)
+	await GameData.dialog_ended
+	level.player.looks_left(false)
 	shade = level.spawn_enemy_at("tutorial_spawner")
 	shade.global_position = level.player.global_position + Vector2(60.0, 0.0)
 	shade.target = level.player

@@ -20,7 +20,7 @@ msgstr ""
 
 #: scene/level/frozen.tscn
 msgid "INTRO_WHERE_AM_I"
-msgstr "What?... where am I?"
+msgstr "What?...\nWhere am I?"
 
 #: scene/level/frozen.tscn
 msgid "DID_I_JUST_CRASH_MY_CAR"
@@ -29,16 +29,16 @@ msgstr "Have I crashed the car?"
 #: scene/level/frozen.tscn
 msgid "I_NEED_HELP"
 msgstr ""
-"It's getting cold here.\n"
-"I need to get some help"
+"It's getting cold.\n"
+"I need to get help"
 
 #: scene/level/frozen.tscn
 msgid "THE_CAR_BATTERY_DIED"
-msgstr "Great! Now the car's battery's dead"
+msgstr "Great... Now the battery's dead"
 
 #: scene/level/frozen.tscn
 msgid "FIRST_ENCOUNTER"
-msgstr "What the hell was that!"
+msgstr "WHAT THE HELL WAS THAT!"
 
 #: scene/level/frozen.tscn
 msgid "FORCE_TRUNK"
@@ -51,14 +51,14 @@ msgstr "Lower the bridge"
 #: scene/level/frozen.tscn
 msgid "TUTORIAL_VERY_DARK"
 msgstr ""
-"I can't go that way...\n"
-"I don't see anything."
+"No...\n"
+"I can't see anything."
 
 #: scene/level/frozen.tscn
 msgid "TUTORIAL_TOO_DARK"
 msgstr ""
 "It's too dark, I need a light\n"
-"I think I've got one in the trunk of the car"
+"I have one back in the trunk"
 
 #: scene/level/frozen.tscn
 msgid "test one two"

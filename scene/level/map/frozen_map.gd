@@ -7,6 +7,7 @@ var player: Player
 @onready var darkness: PointLight2D = %Darkness
 @onready var tutorial_boundary: CollisionShape2D = %TutorialBoundary
 @onready var markers = $Map/Markers
+@onready var car: Car = %Car
 
 
 func _ready() -> void:
