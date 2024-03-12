@@ -35,8 +35,7 @@ script = ExtResource("2_04fua")
 dialog_id = &"player_wake_up"
 dialog_lines = "INTRO_WHERE_AM_I
 DID_I_JUST_CRASH_MY_CAR
-I_NEED_HELP
-"
+I_NEED_HELP"
 
 [node name="CarBatteryIsDead" parent="Dialogs" index="1" instance=ExtResource("3_nr2e0")]
 dialog_id = &"dead_car_battery"
