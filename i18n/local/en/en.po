@@ -15,34 +15,56 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.4.2\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.4.2\n"
 
-#: scene/game/level-frozen.tscn
+#: scene/level/frozen.tscn
+msgid "INTRO_WHERE_AM_I"
+msgstr "What?... where am I?"
+
+#: scene/level/frozen.tscn
+msgid "DID_I_JUST_CRASH_MY_CAR"
+msgstr "Have I crashed the car?"
+
+#: scene/level/frozen.tscn
+msgid "I_NEED_HELP"
+msgstr ""
+"It's getting cold here.\n"
+"I need to get some help"
+
+#: scene/level/frozen.tscn
+msgid "THE_CAR_BATTERY_DIED"
+msgstr "Great! Now the car's battery's dead"
+
+#: scene/level/frozen.tscn
+msgid "FIRST_ENCOUNTER"
+msgstr "What the hell was that!"
+
+#: scene/level/frozen.tscn
 msgid "FORCE_TRUNK"
 msgstr "Open the trunk"
 
-#: scene/game/level-frozen.tscn
+#: scene/level/frozen.tscn
 msgid "LOWER_BRIDGE"
 msgstr "Lower the bridge"
 
-#: scene/game/level-frozen.tscn
+#: scene/level/frozen.tscn
 msgid "TUTORIAL_VERY_DARK"
 msgstr ""
 "I can't go that way...\n"
 "I don't see anything."
 
-#: scene/game/level-frozen.tscn
+#: scene/level/frozen.tscn
 msgid "TUTORIAL_TOO_DARK"
 msgstr ""
 "It's too dark, I need a light\n"
 "I think I've got one in the trunk of the car"
 
-#: scene/game/level-frozen.tscn
-msgid "FIRST_ENCOUNTER"
-msgstr "What the hell was that!"
+#: scene/level/frozen.tscn
+msgid "test one two"
+msgstr ""
 
-#: scene/game/level-frozen.tscn
+#: scene/level/frozen.tscn
 msgid "BOB_FINAL_SPEECH"
 msgstr ""
 "HELLO\n"
@@ -52,18 +74,18 @@ msgstr ""
 "...\n"
 "I DON'T LIKE FROZEN MEAT"
 
-#: scene/game/level-frozen.tscn
+#: scene/level/frozen.tscn
 msgid "THE_END"
 msgstr "The end"
 
-#: scene/game/level-frozen.tscn
+#: scene/level/frozen.tscn
 msgid "THANKS_FOR_PLAYING"
 msgstr "Thank you for playing"
 
-#: scene/game/level-frozen.tscn
+#: scene/level/frozen.tscn
 msgid "YOU_DIED"
 msgstr "You died"
 
-#: scene/game/level-frozen.tscn
+#: scene/level/frozen.tscn
 msgid "RESTART"
 msgstr "press start to retry"
